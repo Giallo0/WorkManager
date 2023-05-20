@@ -16,7 +16,7 @@ namespace WorkManager_A
 {
     public partial class GestioneMenu : Form
     {
-        private MenuJSON jMenu = new MenuJSON();
+        private JSONwm jMenu = new JSONwm();
 
         public GestioneMenu()
         {
@@ -43,7 +43,7 @@ namespace WorkManager_A
         private void riempiListMenu()
         {
             treeList.Nodes.Clear();
-            foreach (ComponenteMenu function in jMenu.getElements())
+            foreach (ComponentiMenu function in jMenu.getMenuElements())
             {
                 TreeNode nodo = new TreeNode(function.Titolo);
                 nodo.Tag = function;
@@ -68,18 +68,18 @@ namespace WorkManager_A
         {
             if (controllaDati())
             {
-                ComponenteMenu function = new ComponenteMenu();
+                ComponentiMenu function = new ComponentiMenu();
                 function.Titolo = txtTitolo.Text;
                 function.Programma = txtProgramma.Text;
                 function.Bitmap = cboBitmap.SelectedItem.ToString();
 
                 if (int.Parse(lblIDValue.Text) == 0)
                 {
-                    jMenu.add(function);
+                    jMenu.addFunctionMenu(function);
                 }
                 else
                 {
-                    jMenu.edit(lblIDValue.Text, function);
+                    jMenu.editFunctionMenu(lblIDValue.Text, function);
                 }
                 pnlEditClear();
                 riempiListMenu();
@@ -131,7 +131,7 @@ namespace WorkManager_A
 
         private void treeList_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            modificaFunzioneMenu((ComponenteMenu)e.Node.Tag);
+            modificaFunzioneMenu((ComponentiMenu)e.Node.Tag);
         }
 
         private void treeList_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -145,10 +145,10 @@ namespace WorkManager_A
 
         private void modificaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            modificaFunzioneMenu((ComponenteMenu)treeList.SelectedNode.Tag);
+            modificaFunzioneMenu((ComponentiMenu)treeList.SelectedNode.Tag);
         }
 
-        private void modificaFunzioneMenu(ComponenteMenu function)
+        private void modificaFunzioneMenu(ComponentiMenu function)
         {
             pnlEditClear();
             pnlFunzioni.Enabled = false;
@@ -164,7 +164,7 @@ namespace WorkManager_A
         {
             if (DialogResult.Yes == MessageBox.Show("Sicuro di voler eliminare la funzione dal menù?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                jMenu.remove((ComponenteMenu)treeList.SelectedNode.Tag);
+                jMenu.removeFunctionMenu((ComponentiMenu)treeList.SelectedNode.Tag);
                 riempiListMenu();
             }
         }

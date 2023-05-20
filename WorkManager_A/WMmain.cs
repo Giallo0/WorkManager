@@ -20,7 +20,7 @@ namespace WorkManager_A
          * 
          */
 
-        private MenuJSON jMenu = new MenuJSON();
+        private JSONwm jMenu = new JSONwm();
 
         public WMmain()
         {
@@ -34,7 +34,7 @@ namespace WorkManager_A
 
             int locationY = 0;
 
-            foreach (ComponenteMenu function in jMenu.getElements())
+            foreach (ComponentiMenu function in jMenu.getMenuElements())
             {
                 Button btn = new Button();
 
@@ -76,7 +76,7 @@ namespace WorkManager_A
 
         private void btnRicaricaMenu_Click(object sender, EventArgs e)
         {
-            jMenu = new MenuJSON();
+            jMenu = new JSONwm();
             PersonalizzaInizializzazione();
         }
     }
