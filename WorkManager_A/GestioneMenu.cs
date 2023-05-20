@@ -66,23 +66,46 @@ namespace WorkManager_A
 
         private void btnConferma_Click(object sender, EventArgs e)
         {
-            ComponenteMenu function = new ComponenteMenu();
-            function.Titolo = txtTitolo.Text;
-            function.Programma = txtProgramma.Text;
-            function.Bitmap = cboBitmap.SelectedItem.ToString();
+            if (controllaDati())
+            {
+                ComponenteMenu function = new ComponenteMenu();
+                function.Titolo = txtTitolo.Text;
+                function.Programma = txtProgramma.Text;
+                function.Bitmap = cboBitmap.SelectedItem.ToString();
 
-            if (int.Parse(lblIDValue.Text) == 0)
-            {
-                jMenu.add(function);
+                if (int.Parse(lblIDValue.Text) == 0)
+                {
+                    jMenu.add(function);
+                }
+                else
+                {
+                    jMenu.edit(lblIDValue.Text, function);
+                }
+                pnlEditClear();
+                riempiListMenu();
+                pnlFunzioni.Enabled = true;
+                pnlEdit.Enabled = false;
             }
-            else
-            {
-                jMenu.edit(lblIDValue.Text, function);
+        }
+
+        private bool controllaDati()
+        {
+            bool noErrori = true;
+            if (string.IsNullOrEmpty(txtTitolo.Text)) 
+            { 
+                MessageBox.Show("Titolo non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                noErrori = false;
+                goto controllaDatiErr;
             }
-            pnlEditClear();
-            riempiListMenu();
-            pnlFunzioni.Enabled = true;
-            pnlEdit.Enabled = false;
+            if (string.IsNullOrEmpty(txtProgramma.Text)) 
+            {
+                MessageBox.Show("Programma non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                noErrori = false;
+                goto controllaDatiErr;
+            }
+
+            controllaDatiErr:
+            return noErrori;
         }
 
         private void btnAnnulla_Click(object sender, EventArgs e)
