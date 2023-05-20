@@ -74,7 +74,7 @@
             // 
             // btnCercaPath
             // 
-            btnCercaPath.Image = Properties.Resources.cartella;
+            btnCercaPath.Image = Properties.Resources.cartella_24x24;
             btnCercaPath.Location = new Point(444, 27);
             btnCercaPath.Name = "btnCercaPath";
             btnCercaPath.Size = new Size(28, 23);

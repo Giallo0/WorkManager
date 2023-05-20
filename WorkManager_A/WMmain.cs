@@ -19,9 +19,6 @@ namespace WorkManager_A
          * - gestione attività
          * 
          */
-
-        private JSONwm jMenu = new JSONwm();
-
         public WMmain()
         {
             InitializeComponent();
@@ -34,7 +31,7 @@ namespace WorkManager_A
 
             int locationY = 3;
 
-            foreach (ComponentiMenu function in jMenu.getMenuElements())
+            foreach (ComponentiMenu function in Globale.jwm.getMenuElements())
             {
                 Button btn = new Button();
 
@@ -65,6 +62,7 @@ namespace WorkManager_A
             if (sender != null)
             {
                 Button btn = (Button)sender;
+                Globale.functionCallName = btn.Text;
                 Funzione.Apri(btn.Tag.ToString());
             }
         }
@@ -76,7 +74,6 @@ namespace WorkManager_A
 
         private void btnRicaricaMenu_Click(object sender, EventArgs e)
         {
-            jMenu = new JSONwm();
             PersonalizzaInizializzazione();
         }
 

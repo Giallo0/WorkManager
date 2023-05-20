@@ -13,7 +13,6 @@ namespace WorkManager_A
 {
     public partial class Login : Form
     {
-        private JSONwm jwm = new JSONwm();
         public Login()
         {
             InitializeComponent();
@@ -35,8 +34,8 @@ namespace WorkManager_A
             {
                 if (Directory.Exists(txtPath.Text))
                 {
-                    jwm.setValue(ChiaviRoot.Workspace.ToString(), txtPath.Text);
-                    jwm.salva();
+                    Globale.jwm.setValue(ChiaviRoot.Workspace.ToString(), txtPath.Text);
+                    Globale.jwm.salva();
                     this.DialogResult = DialogResult.OK;
                 }
                 else

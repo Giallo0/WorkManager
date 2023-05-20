@@ -1,12 +1,12 @@
 { 
-   "Workspace" : "", 
    "Menu" : [ 
       { 
          "ID" : "1", 
-         "Titolo" : "Nuova cliente", 
+         "Titolo" : "Nuovo cliente", 
          "Programma" : "NuovaCartella", 
-         "Bitmap" : "cartella"
+         "Bitmap" : "cartella_24x24"
       }
    ], 
-   "CntID" : "1"
+   "CntID" : "1", 
+   "Workspace" : ""
 }

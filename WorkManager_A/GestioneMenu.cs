@@ -16,8 +16,6 @@ namespace WorkManager_A
 {
     public partial class GestioneMenu : Form
     {
-        private JSONwm jMenu = new JSONwm();
-
         public GestioneMenu()
         {
             InitializeComponent();
@@ -35,7 +33,10 @@ namespace WorkManager_A
             cboBitmap.Items.Add(" - ");
             foreach (DictionaryEntry entry in Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true))
             {
-                cboBitmap.Items.Add(entry.Key.ToString());
+                string name = entry.Key.ToString();
+                if (name.Contains('_') && name.Substring(name.LastIndexOf('_') + 1) == "24x24"){
+                    cboBitmap.Items.Add(name);
+                }
             }
             pnlEditClear();
         }
@@ -43,7 +44,7 @@ namespace WorkManager_A
         private void riempiListMenu()
         {
             treeList.Nodes.Clear();
-            foreach (ComponentiMenu function in jMenu.getMenuElements())
+            foreach (ComponentiMenu function in Globale.jwm.getMenuElements())
             {
                 TreeNode nodo = new TreeNode(function.Titolo);
                 nodo.Tag = function;
@@ -75,11 +76,11 @@ namespace WorkManager_A
 
                 if (int.Parse(lblIDValue.Text) == 0)
                 {
-                    jMenu.addFunctionMenu(function);
+                    Globale.jwm.addFunctionMenu(function);
                 }
                 else
                 {
-                    jMenu.editFunctionMenu(lblIDValue.Text, function);
+                    Globale.jwm.editFunctionMenu(lblIDValue.Text, function);
                 }
                 pnlEditClear();
                 riempiListMenu();
@@ -94,12 +95,14 @@ namespace WorkManager_A
             if (string.IsNullOrEmpty(txtTitolo.Text)) 
             { 
                 MessageBox.Show("Titolo non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTitolo.Focus();
                 noErrori = false;
                 goto controllaDatiErr;
             }
             if (string.IsNullOrEmpty(txtProgramma.Text)) 
             {
                 MessageBox.Show("Programma non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProgramma.Focus();
                 noErrori = false;
                 goto controllaDatiErr;
             }
@@ -164,7 +167,7 @@ namespace WorkManager_A
         {
             if (DialogResult.Yes == MessageBox.Show("Sicuro di voler eliminare la funzione dal menù?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                jMenu.removeFunctionMenu((ComponentiMenu)treeList.SelectedNode.Tag);
+                Globale.jwm.removeFunctionMenu((ComponentiMenu)treeList.SelectedNode.Tag);
                 riempiListMenu();
             }
         }

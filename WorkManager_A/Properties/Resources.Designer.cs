@@ -63,9 +63,9 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cartella {
+        internal static System.Drawing.Bitmap cartella_24x24 {
             get {
-                object obj = ResourceManager.GetObject("cartella", resourceCulture);
+                object obj = ResourceManager.GetObject("cartella_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap esci {
+        internal static System.Drawing.Bitmap cartella_32x32 {
             get {
-                object obj = ResourceManager.GetObject("esci", resourceCulture);
+                object obj = ResourceManager.GetObject("cartella_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap impostazioni {
+        internal static System.Drawing.Bitmap cerca_24x24 {
             get {
-                object obj = ResourceManager.GetObject("impostazioni", resourceCulture);
+                object obj = ResourceManager.GetObject("cerca_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap modifica {
+        internal static System.Drawing.Bitmap esci_24x24 {
             get {
-                object obj = ResourceManager.GetObject("modifica", resourceCulture);
+                object obj = ResourceManager.GetObject("esci_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,49 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ricarica {
+        internal static System.Drawing.Bitmap file_32x32 {
             get {
-                object obj = ResourceManager.GetObject("ricarica", resourceCulture);
+                object obj = ResourceManager.GetObject("file_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap home_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("home_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap impostazioni_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("impostazioni_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap modifica_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("modifica_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ricarica_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("ricarica_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

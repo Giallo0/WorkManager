@@ -9,8 +9,6 @@ namespace WorkManager_A.PanelImpostazioni
 {
     public partial class pnlImpostazioniWorkspace : Panel
     {
-        private JSONwm jwm = new JSONwm();
-
         public pnlImpostazioniWorkspace()
         {
             InitializeComponent();
@@ -90,7 +88,7 @@ namespace WorkManager_A.PanelImpostazioni
             // 
             txtPath.Location = new Point(23, 38);
             txtPath.Name = "txtPath";
-            txtPath.Text = jwm.getValue(ChiaviRoot.Workspace.ToString());
+            txtPath.Text = Globale.jwm.getValue(ChiaviRoot.Workspace.ToString());
             txtPath.ReadOnly = true;
             txtPath.Size = new Size(558, 23);
             txtPath.TabIndex = 0;
@@ -135,8 +133,8 @@ namespace WorkManager_A.PanelImpostazioni
         {
             if (DialogResult.Yes == MessageBox.Show("Cambiare percorso del Workspace?", "Attenzione", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                jwm.setValue(ChiaviRoot.Workspace.ToString(), string.Empty);
-                jwm.salva();
+                Globale.jwm.setValue(ChiaviRoot.Workspace.ToString(), string.Empty);
+                Globale.jwm.salva();
                 Application.Restart();
             }
         }
@@ -147,7 +145,7 @@ namespace WorkManager_A.PanelImpostazioni
             {
                 if (DialogResult.Yes == MessageBox.Show("Sicurissimo? Tutto il lavoro andrà perso e non rimarra più niente! Continuare?", "Attenzione", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
-                    DeleteFileFolder(jwm.getValue(ChiaviRoot.Workspace.ToString()));
+                    DeleteFileFolder(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString()));
                     Application.Restart();
                 }
             }

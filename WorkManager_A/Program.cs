@@ -12,8 +12,8 @@ namespace WorkManager_A
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             
-            JSONwm jwm = new JSONwm();
-            string workspace = jwm.getValue(ChiaviRoot.Workspace.ToString());
+            Globale.jwm = new JSONwm();
+            string workspace = Globale.jwm.getValue(ChiaviRoot.Workspace.ToString());
 
             if (string.IsNullOrEmpty(workspace) || !Directory.Exists(workspace)) 
             { 

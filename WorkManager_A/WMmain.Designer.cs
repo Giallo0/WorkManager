@@ -66,7 +66,7 @@
             btnEsci.Dock = DockStyle.Left;
             btnEsci.FlatAppearance.BorderSize = 0;
             btnEsci.FlatStyle = FlatStyle.Flat;
-            btnEsci.Image = Properties.Resources.esci;
+            btnEsci.Image = Properties.Resources.esci_24x24;
             btnEsci.Location = new Point(300, 0);
             btnEsci.Name = "btnEsci";
             btnEsci.Size = new Size(100, 84);
@@ -82,7 +82,7 @@
             btnImpostazioni.Dock = DockStyle.Left;
             btnImpostazioni.FlatAppearance.BorderSize = 0;
             btnImpostazioni.FlatStyle = FlatStyle.Flat;
-            btnImpostazioni.Image = Properties.Resources.impostazioni;
+            btnImpostazioni.Image = Properties.Resources.impostazioni_24x24;
             btnImpostazioni.Location = new Point(200, 0);
             btnImpostazioni.Name = "btnImpostazioni";
             btnImpostazioni.Size = new Size(100, 84);
@@ -98,7 +98,7 @@
             btnRicaricaMenu.Dock = DockStyle.Left;
             btnRicaricaMenu.FlatAppearance.BorderSize = 0;
             btnRicaricaMenu.FlatStyle = FlatStyle.Flat;
-            btnRicaricaMenu.Image = Properties.Resources.ricarica;
+            btnRicaricaMenu.Image = Properties.Resources.ricarica_24x24;
             btnRicaricaMenu.Location = new Point(100, 0);
             btnRicaricaMenu.Name = "btnRicaricaMenu";
             btnRicaricaMenu.Size = new Size(100, 84);
@@ -114,7 +114,7 @@
             btnGestioneMenu.Dock = DockStyle.Left;
             btnGestioneMenu.FlatAppearance.BorderSize = 0;
             btnGestioneMenu.FlatStyle = FlatStyle.Flat;
-            btnGestioneMenu.Image = Properties.Resources.modifica;
+            btnGestioneMenu.Image = Properties.Resources.modifica_24x24;
             btnGestioneMenu.Location = new Point(0, 0);
             btnGestioneMenu.Name = "btnGestioneMenu";
             btnGestioneMenu.Size = new Size(100, 84);
