@@ -1,4 +1,4 @@
 WorkManager_A/.vs/WorkManager_A/FileContentIndex/*
 *.cache
 WorkManager_A/obj/*
-WorkManager_A/bin/*
+WorkManager_A/bin/Debug/net6.0-windows/*.*

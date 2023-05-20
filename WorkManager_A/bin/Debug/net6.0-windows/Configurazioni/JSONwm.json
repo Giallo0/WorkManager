@@ -1,0 +1,12 @@
+{ 
+   "Workspace" : "", 
+   "Menu" : [ 
+      { 
+         "ID" : "1", 
+         "Titolo" : "Nuova cliente", 
+         "Programma" : "NuovaCartella", 
+         "Bitmap" : "cartella"
+      }
+   ], 
+   "CntID" : "1"
+}

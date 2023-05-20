@@ -32,7 +32,7 @@ namespace WorkManager_A
         {
             pnlListMenu.Controls.Clear();
 
-            int locationY = 0;
+            int locationY = 3;
 
             foreach (ComponentiMenu function in jMenu.getMenuElements())
             {
@@ -45,9 +45,9 @@ namespace WorkManager_A
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.Image = (Image)Resources.ResourceManager.GetObject(function.Bitmap);
                 btn.ImageAlign = ContentAlignment.MiddleLeft;
-                btn.Location = new Point(0, locationY);
+                btn.Location = new Point(4, locationY);
                 btn.Name = function.Titolo;
-                btn.Size = new Size(192, 60);
+                btn.Size = new Size(218, 39);
                 btn.TabIndex = 0;
                 btn.Text = function.Titolo;
                 btn.Tag = function.Programma;
@@ -56,7 +56,7 @@ namespace WorkManager_A
                 btn.UseVisualStyleBackColor = false;
                 btn.Click += btn_Click;
 
-                locationY += 60;
+                locationY += 45;
             }
         }
 
@@ -83,6 +83,11 @@ namespace WorkManager_A
         private void btnImpostazioni_Click(object sender, EventArgs e)
         {
             Funzione.Apri(btnImpostazioni.Tag.ToString(), "WorkManager_A");
+        }
+
+        private void btnEsci_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
