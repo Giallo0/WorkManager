@@ -73,6 +73,16 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap impostazioni {
+            get {
+                object obj = ResourceManager.GetObject("impostazioni", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap modifica {
             get {
                 object obj = ResourceManager.GetObject("modifica", resourceCulture);

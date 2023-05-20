@@ -30,6 +30,7 @@
         {
             pnlListMenu = new Panel();
             panel2 = new Panel();
+            btnImpostazioni = new Button();
             btnRicaricaMenu = new Button();
             btnGestioneMenu = new Button();
             panel2.SuspendLayout();
@@ -37,9 +38,7 @@
             // 
             // pnlListMenu
             // 
-            pnlListMenu.HorizontalScroll.Enabled = false;
             pnlListMenu.AutoScroll = true;
-
             pnlListMenu.BorderStyle = BorderStyle.FixedSingle;
             pnlListMenu.Dock = DockStyle.Left;
             pnlListMenu.Location = new Point(0, 0);
@@ -50,6 +49,7 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(btnImpostazioni);
             panel2.Controls.Add(btnRicaricaMenu);
             panel2.Controls.Add(btnGestioneMenu);
             panel2.Dock = DockStyle.Top;
@@ -57,6 +57,22 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(900, 76);
             panel2.TabIndex = 1;
+            // 
+            // btnImpostazioni
+            // 
+            btnImpostazioni.Dock = DockStyle.Left;
+            btnImpostazioni.FlatAppearance.BorderSize = 0;
+            btnImpostazioni.FlatStyle = FlatStyle.Flat;
+            btnImpostazioni.Image = Properties.Resources.impostazioni;
+            btnImpostazioni.Location = new Point(150, 0);
+            btnImpostazioni.Name = "btnImpostazioni";
+            btnImpostazioni.Size = new Size(75, 74);
+            btnImpostazioni.TabIndex = 2;
+            btnImpostazioni.Tag = "Impostazioni";
+            btnImpostazioni.Text = "Impostazioni";
+            btnImpostazioni.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnImpostazioni.UseVisualStyleBackColor = true;
+            btnImpostazioni.Click += btnImpostazioni_Click;
             // 
             // btnRicaricaMenu
             // 
@@ -110,5 +126,6 @@
         private Panel panel2;
         private Button btnGestioneMenu;
         private Button btnRicaricaMenu;
+        private Button btnImpostazioni;
     }
 }

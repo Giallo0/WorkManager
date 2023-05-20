@@ -79,5 +79,10 @@ namespace WorkManager_A
             jMenu = new JSONwm();
             PersonalizzaInizializzazione();
         }
+
+        private void btnImpostazioni_Click(object sender, EventArgs e)
+        {
+            Funzione.Apri(btnImpostazioni.Tag.ToString(), "WorkManager_A");
+        }
     }
 }
