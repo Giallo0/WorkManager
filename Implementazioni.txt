@@ -1,0 +1,2 @@
+Aggiungere priorità attività
+Aggiungere all'apertura un controllo di versione del programma. se la versione combacia allora non fare niente, ma se non combacia far partira una classe con la lista degli aggiornamenti automatici e vari controlli da far eseguire automaticamente dal programma.
