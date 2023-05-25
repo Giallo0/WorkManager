@@ -3,10 +3,38 @@
       { 
          "ID" : "1", 
          "Titolo" : "Nuovo cliente", 
-         "Programma" : "NuovaCartella", 
+         "Programma" : "GestioneCartella", 
+         "Bitmap" : "cartella_24x24", 
+         "Linkage" : "I"
+      }, 
+      { 
+         "ID" : "2", 
+         "Titolo" : "Apri cartella", 
+         "Programma" : "ApriCartella", 
          "Bitmap" : "cartella_24x24"
+      }, 
+      { 
+         "ID" : "3", 
+         "Titolo" : "Modifica cliente", 
+         "Programma" : "GestioneCartella", 
+         "Bitmap" : "cartella_24x24", 
+         "Linkage" : "G"
+      }, 
+      { 
+         "ID" : "4", 
+         "Titolo" : "Elimina Cliente", 
+         "Programma" : "GestioneCartella", 
+         "Bitmap" : "cartella_24x24", 
+         "Linkage" : "E"
+      }, 
+      { 
+         "ID" : "5", 
+         "Titolo" : "Gestione priorità attività", 
+         "Programma" : "nd", 
+         "Bitmap" : " - ", 
+         "Linkage" : ""
       }
    ], 
-   "CntID" : "1", 
-   "Workspace" : ""
+   "CntID" : "5", 
+   "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace"
 }

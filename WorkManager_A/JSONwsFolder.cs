@@ -9,7 +9,7 @@ namespace WorkManager_A
 {
     internal enum ChiaviwsFolder
     {
-        Tipo, DataCreazione, OraCreazione
+        Tipo, DataCreazione, OraCreazione, DataModifica, OraModifica
     }
 
     internal class ComponentiwsFolder

@@ -73,6 +73,7 @@
             btnEsci.TabIndex = 3;
             btnEsci.Tag = "Esci";
             btnEsci.Text = "Esci";
+            btnEsci.TextAlign = ContentAlignment.BottomCenter;
             btnEsci.TextImageRelation = TextImageRelation.ImageAboveText;
             btnEsci.UseVisualStyleBackColor = true;
             btnEsci.Click += btnEsci_Click;
@@ -89,6 +90,7 @@
             btnImpostazioni.TabIndex = 2;
             btnImpostazioni.Tag = "Impostazioni";
             btnImpostazioni.Text = "Impostazioni";
+            btnImpostazioni.TextAlign = ContentAlignment.BottomCenter;
             btnImpostazioni.TextImageRelation = TextImageRelation.ImageAboveText;
             btnImpostazioni.UseVisualStyleBackColor = true;
             btnImpostazioni.Click += btnImpostazioni_Click;
@@ -105,6 +107,7 @@
             btnRicaricaMenu.TabIndex = 1;
             btnRicaricaMenu.Tag = "RicaricaMenu";
             btnRicaricaMenu.Text = "Ricarica menù";
+            btnRicaricaMenu.TextAlign = ContentAlignment.BottomCenter;
             btnRicaricaMenu.TextImageRelation = TextImageRelation.ImageAboveText;
             btnRicaricaMenu.UseVisualStyleBackColor = true;
             btnRicaricaMenu.Click += btnRicaricaMenu_Click;
@@ -121,6 +124,7 @@
             btnGestioneMenu.TabIndex = 0;
             btnGestioneMenu.Tag = "GestioneMenu";
             btnGestioneMenu.Text = "Gestione menù";
+            btnGestioneMenu.TextAlign = ContentAlignment.BottomCenter;
             btnGestioneMenu.TextImageRelation = TextImageRelation.ImageAboveText;
             btnGestioneMenu.UseVisualStyleBackColor = true;
             btnGestioneMenu.Click += btnGestioneMenu_Click;

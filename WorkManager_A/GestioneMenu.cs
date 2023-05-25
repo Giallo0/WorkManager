@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WorkManager_A.Linkage;
 using WorkManager_A.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -16,6 +17,8 @@ namespace WorkManager_A
 {
     public partial class GestioneMenu : Form
     {
+        private string linkageFunction;
+
         public GestioneMenu()
         {
             InitializeComponent();
@@ -28,13 +31,15 @@ namespace WorkManager_A
             pnlEdit.Enabled = false;
 
             riempiListMenu();
+            LKGestioneLinkage.ClearLinkage();
 
             cboBitmap.Items.Clear();
             cboBitmap.Items.Add(" - ");
             foreach (DictionaryEntry entry in Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true))
             {
                 string name = entry.Key.ToString();
-                if (name.Contains('_') && name.Substring(name.LastIndexOf('_') + 1) == "24x24"){
+                if (name.Contains('_') && name.Substring(name.LastIndexOf('_') + 1) == "24x24")
+                {
                     cboBitmap.Items.Add(name);
                 }
             }
@@ -58,6 +63,7 @@ namespace WorkManager_A
             txtTitolo.Text = string.Empty;
             txtProgramma.Text = string.Empty;
             cboBitmap.SelectedItem = " - ";
+            linkageFunction = string.Empty;
         }
 
         private void cboBitmap_TextChanged(object sender, EventArgs e)
@@ -73,6 +79,7 @@ namespace WorkManager_A
                 function.Titolo = txtTitolo.Text;
                 function.Programma = txtProgramma.Text;
                 function.Bitmap = cboBitmap.SelectedItem.ToString();
+                function.Linkage = LKGestioneLinkage.linkage;
 
                 if (int.Parse(lblIDValue.Text) == 0)
                 {
@@ -92,22 +99,29 @@ namespace WorkManager_A
         private bool controllaDati()
         {
             bool noErrori = true;
-            if (string.IsNullOrEmpty(txtTitolo.Text)) 
-            { 
+            if (string.IsNullOrEmpty(txtTitolo.Text))
+            {
                 MessageBox.Show("Titolo non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTitolo.Focus();
                 noErrori = false;
                 goto controllaDatiErr;
             }
-            if (string.IsNullOrEmpty(txtProgramma.Text)) 
+            if (string.IsNullOrEmpty(txtProgramma.Text))
             {
                 MessageBox.Show("Programma non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProgramma.Focus();
                 noErrori = false;
                 goto controllaDatiErr;
             }
+            if (Type.GetType($"WorkManager_A.Linkage.LK{txtProgramma.Text}") != null && string.IsNullOrEmpty(LKGestioneLinkage.linkage))
+            {
+                MessageBox.Show("Linkage non valorizzata", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnLinkage.Focus();
+                noErrori = false;
+                goto controllaDatiErr;
+            }
 
-            controllaDatiErr:
+        controllaDatiErr:
             return noErrori;
         }
 
@@ -127,6 +141,7 @@ namespace WorkManager_A
         {
             pnlFunzioni.Enabled = false;
             pnlEdit.Enabled = true;
+            btnLinkage.Enabled = false;
 
             pnlEditClear();
             lblIDValue.Text = "0";
@@ -161,6 +176,7 @@ namespace WorkManager_A
             txtTitolo.Text = function.Titolo;
             txtProgramma.Text = function.Programma;
             cboBitmap.Text = function.Bitmap;
+            linkageFunction = function.Linkage;
         }
 
         private void eliminaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -170,6 +186,24 @@ namespace WorkManager_A
                 Globale.jwm.removeFunctionMenu((ComponentiMenu)treeList.SelectedNode.Tag);
                 riempiListMenu();
             }
+        }
+
+        private void txtProgramma_TextChanged(object sender, EventArgs e)
+        {
+            btnLinkage.Enabled = false;
+            if (Type.GetType($"WorkManager_A.Linkage.LK{txtProgramma.Text}") != null)
+            {
+                btnLinkage.Enabled = true;
+            }
+        }
+
+        private void btnLinkage_Click(object sender, EventArgs e)
+        {
+            LKGestioneLinkage.ClearLinkage();
+            LKGestioneLinkage.nomePgm = txtProgramma.Text;
+            LKGestioneLinkage.linkage = linkageFunction;
+            Funzione.Apri("GestioneLinkage", "WorkManager_A");
+            linkageFunction = LKGestioneLinkage.linkage;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace WorkManager_A
 
     internal enum ChiaviMenu
     {
-        ID, Titolo, Programma, Bitmap
+        ID, Titolo, Programma, Bitmap, Linkage
     }
 
     internal class ComponentiMenu
@@ -35,6 +35,8 @@ namespace WorkManager_A
         public string? Programma { get; set; }
 
         public string? Bitmap { get; set; }
+
+        public string? Linkage { get; set; }
     }
 
     internal class JSONwm
@@ -93,6 +95,7 @@ namespace WorkManager_A
                 componente.Titolo = nodo[ChiaviMenu.Titolo.ToString()];
                 componente.Programma = nodo[ChiaviMenu.Programma.ToString()];
                 componente.Bitmap = nodo[ChiaviMenu.Bitmap.ToString()];
+                componente.Linkage = nodo[ChiaviMenu.Linkage.ToString()];
                 elementi.Add(componente);
             }
 
@@ -114,6 +117,7 @@ namespace WorkManager_A
             nodo[ChiaviMenu.Titolo.ToString()] = function.Titolo;
             nodo[ChiaviMenu.Programma.ToString()] = function.Programma;
             nodo[ChiaviMenu.Bitmap.ToString()] = function.Bitmap;
+            nodo[ChiaviMenu.Linkage.ToString()] = function.Linkage;
             jnode[ChiaviRoot.Menu.ToString()].Add(nodo);
 
             jnode[ChiaviRoot.CntID.ToString()] = CntID.ToString();
@@ -129,6 +133,7 @@ namespace WorkManager_A
                     nodo[ChiaviMenu.Titolo.ToString()] = function.Titolo;
                     nodo[ChiaviMenu.Programma.ToString()] = function.Programma;
                     nodo[ChiaviMenu.Bitmap.ToString()] = function.Bitmap;
+                    nodo[ChiaviMenu.Linkage.ToString()] = function.Linkage;
                     break;
                 }
             }

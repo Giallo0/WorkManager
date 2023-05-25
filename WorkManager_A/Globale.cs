@@ -10,10 +10,11 @@ namespace WorkManager_A
     {
         //Functions
         public static JSONwm jwm;
-        public static string functionCallName;
+        public static ComponentiMenu functionCall;
 
         //FinFolder
         public static string percorsoCartella;
         public static string titoloCartella;
+
     }
 }

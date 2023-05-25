@@ -40,6 +40,7 @@
             eliminaToolStripMenuItem = new ToolStripMenuItem();
             pnlEdit = new Panel();
             pnlItemEdit = new Panel();
+            btnLinkage = new Button();
             lblID = new Label();
             lblIDValue = new Label();
             lblTitolo = new Label();
@@ -52,6 +53,9 @@
             pnlPulsEdit = new Panel();
             btnConferma = new Button();
             btnAnnulla = new Button();
+            nuovaFunzioneSuccessivaToolStripMenuItem = new ToolStripMenuItem();
+            spostaSuToolStripMenuItem = new ToolStripMenuItem();
+            spostaGiùToolStripMenuItem = new ToolStripMenuItem();
             pnlFunzioni.SuspendLayout();
             pnlList.SuspendLayout();
             pnlPuls.SuspendLayout();
@@ -130,21 +134,21 @@
             // 
             // treeListMenu
             // 
-            treeListMenu.Items.AddRange(new ToolStripItem[] { modificaToolStripMenuItem, eliminaToolStripMenuItem });
+            treeListMenu.Items.AddRange(new ToolStripItem[] { modificaToolStripMenuItem, eliminaToolStripMenuItem, nuovaFunzioneSuccessivaToolStripMenuItem, spostaSuToolStripMenuItem, spostaGiùToolStripMenuItem });
             treeListMenu.Name = "treeListMenu";
-            treeListMenu.Size = new Size(122, 48);
+            treeListMenu.Size = new Size(217, 114);
             // 
             // modificaToolStripMenuItem
             // 
             modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
-            modificaToolStripMenuItem.Size = new Size(121, 22);
+            modificaToolStripMenuItem.Size = new Size(216, 22);
             modificaToolStripMenuItem.Text = "Modifica";
             modificaToolStripMenuItem.Click += modificaToolStripMenuItem_Click;
             // 
             // eliminaToolStripMenuItem
             // 
             eliminaToolStripMenuItem.Name = "eliminaToolStripMenuItem";
-            eliminaToolStripMenuItem.Size = new Size(121, 22);
+            eliminaToolStripMenuItem.Size = new Size(216, 22);
             eliminaToolStripMenuItem.Text = "Elimina";
             eliminaToolStripMenuItem.Click += eliminaToolStripMenuItem_Click;
             // 
@@ -160,6 +164,7 @@
             // 
             // pnlItemEdit
             // 
+            pnlItemEdit.Controls.Add(btnLinkage);
             pnlItemEdit.Controls.Add(lblID);
             pnlItemEdit.Controls.Add(lblIDValue);
             pnlItemEdit.Controls.Add(lblTitolo);
@@ -174,6 +179,17 @@
             pnlItemEdit.Name = "pnlItemEdit";
             pnlItemEdit.Size = new Size(685, 435);
             pnlItemEdit.TabIndex = 11;
+            // 
+            // btnLinkage
+            // 
+            btnLinkage.FlatStyle = FlatStyle.Flat;
+            btnLinkage.Location = new Point(37, 367);
+            btnLinkage.Name = "btnLinkage";
+            btnLinkage.Size = new Size(81, 37);
+            btnLinkage.TabIndex = 11;
+            btnLinkage.Text = "Linkage";
+            btnLinkage.UseVisualStyleBackColor = true;
+            btnLinkage.Click += btnLinkage_Click;
             // 
             // lblID
             // 
@@ -251,6 +267,7 @@
             txtProgramma.Name = "txtProgramma";
             txtProgramma.Size = new Size(269, 23);
             txtProgramma.TabIndex = 6;
+            txtProgramma.TextChanged += txtProgramma_TextChanged;
             // 
             // pnlPulsEdit
             // 
@@ -288,6 +305,24 @@
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
             btnAnnulla.Click += btnAnnulla_Click;
+            // 
+            // nuovaFunzioneSuccessivaToolStripMenuItem
+            // 
+            nuovaFunzioneSuccessivaToolStripMenuItem.Name = "nuovaFunzioneSuccessivaToolStripMenuItem";
+            nuovaFunzioneSuccessivaToolStripMenuItem.Size = new Size(216, 22);
+            nuovaFunzioneSuccessivaToolStripMenuItem.Text = "Nuova funzione successiva";
+            // 
+            // spostaSuToolStripMenuItem
+            // 
+            spostaSuToolStripMenuItem.Name = "spostaSuToolStripMenuItem";
+            spostaSuToolStripMenuItem.Size = new Size(216, 22);
+            spostaSuToolStripMenuItem.Text = "Sposta su";
+            // 
+            // spostaGiùToolStripMenuItem
+            // 
+            spostaGiùToolStripMenuItem.Name = "spostaGiùToolStripMenuItem";
+            spostaGiùToolStripMenuItem.Size = new Size(216, 22);
+            spostaGiùToolStripMenuItem.Text = "Sposta giù";
             // 
             // GestioneMenu
             // 
@@ -336,5 +371,9 @@
         private ContextMenuStrip treeListMenu;
         private ToolStripMenuItem modificaToolStripMenuItem;
         private ToolStripMenuItem eliminaToolStripMenuItem;
+        private Button btnLinkage;
+        private ToolStripMenuItem nuovaFunzioneSuccessivaToolStripMenuItem;
+        private ToolStripMenuItem spostaSuToolStripMenuItem;
+        private ToolStripMenuItem spostaGiùToolStripMenuItem;
     }
 }

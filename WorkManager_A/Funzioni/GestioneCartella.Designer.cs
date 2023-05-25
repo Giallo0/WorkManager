@@ -1,6 +1,6 @@
 ﻿namespace WorkManager_A.Funzioni
 {
-    partial class NuovaCartella
+    partial class GestioneCartella
     {
         /// <summary>
         /// Required designer variable.
@@ -33,13 +33,13 @@
             txtNome = new TextBox();
             lblNome = new Label();
             panel1 = new Panel();
+            txtData = new TextBox();
             lblData = new Label();
             btnCerca = new Button();
             panel2 = new Panel();
             btnHome = new Button();
             btnConferma = new Button();
             btnAnnulla = new Button();
-            txtData = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -91,6 +91,14 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(914, 435);
             panel1.TabIndex = 4;
+            // 
+            // txtData
+            // 
+            txtData.Enabled = false;
+            txtData.Location = new Point(160, 114);
+            txtData.Name = "txtData";
+            txtData.Size = new Size(100, 23);
+            txtData.TabIndex = 7;
             // 
             // lblData
             // 
@@ -162,15 +170,7 @@
             btnAnnulla.UseVisualStyleBackColor = true;
             btnAnnulla.Click += btnAnnulla_Click;
             // 
-            // txtData
-            // 
-            txtData.Enabled = false;
-            txtData.Location = new Point(160, 114);
-            txtData.Name = "txtData";
-            txtData.Size = new Size(100, 23);
-            txtData.TabIndex = 7;
-            // 
-            // NuovaCartella
+            // GestioneCartella
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -178,8 +178,8 @@
             Controls.Add(panel1);
             Controls.Add(panel2);
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Name = "NuovaCartella";
-            Text = "NuovoCartella";
+            Name = "GestioneCartella";
+            Text = "Gestione Cartella";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

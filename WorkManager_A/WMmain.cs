@@ -47,7 +47,7 @@ namespace WorkManager_A
                 btn.Size = new Size(218, 39);
                 btn.TabIndex = 0;
                 btn.Text = function.Titolo;
-                btn.Tag = function.Programma;
+                btn.Tag = function;
                 btn.TextAlign = ContentAlignment.MiddleLeft;
                 btn.TextImageRelation = TextImageRelation.ImageBeforeText;
                 btn.UseVisualStyleBackColor = false;
@@ -62,8 +62,8 @@ namespace WorkManager_A
             if (sender != null)
             {
                 Button btn = (Button)sender;
-                Globale.functionCallName = btn.Text;
-                Funzione.Apri(btn.Tag.ToString());
+                Globale.functionCall = (ComponentiMenu)btn.Tag;
+                Funzione.Apri(((ComponentiMenu)btn.Tag).Programma.ToString());
             }
         }
 
