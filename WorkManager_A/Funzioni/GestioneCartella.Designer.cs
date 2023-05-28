@@ -40,6 +40,8 @@
             btnHome = new Button();
             btnConferma = new Button();
             btnAnnulla = new Button();
+            lblTipoCartella = new Label();
+            cboTipoCartella = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -79,6 +81,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(cboTipoCartella);
+            panel1.Controls.Add(lblTipoCartella);
             panel1.Controls.Add(txtData);
             panel1.Controls.Add(lblData);
             panel1.Controls.Add(btnCerca);
@@ -170,6 +174,23 @@
             btnAnnulla.UseVisualStyleBackColor = true;
             btnAnnulla.Click += btnAnnulla_Click;
             // 
+            // lblTipoCartella
+            // 
+            lblTipoCartella.AutoSize = true;
+            lblTipoCartella.Location = new Point(531, 117);
+            lblTipoCartella.Name = "lblTipoCartella";
+            lblTipoCartella.Size = new Size(38, 17);
+            lblTipoCartella.TabIndex = 8;
+            lblTipoCartella.Text = "Tipo:";
+            // 
+            // cboTipoCartella
+            // 
+            cboTipoCartella.FormattingEnabled = true;
+            cboTipoCartella.Location = new Point(575, 114);
+            cboTipoCartella.Name = "cboTipoCartella";
+            cboTipoCartella.Size = new Size(170, 25);
+            cboTipoCartella.TabIndex = 9;
+            // 
             // GestioneCartella
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
@@ -200,5 +221,7 @@
         private Button btnHome;
         private Label lblData;
         private TextBox txtData;
+        private ComboBox cboTipoCartella;
+        private Label lblTipoCartella;
     }
 }

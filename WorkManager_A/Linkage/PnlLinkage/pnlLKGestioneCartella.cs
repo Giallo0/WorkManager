@@ -22,14 +22,12 @@ namespace WorkManager_A.Linkage.PnlLinkage
             InitializeComponentPersonalizzato();
         }
 
-        private Panel pnlLinkage;
         private GroupBox gbFunzione;
         private RadioButton rbInserimento;
         private RadioButton rbEliminazione;
         private RadioButton rbModifica;
-        private Button btnConferma;
-        private Button btnAnnulla;
-        private Panel pnlButton;
+        private ComboBox cbTipoCartella;
+        private Label lblTipoCartella;
 
         private void InitializeComponentPersonalizzato()
         {
@@ -37,12 +35,16 @@ namespace WorkManager_A.Linkage.PnlLinkage
             rbModifica = new RadioButton();
             rbEliminazione = new RadioButton();
             gbFunzione = new GroupBox();
+            cbTipoCartella = new ComboBox();
+            lblTipoCartella = new Label();
             gbFunzione.SuspendLayout();
             SuspendLayout();
             //
             // pnlLKGestioneCartella
             //
             Controls.Add(gbFunzione);
+            Controls.Add(lblTipoCartella);
+            Controls.Add(cbTipoCartella);
             Dock = DockStyle.Fill;
             Location = new Point(0, 0);
             Size = new Size(800, 450);
@@ -94,6 +96,27 @@ namespace WorkManager_A.Linkage.PnlLinkage
             gbFunzione.TabIndex = 3;
             gbFunzione.TabStop = false;
             gbFunzione.Text = "Funzione";
+            // 
+            // lblTipoCartella
+            // 
+            lblTipoCartella.AutoSize = true;
+            lblTipoCartella.Location = new Point(218, 22);
+            lblTipoCartella.Name = "lblTipoCartella";
+            lblTipoCartella.Size = new Size(76, 15);
+            lblTipoCartella.TabIndex = 5;
+            lblTipoCartella.Text = "Tipo Cartella:";
+            // 
+            // cbTipoCartella
+            // 
+            cbTipoCartella.FormattingEnabled = true;
+            cbTipoCartella.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbTipoCartella.Location = new Point(300, 19);
+            cbTipoCartella.Name = "cbTipoCartella";
+            cbTipoCartella.Size = new Size(126, 23);
+            cbTipoCartella.TabIndex = 5;
+            cbTipoCartella.Items.AddRange(new object[] { "Tutti", "Cliente", "Attivita" });
+            cbTipoCartella.SelectedIndex = 0;
+            cbTipoCartella.TextChanged += cbTipoCartella_TextChanged;
 
             gbFunzione.ResumeLayout(false);
             gbFunzione.PerformLayout();
@@ -112,34 +135,49 @@ namespace WorkManager_A.Linkage.PnlLinkage
 
             switch (LKGestioneCartella.funzione)
             {
-                case 'I':
+                case "I":
                     rbInserimento.Checked = true;
                     break;
-                case 'G':
+                case "G":
                     rbModifica.Checked = true;
                     break;
-                case 'E':
+                case "E":
                     rbEliminazione.Checked = true;
                     break;
                 default:
                     rbInserimento.Checked = true;
                     break;
             }
+
+            if (string.IsNullOrEmpty(LKGestioneCartella.TipoCartella))
+            {
+                cbTipoCartella.SelectedIndex = 0;
+                LKGestioneCartella.TipoCartella = cbTipoCartella.Text;
+            }
+            else
+            {
+                cbTipoCartella.Text = LKGestioneCartella.TipoCartella;
+            }
         }
 
         private void rbInserimento_CheckedChanged(object sender, EventArgs e)
         {
-            LKGestioneCartella.funzione = 'I';
+            LKGestioneCartella.funzione = "I";
         }
 
         private void rbModifica_CheckedChanged(object sender, EventArgs e)
         {
-            LKGestioneCartella.funzione = 'G';
+            LKGestioneCartella.funzione = "G";
         }
 
         private void rbEliminazione_CheckedChanged(object sender, EventArgs e)
         {
-            LKGestioneCartella.funzione = 'E';
+            LKGestioneCartella.funzione = "E";
+        }
+
+        private void cbTipoCartella_TextChanged(object sender, EventArgs e)
+        {
+            LKGestioneCartella.TipoCartella = cbTipoCartella.Text;
         }
     }
 }

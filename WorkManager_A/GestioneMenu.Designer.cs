@@ -43,6 +43,7 @@
             spostaGiùToolStripMenuItem = new ToolStripMenuItem();
             pnlEdit = new Panel();
             pnlItemEdit = new Panel();
+            cboProgramma = new ComboBox();
             btnLinkage = new Button();
             lblID = new Label();
             lblIDValue = new Label();
@@ -52,7 +53,6 @@
             lblBitmap = new Label();
             cboBitmap = new ComboBox();
             txtTitolo = new TextBox();
-            txtProgramma = new TextBox();
             pnlPulsEdit = new Panel();
             btnConferma = new Button();
             btnAnnulla = new Button();
@@ -185,6 +185,7 @@
             // 
             // pnlItemEdit
             // 
+            pnlItemEdit.Controls.Add(cboProgramma);
             pnlItemEdit.Controls.Add(btnLinkage);
             pnlItemEdit.Controls.Add(lblID);
             pnlItemEdit.Controls.Add(lblIDValue);
@@ -194,12 +195,21 @@
             pnlItemEdit.Controls.Add(lblBitmap);
             pnlItemEdit.Controls.Add(cboBitmap);
             pnlItemEdit.Controls.Add(txtTitolo);
-            pnlItemEdit.Controls.Add(txtProgramma);
             pnlItemEdit.Dock = DockStyle.Fill;
             pnlItemEdit.Location = new Point(0, 0);
             pnlItemEdit.Name = "pnlItemEdit";
             pnlItemEdit.Size = new Size(685, 435);
             pnlItemEdit.TabIndex = 11;
+            // 
+            // cboProgramma
+            // 
+            cboProgramma.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboProgramma.FormattingEnabled = true;
+            cboProgramma.Location = new Point(124, 111);
+            cboProgramma.Name = "cboProgramma";
+            cboProgramma.Size = new Size(269, 25);
+            cboProgramma.TabIndex = 12;
+            cboProgramma.TextChanged += cboProgramma_TextChanged;
             // 
             // btnLinkage
             // 
@@ -282,14 +292,6 @@
             txtTitolo.Size = new Size(269, 23);
             txtTitolo.TabIndex = 5;
             // 
-            // txtProgramma
-            // 
-            txtProgramma.Location = new Point(124, 110);
-            txtProgramma.Name = "txtProgramma";
-            txtProgramma.Size = new Size(269, 23);
-            txtProgramma.TabIndex = 6;
-            txtProgramma.TextChanged += txtProgramma_TextChanged;
-            // 
             // pnlPulsEdit
             // 
             pnlPulsEdit.BorderStyle = BorderStyle.FixedSingle;
@@ -355,7 +357,6 @@
         private Panel pnlEdit;
         private PictureBox picBitmap;
         private ComboBox cboBitmap;
-        private TextBox txtProgramma;
         private TextBox txtTitolo;
         private Label lblBitmap;
         private Label lblProgramma;
@@ -378,5 +379,6 @@
         private ToolStripMenuItem nuovaFunzioneSuccessivaToolStripMenuItem;
         private ToolStripMenuItem spostaSuToolStripMenuItem;
         private ToolStripMenuItem spostaGiùToolStripMenuItem;
+        private ComboBox cboProgramma;
     }
 }

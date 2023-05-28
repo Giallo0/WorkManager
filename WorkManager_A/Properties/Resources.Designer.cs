@@ -63,6 +63,16 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cartella_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("cartella_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cartella_24x24 {
             get {
                 object obj = ResourceManager.GetObject("cartella_24x24", resourceCulture);

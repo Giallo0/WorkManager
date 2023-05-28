@@ -37,6 +37,11 @@ namespace WorkManager_A
             treeFullPath.Nodes.Add(root);
             TrovaSottoCartelle(root);
 
+            ImageList imageList = new ImageList();
+            imageList.Images.Add(Properties.Resources.cartella_16x16);
+            imageList.ImageSize = new Size(16, 16);
+            root.TreeView.ImageList = imageList;
+
             root.Expand();
         }
 
@@ -60,9 +65,10 @@ namespace WorkManager_A
         {
             txtCartella.Text = e.Node.Tag.ToString();
 
-            //Per ogni cartella e file aggiungo l'icona associata alla lista di immagini
             lstContenuto.Items.Clear();
             ImageList imageList = new ImageList();
+            /*
+            //Per ogni cartella e file aggiungo l'icona associata alla lista di immagini
             foreach (string dir in Directory.GetDirectories(txtCartella.Text))
             {
                 DirectoryInfo di = new DirectoryInfo(dir);
@@ -72,6 +78,7 @@ namespace WorkManager_A
                 }
 
             }
+            */
             foreach (string file in Directory.GetFiles(txtCartella.Text))
             {
                 FileInfo fi = new FileInfo(file);
@@ -88,6 +95,7 @@ namespace WorkManager_A
 
             //Inserisco gli oggetti all'interno della lista con le rispettive icone
             int j = 0;
+            /*
             foreach (string dir in Directory.GetDirectories(txtCartella.Text))
             {
                 DirectoryInfo di = new DirectoryInfo(dir);
@@ -101,6 +109,7 @@ namespace WorkManager_A
                 }
 
             }
+            */
             foreach (string file in Directory.GetFiles(txtCartella.Text))
             {
                 FileInfo fi = new FileInfo(file);
@@ -134,6 +143,7 @@ namespace WorkManager_A
 
         private void lstContenuto_MouseClick(object sender, MouseEventArgs e)
         {
+            /*
             if (lstContenuto.SelectedItems.Count > 0)
             {
                 ListViewItem item = lstContenuto.SelectedItems[0];
@@ -149,10 +159,12 @@ namespace WorkManager_A
                     }
                 }
             }
+            */
         }
 
         private void lstContenuto_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            /*
             if (lstContenuto.SelectedItems.Count > 0)
             {
                 ListViewItem item = lstContenuto.SelectedItems[0];
@@ -169,6 +181,7 @@ namespace WorkManager_A
                     }
                 }
             }
+            */
         }
     }
 }

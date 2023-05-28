@@ -5,21 +5,28 @@
          "Titolo" : "Nuovo cliente", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "cartella_24x24", 
-         "Linkage" : "I"
+         "Linkage" : "ICliente   "
       }, 
       { 
          "ID" : "3", 
          "Titolo" : "Modifica cliente", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "cartella_24x24", 
-         "Linkage" : "G"
+         "Linkage" : "GCliente   "
       }, 
       { 
          "ID" : "4", 
          "Titolo" : "Elimina Cliente", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "cartella_24x24", 
-         "Linkage" : "E"
+         "Linkage" : "ECliente   "
+      }, 
+      { 
+         "ID" : "7", 
+         "Titolo" : "Nuova attività", 
+         "Programma" : "GestioneCartella", 
+         "Bitmap" : "cartella_24x24", 
+         "Linkage" : "IAttivita  "
       }, 
       { 
          "ID" : "2", 
@@ -30,10 +37,24 @@
       { 
          "ID" : "5", 
          "Titolo" : "Gestione priorità attività", 
-         "Programma" : "nd", 
+         "Programma" : " - ", 
          "Bitmap" : " - "
       }
    ], 
-   "CntID" : "6", 
-   "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace"
+   "CntID" : "7", 
+   "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace", 
+   "Parametri" : [ 
+      { 
+         "Programma" : "GestioneCartella", 
+         "Parametro" : "TipoCartella", 
+         "Valore" : "Cliente;Attività", 
+         "Descrizione" : "Tipologia di cartella separati da ;"
+      }, 
+      { 
+         "Programma" : "GestioneCartella", 
+         "Parametro" : "MostraData", 
+         "Valore" : "SI", 
+         "Descrizione" : ""
+      }
+   ]
 }

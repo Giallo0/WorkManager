@@ -24,7 +24,7 @@ namespace WorkManager_A
                 }
                 else
                 {
-                    MessageBox.Show($"Nessuna funzione presente con nome '{funcName}'", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Nessun programma impostato per la funzione '{Globale.functionCall.Titolo}'", "Attenzione", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex) 

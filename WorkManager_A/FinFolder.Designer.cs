@@ -112,7 +112,7 @@
             // 
             splitContainer1.Panel2.Controls.Add(lstContenuto);
             splitContainer1.Size = new Size(800, 372);
-            splitContainer1.SplitterDistance = 177;
+            splitContainer1.SplitterDistance = 295;
             splitContainer1.TabIndex = 1;
             // 
             // treeFullPath
@@ -120,7 +120,7 @@
             treeFullPath.Dock = DockStyle.Fill;
             treeFullPath.Location = new Point(0, 0);
             treeFullPath.Name = "treeFullPath";
-            treeFullPath.Size = new Size(177, 372);
+            treeFullPath.Size = new Size(295, 372);
             treeFullPath.TabIndex = 0;
             treeFullPath.NodeMouseClick += treeFullPath_NodeMouseClick;
             treeFullPath.NodeMouseDoubleClick += treeFullPath_NodeMouseDoubleClick;
@@ -130,13 +130,13 @@
             lstContenuto.Dock = DockStyle.Fill;
             lstContenuto.Location = new Point(0, 0);
             lstContenuto.Name = "lstContenuto";
-            lstContenuto.Size = new Size(619, 372);
+            lstContenuto.Size = new Size(501, 372);
             lstContenuto.TabIndex = 0;
             lstContenuto.UseCompatibleStateImageBehavior = false;
             lstContenuto.MouseClick += lstContenuto_MouseClick;
             lstContenuto.MouseDoubleClick += lstContenuto_MouseDoubleClick;
             // 
-            // FinPath
+            // FinFolder
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -144,7 +144,7 @@
             Controls.Add(splitContainer1);
             Controls.Add(pnlPulsanti);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "FinPath";
+            Name = "FinFolder";
             Text = "Cerca Percorso";
             pnlPulsanti.ResumeLayout(false);
             pnlPulsanti.PerformLayout();

@@ -21,7 +21,7 @@ namespace WorkManager_A.Funzioni
         public GestioneCartella()
         {
             ControllaLinkage();
-            if (noerrori) 
+            if (noerrori)
             {
                 InitializeComponent();
                 PersonalizzaInizializzazione();
@@ -42,9 +42,11 @@ namespace WorkManager_A.Funzioni
             //Funzione
             switch (LKGestioneCartella.funzione)
             {
-                case 'I': case 'G': case 'E':
+                case "I":
+                case "G":
+                case "E":
                     break;
-                case ' ':
+                case " ":
                     MessageBox.Show("Funzione in linkage non valorizzata", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     noerrori = false;
                     break;
@@ -64,11 +66,15 @@ namespace WorkManager_A.Funzioni
             txtNome.Text = string.Empty;
             txtData.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
-            if (LKGestioneCartella.funzione == 'G')
+
+
+
+
+            if (LKGestioneCartella.funzione == "G")
             {
                 oldPath = string.Empty;
             }
-            else if (LKGestioneCartella.funzione == 'E')
+            else if (LKGestioneCartella.funzione == "E")
             {
                 oldPath = string.Empty;
                 txtNome.Enabled = false;
@@ -84,7 +90,7 @@ namespace WorkManager_A.Funzioni
 
                 switch (LKGestioneCartella.funzione)
                 {
-                    case 'I':                        
+                    case "I":
                         Directory.CreateDirectory(folderPath);
 
                         wsFolder = new JSONwsFolder(folderPath);
@@ -96,7 +102,7 @@ namespace WorkManager_A.Funzioni
                         MessageBox.Show($"La cartella {txtNome.Text} è stata creata", "Nuova cartella", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtNome.Text = string.Empty;
                         break;
-                    case 'G':
+                    case "G":
                         Directory.Move(oldPath, folderPath);
 
                         wsFolder = new JSONwsFolder(folderPath);
@@ -107,7 +113,7 @@ namespace WorkManager_A.Funzioni
                         MessageBox.Show($"La cartella '{oldPath.Remove(0, oldPath.LastIndexOf("\\") + 1)}' è stata rinominata in '{txtNome.Text}'", "Modifica cartella", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtNome.Text = string.Empty;
                         break;
-                    case 'E':
+                    case "E":
                         DirectoryInfo directoryInfo = new DirectoryInfo(oldPath);
                         FileInfo[] files = directoryInfo.GetFiles();
                         var filtered = files.Where(f => !f.Attributes.HasFlag(FileAttributes.Hidden));
@@ -148,7 +154,7 @@ namespace WorkManager_A.Funzioni
                 noErrori = false;
                 goto controllaDatiErr;
             }
-            if (LKGestioneCartella.funzione.CompareTo('I') == 0 || LKGestioneCartella.funzione.CompareTo('G') == 0)
+            if (LKGestioneCartella.funzione.CompareTo("I") == 0 || LKGestioneCartella.funzione.CompareTo("G") == 0)
             {
                 if (Directory.Exists($"{txtPercorso.Text}\\{txtNome.Text}"))
                 {
@@ -178,11 +184,11 @@ namespace WorkManager_A.Funzioni
             {
                 switch (LKGestioneCartella.funzione)
                 {
-                    case 'I':
+                    case "I":
                         txtPercorso.Text = Globale.percorsoCartella;
                         break;
-                    case 'G':
-                    case 'E':
+                    case "G":
+                    case "E":
                         oldPath = Globale.percorsoCartella;
                         txtPercorso.Text = Globale.percorsoCartella.Remove(Globale.percorsoCartella.LastIndexOf('\\'));
                         txtNome.Text = Globale.percorsoCartella.Remove(0, Globale.percorsoCartella.LastIndexOf('\\') + 1);

@@ -14,23 +14,35 @@ namespace WorkManager_A.Linkage
          * G => Gestione
          * E => Eliminazione
          */
-        public static char funzione = ' ';
+        public static string funzione = ""; // 1 byte
+
+        /* Tipo Cartella:
+         * Tutti => Al momento della gestione si sceglie il tipo
+         * Cliente => è possibile gestire solo le cartelle di tipo Cliente
+         * Attivita => è possibile gestire solo le cartelle di tipo attivita
+         */
+        public static string TipoCartella = ""; // 10 byte
 
         public static void ClearLinkage()
         {
-            funzione = ' ';
+            funzione = string.Empty;
+            TipoCartella = string.Empty;
         }
 
         public static void DecodificaLinkageString(string linkageString)
         {
-            funzione = linkageString.Substring(0, 1).ToCharArray()[0];
+            linkageString = linkageString.PadRight(11);
+
+            funzione = linkageString.Substring(0, 1);
+            TipoCartella = linkageString.Substring(1, 10).Trim();
         }
 
         public static string CodificaLinkageString()
         {
             string codifica = string.Empty;
 
-            codifica += funzione;
+            codifica += funzione.PadRight(1);
+            codifica += TipoCartella.PadRight(10);
 
             return codifica;
         }

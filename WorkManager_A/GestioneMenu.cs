@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,15 @@ namespace WorkManager_A
 
             riempiListMenu();
             LKGestioneLinkage.ClearLinkage();
+
+            cboProgramma.Items.Clear();
+            cboProgramma.Items.Add(" - ");
+            Type[] typeList = Assembly.GetExecutingAssembly().GetTypes().Where(t => String.Equals(t.Namespace, "WorkManager_A.Funzioni", StringComparison.Ordinal)).ToArray();
+            for (int i = 0; i < typeList.Length - 1; i++)
+            {
+                string nome = typeList[i].Name;
+                cboProgramma.Items.Add(nome);
+            }
 
             cboBitmap.Items.Clear();
             cboBitmap.Items.Add(" - ");
@@ -62,8 +72,8 @@ namespace WorkManager_A
         {
             lblIDValue.Text = string.Empty;
             txtTitolo.Text = string.Empty;
-            txtProgramma.Text = string.Empty;
-            cboBitmap.SelectedItem = " - ";
+            cboProgramma.SelectedIndex = 0;
+            cboBitmap.SelectedIndex = 0;
             linkageFunction = string.Empty;
         }
 
@@ -78,7 +88,7 @@ namespace WorkManager_A
             {
                 ComponentiMenu function = new ComponentiMenu();
                 function.Titolo = txtTitolo.Text;
-                function.Programma = txtProgramma.Text;
+                function.Programma = cboProgramma.Text;
                 function.Bitmap = cboBitmap.SelectedItem.ToString();
                 function.Linkage = LKGestioneLinkage.linkage;
 
@@ -115,14 +125,14 @@ namespace WorkManager_A
                 noErrori = false;
                 goto controllaDatiErr;
             }
-            if (string.IsNullOrEmpty(txtProgramma.Text))
+            if (string.IsNullOrEmpty(cboProgramma.Text))
             {
                 MessageBox.Show("Programma non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtProgramma.Focus();
+                cboProgramma.Focus();
                 noErrori = false;
                 goto controllaDatiErr;
             }
-            if (Type.GetType($"WorkManager_A.Linkage.LK{txtProgramma.Text}") != null && string.IsNullOrEmpty(LKGestioneLinkage.linkage))
+            if (Type.GetType($"WorkManager_A.Linkage.LK{cboProgramma.Text}") != null && string.IsNullOrEmpty(LKGestioneLinkage.linkage))
             {
                 MessageBox.Show("Linkage non valorizzata", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnLinkage.Focus();
@@ -183,7 +193,7 @@ namespace WorkManager_A
 
             lblIDValue.Text = function.ID;
             txtTitolo.Text = function.Titolo;
-            txtProgramma.Text = function.Programma;
+            cboProgramma.Text = function.Programma;
             cboBitmap.Text = function.Bitmap;
             linkageFunction = function.Linkage;
         }
@@ -197,10 +207,10 @@ namespace WorkManager_A
             }
         }
 
-        private void txtProgramma_TextChanged(object sender, EventArgs e)
+        private void cboProgramma_TextChanged(object sender, EventArgs e)
         {
             btnLinkage.Enabled = false;
-            if (Type.GetType($"WorkManager_A.Linkage.LK{txtProgramma.Text}") != null)
+            if (Type.GetType($"WorkManager_A.Linkage.LK{cboProgramma.Text}") != null)
             {
                 btnLinkage.Enabled = true;
             }
@@ -209,7 +219,7 @@ namespace WorkManager_A
         private void btnLinkage_Click(object sender, EventArgs e)
         {
             LKGestioneLinkage.ClearLinkage();
-            LKGestioneLinkage.nomePgm = txtProgramma.Text;
+            LKGestioneLinkage.nomePgm = cboProgramma.Text;
             LKGestioneLinkage.linkage = linkageFunction;
             Funzione.Apri("GestioneLinkage", "WorkManager_A");
             linkageFunction = LKGestioneLinkage.linkage;
