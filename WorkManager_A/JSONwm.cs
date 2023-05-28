@@ -124,6 +124,37 @@ namespace WorkManager_A
             salva();
         }
 
+        public void addFunctionMenu(ComponentiMenu function, int posizione)
+        {
+            int CntID = 0;
+            if (!string.IsNullOrEmpty(jnode[ChiaviRoot.CntID.ToString()].Value))
+            {
+                CntID = int.Parse(jnode[ChiaviRoot.CntID.ToString()].Value);
+            }
+
+            CntID += 1;
+
+            JSONNode nodo = JSONNode.Parse("{ }");
+            nodo[ChiaviMenu.ID.ToString()] = CntID.ToString();
+            nodo[ChiaviMenu.Titolo.ToString()] = function.Titolo;
+            nodo[ChiaviMenu.Programma.ToString()] = function.Programma;
+            nodo[ChiaviMenu.Bitmap.ToString()] = function.Bitmap;
+            nodo[ChiaviMenu.Linkage.ToString()] = function.Linkage;
+            jnode[ChiaviRoot.Menu.ToString()].Add(nodo);
+
+            jnode[ChiaviRoot.CntID.ToString()] = CntID.ToString();
+
+
+            int posAttuale = jnode[ChiaviRoot.Menu.ToString()].Count - 1;
+            while(posAttuale != posizione)
+            {
+                invertiOrdineMenu(posAttuale, posAttuale - 1);
+                posAttuale -= 1;
+            }
+
+            salva();
+        }
+
         public void editFunctionMenu(string ID, ComponentiMenu function)
         {
             foreach (JSONNode nodo in jnode[ChiaviRoot.Menu.ToString()].Childs)
@@ -150,6 +181,14 @@ namespace WorkManager_A
                     break;
                 }
             }
+            salva();
+        }
+
+        public void invertiOrdineMenu(int posizioneElem, int posizioneTarget)
+        {
+            string appoggio = jnode[ChiaviRoot.Menu.ToString()][posizioneTarget].ToString();
+            jnode[ChiaviRoot.Menu.ToString()][posizioneTarget] = jnode[ChiaviRoot.Menu.ToString()][posizioneElem];
+            jnode[ChiaviRoot.Menu.ToString()][posizioneElem] = JSONNode.Parse(appoggio);
             salva();
         }
 

@@ -18,6 +18,7 @@ namespace WorkManager_A
     public partial class GestioneMenu : Form
     {
         private string linkageFunction;
+        private int posizioneElementoNew;
 
         public GestioneMenu()
         {
@@ -83,7 +84,14 @@ namespace WorkManager_A
 
                 if (int.Parse(lblIDValue.Text) == 0)
                 {
-                    Globale.jwm.addFunctionMenu(function);
+                    if (posizioneElementoNew > 0)
+                    {
+                        Globale.jwm.addFunctionMenu(function, posizioneElementoNew);
+                    }
+                    else
+                    {
+                        Globale.jwm.addFunctionMenu(function);
+                    }
                 }
                 else
                 {
@@ -93,6 +101,7 @@ namespace WorkManager_A
                 riempiListMenu();
                 pnlFunzioni.Enabled = true;
                 pnlEdit.Enabled = false;
+                posizioneElementoNew = 0;
             }
         }
 
@@ -204,6 +213,36 @@ namespace WorkManager_A
             LKGestioneLinkage.linkage = linkageFunction;
             Funzione.Apri("GestioneLinkage", "WorkManager_A");
             linkageFunction = LKGestioneLinkage.linkage;
+        }
+
+        private void spostaSuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeList.SelectedNode.Index > 0)
+            {
+                Globale.jwm.invertiOrdineMenu(treeList.SelectedNode.Index, treeList.SelectedNode.Index - 1);
+                riempiListMenu();
+            }
+        }
+
+        private void spostaGiùToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeList.GetNodeCount(false) - 1 > treeList.SelectedNode.Index)
+            {
+                Globale.jwm.invertiOrdineMenu(treeList.SelectedNode.Index, treeList.SelectedNode.Index + 1);
+                riempiListMenu();
+            }
+        }
+
+        private void nuovaFunzioneSuccessivaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            posizioneElementoNew = treeList.SelectedNode.Index + 1;
+
+            pnlFunzioni.Enabled = false;
+            pnlEdit.Enabled = true;
+            btnLinkage.Enabled = false;
+
+            pnlEditClear();
+            lblIDValue.Text = "0";
         }
     }
 }

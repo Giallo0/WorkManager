@@ -8,12 +8,6 @@
          "Linkage" : "I"
       }, 
       { 
-         "ID" : "2", 
-         "Titolo" : "Apri cartella", 
-         "Programma" : "ApriCartella", 
-         "Bitmap" : "cartella_24x24"
-      }, 
-      { 
          "ID" : "3", 
          "Titolo" : "Modifica cliente", 
          "Programma" : "GestioneCartella", 
@@ -28,13 +22,18 @@
          "Linkage" : "E"
       }, 
       { 
+         "ID" : "2", 
+         "Titolo" : "Apri cartella", 
+         "Programma" : "ApriCartella", 
+         "Bitmap" : "cartella_24x24"
+      }, 
+      { 
          "ID" : "5", 
          "Titolo" : "Gestione priorità attività", 
          "Programma" : "nd", 
-         "Bitmap" : " - ", 
-         "Linkage" : ""
+         "Bitmap" : " - "
       }
    ], 
-   "CntID" : "5", 
+   "CntID" : "6", 
    "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace"
 }
