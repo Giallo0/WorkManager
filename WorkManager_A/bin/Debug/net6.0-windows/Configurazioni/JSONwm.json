@@ -26,7 +26,14 @@
          "Titolo" : "Nuova attività", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "cartella_24x24", 
-         "Linkage" : "IAttivita  "
+         "Linkage" : "IAttività  "
+      }, 
+      { 
+         "ID" : "8", 
+         "Titolo" : "Nuova cartella", 
+         "Programma" : "GestioneCartella", 
+         "Bitmap" : "cartella_24x24", 
+         "Linkage" : "IND        "
       }, 
       { 
          "ID" : "2", 
@@ -41,20 +48,14 @@
          "Bitmap" : " - "
       }
    ], 
-   "CntID" : "7", 
+   "CntID" : "8", 
    "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace", 
    "Parametri" : [ 
       { 
          "Programma" : "GestioneCartella", 
          "Parametro" : "TipoCartella", 
-         "Valore" : "Cliente;Attività", 
+         "Valore" : "ND;Cliente;Attività", 
          "Descrizione" : "Tipologia di cartella separati da ;"
-      }, 
-      { 
-         "Programma" : "GestioneCartella", 
-         "Parametro" : "MostraData", 
-         "Valore" : "SI", 
-         "Descrizione" : ""
       }
    ]
 }

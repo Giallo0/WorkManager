@@ -66,9 +66,10 @@ namespace WorkManager_A.Funzioni
             txtNome.Text = string.Empty;
             txtData.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
-
-
-
+            cboTipoCartella.Items.Clear();
+            string[] tipiCartella = Globale.jwm.getParametro("GestioneCartella", "TipoCartella").Valore.ToString().Split(';') ?? new string[0];
+            cboTipoCartella.Items.AddRange(tipiCartella);
+            cboTipoCartella.Items.Remove("ND");
 
             if (LKGestioneCartella.funzione == "G")
             {
@@ -78,6 +79,12 @@ namespace WorkManager_A.Funzioni
             {
                 oldPath = string.Empty;
                 txtNome.Enabled = false;
+            }
+
+            if (LKGestioneCartella.TipoCartella != "ND")
+            {
+                cboTipoCartella.Text = LKGestioneCartella.TipoCartella;
+                cboTipoCartella.Enabled = false;
             }
         }
 
@@ -94,7 +101,7 @@ namespace WorkManager_A.Funzioni
                         Directory.CreateDirectory(folderPath);
 
                         wsFolder = new JSONwsFolder(folderPath);
-                        wsFolder.setValue(ChiaviwsFolder.Tipo.ToString(), "Cliente");
+                        wsFolder.setValue(ChiaviwsFolder.Tipo.ToString(), cboTipoCartella.Text);
                         wsFolder.setValue(ChiaviwsFolder.DataCreazione.ToString(), DateTime.Now.ToString("yyyyMMdd"));
                         wsFolder.setValue(ChiaviwsFolder.OraCreazione.ToString(), DateTime.Now.ToString("HHmmss"));
                         wsFolder.salva();
@@ -163,6 +170,13 @@ namespace WorkManager_A.Funzioni
                     noErrori = false;
                     goto controllaDatiErr;
                 }
+            }
+            if (string.IsNullOrEmpty(cboTipoCartella.Text))
+            {
+                MessageBox.Show("Tipo cartella non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboTipoCartella.Focus();
+                noErrori = false;
+                goto controllaDatiErr;
             }
         controllaDatiErr:
             return noErrori;

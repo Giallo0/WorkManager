@@ -33,6 +33,8 @@
             txtNome = new TextBox();
             lblNome = new Label();
             panel1 = new Panel();
+            cboTipoCartella = new ComboBox();
+            lblTipoCartella = new Label();
             txtData = new TextBox();
             lblData = new Label();
             btnCerca = new Button();
@@ -40,8 +42,6 @@
             btnHome = new Button();
             btnConferma = new Button();
             btnAnnulla = new Button();
-            lblTipoCartella = new Label();
-            cboTipoCartella = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -95,6 +95,24 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(914, 435);
             panel1.TabIndex = 4;
+            // 
+            // cboTipoCartella
+            // 
+            cboTipoCartella.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboTipoCartella.FormattingEnabled = true;
+            cboTipoCartella.Location = new Point(575, 114);
+            cboTipoCartella.Name = "cboTipoCartella";
+            cboTipoCartella.Size = new Size(170, 25);
+            cboTipoCartella.TabIndex = 9;
+            // 
+            // lblTipoCartella
+            // 
+            lblTipoCartella.AutoSize = true;
+            lblTipoCartella.Location = new Point(531, 117);
+            lblTipoCartella.Name = "lblTipoCartella";
+            lblTipoCartella.Size = new Size(38, 17);
+            lblTipoCartella.TabIndex = 8;
+            lblTipoCartella.Text = "Tipo:";
             // 
             // txtData
             // 
@@ -173,23 +191,6 @@
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
             btnAnnulla.Click += btnAnnulla_Click;
-            // 
-            // lblTipoCartella
-            // 
-            lblTipoCartella.AutoSize = true;
-            lblTipoCartella.Location = new Point(531, 117);
-            lblTipoCartella.Name = "lblTipoCartella";
-            lblTipoCartella.Size = new Size(38, 17);
-            lblTipoCartella.TabIndex = 8;
-            lblTipoCartella.Text = "Tipo:";
-            // 
-            // cboTipoCartella
-            // 
-            cboTipoCartella.FormattingEnabled = true;
-            cboTipoCartella.Location = new Point(575, 114);
-            cboTipoCartella.Name = "cboTipoCartella";
-            cboTipoCartella.Size = new Size(170, 25);
-            cboTipoCartella.TabIndex = 9;
             // 
             // GestioneCartella
             // 

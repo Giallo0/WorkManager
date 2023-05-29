@@ -114,7 +114,8 @@ namespace WorkManager_A.Linkage.PnlLinkage
             cbTipoCartella.Name = "cbTipoCartella";
             cbTipoCartella.Size = new Size(126, 23);
             cbTipoCartella.TabIndex = 5;
-            cbTipoCartella.Items.AddRange(new object[] { "Tutti", "Cliente", "Attivita" });
+            string[] tipiCartella = Globale.jwm.getParametro("GestioneCartella", "TipoCartella").Valore.ToString().Split(';') ?? new string[0];
+            cbTipoCartella.Items.AddRange(tipiCartella);
             cbTipoCartella.SelectedIndex = 0;
             cbTipoCartella.TextChanged += cbTipoCartella_TextChanged;
 

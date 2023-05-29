@@ -215,19 +215,23 @@ namespace WorkManager_A
         }
 
         //PARAMETRI
-        public List<ComponentiParametri> getParametriElements()
+        public ComponentiParametri getParametro(string programma, string parametro)
         {
-            List<ComponentiParametri> elementi = new List<ComponentiParametri>();
+            ComponentiParametri componente = new ComponentiParametri();
             foreach (JSONNode nodo in jnode[ChiaviRoot.Parametri.ToString()].Childs)
             {
-                ComponentiParametri componente = new ComponentiParametri();
-                componente.Programma = nodo[ChiaviParametri.Programma.ToString()];
-                componente.Parametro = nodo[ChiaviParametri.Parametro.ToString()];
-                componente.Valore = nodo[ChiaviParametri.Valore.ToString()];
-                componente.Descrizione = nodo[ChiaviParametri.Descrizione.ToString()];
-                elementi.Add(componente);
+                string prog = nodo[ChiaviParametri.Programma.ToString()];
+                string param = nodo[ChiaviParametri.Parametro.ToString()];
+                if (prog == programma && param == parametro)
+                {
+                    componente.Programma = nodo[ChiaviParametri.Programma.ToString()];
+                    componente.Parametro = nodo[ChiaviParametri.Parametro.ToString()];
+                    componente.Valore = nodo[ChiaviParametri.Valore.ToString()];
+                    componente.Descrizione = nodo[ChiaviParametri.Descrizione.ToString()];
+                    break;
+                }
             }
-            return elementi;
+            return componente;
         }
 
         public List<ComponentiParametri> getParametriElements(string programma)

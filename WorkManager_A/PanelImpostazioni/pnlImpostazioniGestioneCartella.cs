@@ -37,14 +37,19 @@ namespace WorkManager_A.PanelImpostazioni
         private DataGridViewTextBoxColumn colParametro;
         private DataGridViewTextBoxColumn colValore;
         private DataGridViewTextBoxColumn colDescrizione;
-
+        private ContextMenuStrip mnuGridGestioneCartella;
+        private ToolStripMenuItem mnuItemEliminaRiga;
+        
         private void InitializeComponentPersonalizzato()
         {
             gridGestioneCartella = new DataGridView();
             colParametro = new DataGridViewTextBoxColumn();
             colValore = new DataGridViewTextBoxColumn();
             colDescrizione = new DataGridViewTextBoxColumn();
+            mnuGridGestioneCartella = new ContextMenuStrip(components);
+            mnuItemEliminaRiga = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)gridGestioneCartella).BeginInit();
+            mnuGridGestioneCartella.SuspendLayout();
             SuspendLayout();
             // 
             // pnlOpzioniWorkspace
@@ -60,6 +65,7 @@ namespace WorkManager_A.PanelImpostazioni
             gridGestioneCartella.BackgroundColor = SystemColors.Control;
             gridGestioneCartella.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridGestioneCartella.Columns.AddRange(new DataGridViewColumn[] { colParametro, colValore, colDescrizione });
+            //gridGestioneCartella.ContextMenuStrip = mnuGridGestioneCartella;
             gridGestioneCartella.Location = new Point(3, 3);
             gridGestioneCartella.Name = "gridGestioneCartella";
             gridGestioneCartella.RowTemplate.Height = 25;
@@ -68,6 +74,7 @@ namespace WorkManager_A.PanelImpostazioni
             gridGestioneCartella.MultiSelect = false;
             gridGestioneCartella.RowValidating += gridGestioneCartella_RowValidating;
             gridGestioneCartella.RowEnter += gridGestioneCartella_RowEnter;
+            gridGestioneCartella.MouseClick += gridGestioneCartella_MouseClick;
             // 
             // colParametro
             // 
@@ -84,8 +91,22 @@ namespace WorkManager_A.PanelImpostazioni
             colDescrizione.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             colDescrizione.HeaderText = "Descrizione";
             colDescrizione.Name = "colDescrizione";
+            // 
+            // mnuGridGestioneCartella
+            // 
+            mnuGridGestioneCartella.Items.AddRange(new ToolStripItem[] { mnuItemEliminaRiga });
+            mnuGridGestioneCartella.Name = "mnuGridGestioneCartella";
+            mnuGridGestioneCartella.Size = new Size(137, 26);
+            // 
+            // mnuItemEliminaRiga
+            // 
+            mnuItemEliminaRiga.Name = "mnuItemEliminaRiga";
+            mnuItemEliminaRiga.Size = new Size(136, 22);
+            mnuItemEliminaRiga.Text = "Elimina riga";
+            mnuItemEliminaRiga.Click += mnuItemEliminaRiga_Click;
 
             ((System.ComponentModel.ISupportInitialize)gridGestioneCartella).EndInit();
+            mnuGridGestioneCartella.ResumeLayout(false);
             ResumeLayout(false);
 
 
@@ -108,19 +129,36 @@ namespace WorkManager_A.PanelImpostazioni
             {
                 if (controllaDati(e.RowIndex))
                 {
-                    ComponentiParametri function = new ComponentiParametri();
-                    function.Programma = programma;
-                    function.Parametro = gridGestioneCartella[0, e.RowIndex].Value.ToString();
-                    function.Valore = gridGestioneCartella[1, e.RowIndex].Value.ToString();
-                    function.Descrizione = (gridGestioneCartella[2, e.RowIndex].Value ?? string.Empty).ToString();
+                    ComponentiParametri param = new ComponentiParametri();
+                    param.Programma = programma;
+                    param.Parametro = gridGestioneCartella[0, e.RowIndex].Value.ToString();
+                    param.Valore = gridGestioneCartella[1, e.RowIndex].Value.ToString();
+                    param.Descrizione = (gridGestioneCartella[2, e.RowIndex].Value ?? string.Empty).ToString();
 
                     if (string.IsNullOrEmpty(parametro))
                     {
-                        Globale.jwm.addParametri(function);
+                        Globale.jwm.addParametri(param);
                     }
                     else
                     {
-                        Globale.jwm.editParametri(parametro, function);
+                        Globale.jwm.editParametri(parametro, param);
+                    }
+                }
+            }
+        }
+
+        private void gridGestioneCartella_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) 
+            {
+                int col = gridGestioneCartella.HitTest(e.X, e.Y).ColumnIndex;
+                int row = gridGestioneCartella.HitTest(e.X, e.Y).RowIndex;
+                if (col >= 0 && row >= 0)
+                {
+                    gridGestioneCartella[col, row].Selected = true;
+                    if (!gridGestioneCartella.CurrentRow.IsNewRow)
+                    {
+                        mnuGridGestioneCartella.Show(gridGestioneCartella, e.Location);
                     }
                 }
             }
@@ -148,6 +186,15 @@ namespace WorkManager_A.PanelImpostazioni
 
         controllaDatiErr:
             return noErrori;
+        }
+
+        private void mnuItemEliminaRiga_Click(object sender, EventArgs e)
+        {
+            ComponentiParametri param = new ComponentiParametri();
+            param.Programma = programma;
+            param.Parametro = parametro;
+            Globale.jwm.removeParametri(param);
+            gridGestioneCartella.Rows.RemoveAt(gridGestioneCartella.CurrentRow.Index);
         }
     }
 }
