@@ -62,10 +62,12 @@ namespace WorkManager_A.Funzioni
             //Titolo programma
             this.Text = Globale.functionCall.Titolo;
 
+            //Inizializzo i field della screen
             txtPercorso.Text = string.Empty;
             txtNome.Text = string.Empty;
             txtData.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
+            //Riempio la combo con i tipi cartella
             cboTipoCartella.Items.Clear();
             string[] tipiCartella = Globale.jwm.getParametro("GestioneCartella", "TipoCartella").Valore.ToString().Split(';') ?? new string[0];
             cboTipoCartella.Items.AddRange(tipiCartella);
@@ -81,6 +83,7 @@ namespace WorkManager_A.Funzioni
                 txtNome.Enabled = false;
             }
 
+            //Se la funzione è abilitata a gestire un solo tipo cartella, lo blocco
             if (LKGestioneCartella.TipoCartella != "ND")
             {
                 cboTipoCartella.Text = LKGestioneCartella.TipoCartella;
@@ -194,18 +197,49 @@ namespace WorkManager_A.Funzioni
 
         private void btnCerca_Click(object sender, EventArgs e)
         {
+            //Valorizzazione linkage input
+            LKFinFolder.ClearLinkage();
+            switch (LKGestioneCartella.funzione)
+            {
+                case "I":
+                    if (LKGestioneCartella.TipoCartella != "ND")
+                    {
+                        if (LKGestioneCartella.TipoCartella == "Cliente")
+                        {
+                            LKFinFolder.mostraRoot = true;
+                            LKFinFolder.limitaTipoCartella = "Root";
+                        }
+                        else if (LKGestioneCartella.TipoCartella == "Attività")
+                        {
+                            LKFinFolder.mostraRoot = false;
+                            LKFinFolder.limitaTipoCartella = "Cliente";
+                        }
+                    }
+                    break;
+                case "G":
+                case "E":
+                    LKFinFolder.mostraRoot = false;
+                    if (LKGestioneCartella.TipoCartella != "ND")
+                    {
+                        LKFinFolder.limitaTipoCartella = LKGestioneCartella.TipoCartella;
+                    }
+                    break;
+            }
+
+            //Chiamata programma
             if (Funzione.Apri("FinFolder", "WorkManager_A") == DialogResult.OK)
             {
+                //Valorizzazione con valori linkage output
                 switch (LKGestioneCartella.funzione)
                 {
                     case "I":
-                        txtPercorso.Text = Globale.percorsoCartella;
+                        txtPercorso.Text = LKFinFolder.percorsoCartella;
                         break;
                     case "G":
                     case "E":
-                        oldPath = Globale.percorsoCartella;
-                        txtPercorso.Text = Globale.percorsoCartella.Remove(Globale.percorsoCartella.LastIndexOf('\\'));
-                        txtNome.Text = Globale.percorsoCartella.Remove(0, Globale.percorsoCartella.LastIndexOf('\\') + 1);
+                        oldPath = LKFinFolder.percorsoCartella;
+                        txtPercorso.Text = LKFinFolder.percorsoCartella.Remove(LKFinFolder.percorsoCartella.LastIndexOf('\\'));
+                        txtNome.Text = LKFinFolder.percorsoCartella.Remove(0, LKFinFolder.percorsoCartella.LastIndexOf('\\') + 1);
                         break;
                 }
             }

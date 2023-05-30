@@ -31,127 +31,103 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinFolder));
             btnConferma = new Button();
             btnAnnulla = new Button();
-            lblCartella = new Label();
             pnlPulsanti = new Panel();
-            txtCartella = new TextBox();
-            splitContainer1 = new SplitContainer();
-            treeFullPath = new TreeView();
-            lstContenuto = new ListView();
+            gridCartelle = new DataGridView();
+            colNome = new DataGridViewTextBoxColumn();
+            colTipo = new DataGridViewTextBoxColumn();
+            colPercorso = new DataGridViewTextBoxColumn();
             pnlPulsanti.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.Panel2.SuspendLayout();
-            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridCartelle).BeginInit();
             SuspendLayout();
             // 
             // btnConferma
             // 
-            btnConferma.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnConferma.Location = new Point(587, 42);
+            btnConferma.Dock = DockStyle.Right;
+            btnConferma.FlatAppearance.BorderSize = 0;
+            btnConferma.FlatStyle = FlatStyle.Flat;
+            btnConferma.Location = new Point(611, 0);
             btnConferma.Name = "btnConferma";
-            btnConferma.Size = new Size(120, 23);
+            btnConferma.Size = new Size(92, 59);
             btnConferma.TabIndex = 0;
-            btnConferma.Text = "Seleziona cartella";
+            btnConferma.Text = "Seleziona";
             btnConferma.UseVisualStyleBackColor = true;
             btnConferma.Click += btnConferma_Click;
             // 
             // btnAnnulla
             // 
-            btnAnnulla.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAnnulla.Location = new Point(713, 42);
+            btnAnnulla.Dock = DockStyle.Right;
+            btnAnnulla.FlatAppearance.BorderSize = 0;
+            btnAnnulla.FlatStyle = FlatStyle.Flat;
+            btnAnnulla.Location = new Point(703, 0);
             btnAnnulla.Name = "btnAnnulla";
-            btnAnnulla.Size = new Size(75, 23);
+            btnAnnulla.Size = new Size(95, 59);
             btnAnnulla.TabIndex = 1;
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
             btnAnnulla.Click += btnAnnulla_Click;
             // 
-            // lblCartella
-            // 
-            lblCartella.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblCartella.AutoSize = true;
-            lblCartella.Location = new Point(163, 16);
-            lblCartella.Name = "lblCartella";
-            lblCartella.Size = new Size(50, 15);
-            lblCartella.TabIndex = 2;
-            lblCartella.Text = "Cartella:";
-            // 
             // pnlPulsanti
             // 
             pnlPulsanti.BorderStyle = BorderStyle.FixedSingle;
-            pnlPulsanti.Controls.Add(txtCartella);
-            pnlPulsanti.Controls.Add(lblCartella);
             pnlPulsanti.Controls.Add(btnConferma);
             pnlPulsanti.Controls.Add(btnAnnulla);
             pnlPulsanti.Dock = DockStyle.Bottom;
-            pnlPulsanti.Location = new Point(0, 372);
+            pnlPulsanti.Location = new Point(0, 389);
             pnlPulsanti.Name = "pnlPulsanti";
-            pnlPulsanti.Size = new Size(800, 78);
+            pnlPulsanti.Size = new Size(800, 61);
             pnlPulsanti.TabIndex = 0;
             // 
-            // txtCartella
+            // gridCartelle
             // 
-            txtCartella.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtCartella.Enabled = false;
-            txtCartella.Location = new Point(219, 13);
-            txtCartella.Name = "txtCartella";
-            txtCartella.Size = new Size(569, 23);
-            txtCartella.TabIndex = 3;
+            gridCartelle.AllowUserToAddRows = false;
+            gridCartelle.AllowUserToDeleteRows = false;
+            gridCartelle.AllowUserToOrderColumns = true;
+            gridCartelle.AllowUserToResizeRows = false;
+            gridCartelle.BackgroundColor = SystemColors.Control;
+            gridCartelle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridCartelle.Columns.AddRange(new DataGridViewColumn[] { colNome, colTipo, colPercorso });
+            gridCartelle.Dock = DockStyle.Fill;
+            gridCartelle.Location = new Point(0, 0);
+            gridCartelle.MultiSelect = false;
+            gridCartelle.Name = "gridCartelle";
+            gridCartelle.ReadOnly = true;
+            gridCartelle.RowTemplate.Height = 25;
+            gridCartelle.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gridCartelle.Size = new Size(800, 389);
+            gridCartelle.TabIndex = 1;
+            gridCartelle.MouseDoubleClick += gridCartelle_MouseDoubleClick;
             // 
-            // splitContainer1
+            // colNome
             // 
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Name = "splitContainer1";
+            colNome.HeaderText = "Nome";
+            colNome.Name = "colNome";
+            colNome.ReadOnly = true;
             // 
-            // splitContainer1.Panel1
+            // colTipo
             // 
-            splitContainer1.Panel1.Controls.Add(treeFullPath);
+            colTipo.HeaderText = "Tipo";
+            colTipo.Name = "colTipo";
+            colTipo.ReadOnly = true;
             // 
-            // splitContainer1.Panel2
+            // colPercorso
             // 
-            splitContainer1.Panel2.Controls.Add(lstContenuto);
-            splitContainer1.Size = new Size(800, 372);
-            splitContainer1.SplitterDistance = 295;
-            splitContainer1.TabIndex = 1;
+            colPercorso.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colPercorso.HeaderText = "Percorso";
+            colPercorso.Name = "colPercorso";
+            colPercorso.ReadOnly = true;
             // 
-            // treeFullPath
-            // 
-            treeFullPath.Dock = DockStyle.Fill;
-            treeFullPath.Location = new Point(0, 0);
-            treeFullPath.Name = "treeFullPath";
-            treeFullPath.Size = new Size(295, 372);
-            treeFullPath.TabIndex = 0;
-            treeFullPath.NodeMouseClick += treeFullPath_NodeMouseClick;
-            treeFullPath.NodeMouseDoubleClick += treeFullPath_NodeMouseDoubleClick;
-            // 
-            // lstContenuto
-            // 
-            lstContenuto.Dock = DockStyle.Fill;
-            lstContenuto.Location = new Point(0, 0);
-            lstContenuto.Name = "lstContenuto";
-            lstContenuto.Size = new Size(501, 372);
-            lstContenuto.TabIndex = 0;
-            lstContenuto.UseCompatibleStateImageBehavior = false;
-            lstContenuto.MouseClick += lstContenuto_MouseClick;
-            lstContenuto.MouseDoubleClick += lstContenuto_MouseDoubleClick;
-            // 
-            // FinFolder
+            // FinFolder2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(splitContainer1);
+            Controls.Add(gridCartelle);
             Controls.Add(pnlPulsanti);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "FinFolder";
+            Name = "FinFolder2";
             Text = "Cerca Percorso";
             pnlPulsanti.ResumeLayout(false);
-            pnlPulsanti.PerformLayout();
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridCartelle).EndInit();
             ResumeLayout(false);
         }
 
@@ -159,11 +135,10 @@
 
         private Button btnConferma;
         private Button btnAnnulla;
-        private Label lblCartella;
         private Panel pnlPulsanti;
-        private TextBox txtCartella;
-        private SplitContainer splitContainer1;
-        private TreeView treeFullPath;
-        private ListView lstContenuto;
+        private DataGridView gridCartelle;
+        private DataGridViewTextBoxColumn colNome;
+        private DataGridViewTextBoxColumn colTipo;
+        private DataGridViewTextBoxColumn colPercorso;
     }
 }

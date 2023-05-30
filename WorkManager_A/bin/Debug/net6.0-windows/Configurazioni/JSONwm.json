@@ -29,11 +29,18 @@
          "Linkage" : "IAttività  "
       }, 
       { 
-         "ID" : "8", 
-         "Titolo" : "Nuova cartella", 
+         "ID" : "9", 
+         "Titolo" : "Modifica attività", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "cartella_24x24", 
-         "Linkage" : "IND        "
+         "Linkage" : "GAttività  "
+      }, 
+      { 
+         "ID" : "10", 
+         "Titolo" : "Elimina attività", 
+         "Programma" : "GestioneCartella", 
+         "Bitmap" : "cartella_24x24", 
+         "Linkage" : "EAttività  "
       }, 
       { 
          "ID" : "2", 
@@ -48,7 +55,7 @@
          "Bitmap" : " - "
       }
    ], 
-   "CntID" : "8", 
+   "CntID" : "10", 
    "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace", 
    "Parametri" : [ 
       { 

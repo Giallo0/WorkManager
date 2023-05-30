@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using WorkManager_A.Linkage;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WorkManager_A
@@ -18,170 +19,72 @@ namespace WorkManager_A
         public FinFolder()
         {
             InitializeComponent();
-            Globale.percorsoCartella = String.Empty;
-            Globale.titoloCartella = String.Empty;
+            LKFinFolder.ClearLinkageOutput();
             PersonalizzaInizializzazione();
         }
 
         private void PersonalizzaInizializzazione()
         {
-            // Text => Nome della cartella
-            // Tag => Percorso della cartella
+            if (LKFinFolder.mostraRoot == null)
+            {
+                LKFinFolder.mostraRoot = true;
+            }
 
-            treeFullPath.Nodes.Clear();
-            TreeNode root = new TreeNode();
-
-            //Aggiungo come root la cartella del workspace
-            root.Text = Path.GetFileName(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString()));
-            root.Tag = Globale.jwm.getValue(ChiaviRoot.Workspace.ToString());
-            treeFullPath.Nodes.Add(root);
-            TrovaSottoCartelle(root);
-
-            ImageList imageList = new ImageList();
-            imageList.Images.Add(Properties.Resources.cartella_16x16);
-            imageList.ImageSize = new Size(16, 16);
-            root.TreeView.ImageList = imageList;
-
-            root.Expand();
+            //Riempi griglia
+            gridCartelle.Rows.Clear();
+            if (LKFinFolder.mostraRoot == true)
+            {
+                DataGridViewRow riga = new DataGridViewRow();
+                riga.CreateCells(gridCartelle);
+                riga.Cells[0].Value = Path.GetFileName(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString()));
+                riga.Cells[1].Value = "Root";
+                riga.Cells[2].Value = Globale.jwm.getValue(ChiaviRoot.Workspace.ToString());
+                gridCartelle.Rows.Add(riga);
+            }
+            TrovaSottoCartelle(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString()));
         }
 
-        private void TrovaSottoCartelle(TreeNode parent)
+        private void TrovaSottoCartelle(string padre)
         {
-            foreach (string dir in Directory.GetDirectories(parent.Tag.ToString()))
+            foreach (string dir in Directory.GetDirectories(padre))
             {
                 DirectoryInfo di = new DirectoryInfo(dir);
                 if (!di.Attributes.HasFlag(FileAttributes.Hidden))
                 {
-                    TreeNode nodo = new TreeNode();
-                    nodo.Text = Path.GetFileName(dir);
-                    nodo.Tag = dir;
-                    parent.Nodes.Add(nodo);
-                    TrovaSottoCartelle(nodo);
+                    JSONwsFolder jwsF = new JSONwsFolder(dir);
+                    if (LKFinFolder.limitaTipoCartella == string.Empty || LKFinFolder.limitaTipoCartella == jwsF.getValue(ChiaviwsFolder.Tipo.ToString()))
+                    {
+                        DataGridViewRow riga = new DataGridViewRow();
+                        riga.CreateCells(gridCartelle);
+                        riga.Cells[0].Value = Path.GetFileName(dir);
+                        riga.Cells[1].Value = jwsF.getValue(ChiaviwsFolder.Tipo.ToString());
+                        riga.Cells[2].Value = dir;
+                        gridCartelle.Rows.Add(riga);
+                    }
+                    TrovaSottoCartelle(dir);
                 }
             }
         }
 
-        private void treeFullPath_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void gridCartelle_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            txtCartella.Text = e.Node.Tag.ToString();
-
-            lstContenuto.Items.Clear();
-            ImageList imageList = new ImageList();
-            /*
-            //Per ogni cartella e file aggiungo l'icona associata alla lista di immagini
-            foreach (string dir in Directory.GetDirectories(txtCartella.Text))
+            int row = gridCartelle.HitTest(e.X, e.Y).RowIndex;
+            if (row > -1) 
             {
-                DirectoryInfo di = new DirectoryInfo(dir);
-                if (!di.Attributes.HasFlag(FileAttributes.Hidden))
-                {
-                    imageList.Images.Add(Properties.Resources.cartella_32x32);
-                }
-
-            }
-            */
-            foreach (string file in Directory.GetFiles(txtCartella.Text))
-            {
-                FileInfo fi = new FileInfo(file);
-                if (!fi.Attributes.HasFlag(FileAttributes.Hidden))
-                {
-                    imageList.Images.Add(Properties.Resources.file_32x32);
-                }
-            }
-
-            //Gestisco le proprietà dell'immagine e l'associo alla list view
-            lstContenuto.View = View.LargeIcon;
-            imageList.ImageSize = new Size(32, 32);
-            lstContenuto.LargeImageList = imageList;
-
-            //Inserisco gli oggetti all'interno della lista con le rispettive icone
-            int j = 0;
-            /*
-            foreach (string dir in Directory.GetDirectories(txtCartella.Text))
-            {
-                DirectoryInfo di = new DirectoryInfo(dir);
-                if (!di.Attributes.HasFlag(FileAttributes.Hidden))
-                {
-                    ListViewItem item = new ListViewItem();
-                    item.ImageIndex = j++;
-                    item.Text = dir.Remove(0, dir.LastIndexOf("\\") + 1);
-                    item.Tag = dir;
-                    lstContenuto.Items.Add(item);
-                }
-
-            }
-            */
-            foreach (string file in Directory.GetFiles(txtCartella.Text))
-            {
-                FileInfo fi = new FileInfo(file);
-                if (!fi.Attributes.HasFlag(FileAttributes.Hidden))
-                {
-                    ListViewItem item = new ListViewItem();
-                    item.ImageIndex = j++;
-                    item.Text = file.Substring(file.LastIndexOf("\\") + 1);
-                    lstContenuto.Items.Add(item);
-                }
+                btnConferma_Click(null, null);
             }
         }
 
         private void btnConferma_Click(object sender, EventArgs e)
         {
-            Globale.percorsoCartella = txtCartella.Text;
-            Globale.titoloCartella = txtCartella.Text.Remove(0, txtCartella.Text.LastIndexOf("\\") + 1);
+            LKFinFolder.percorsoCartella = gridCartelle.CurrentRow.Cells["colPercorso"].Value.ToString();
+            LKFinFolder.nomeCartella = gridCartelle.CurrentRow.Cells["colNome"].Value.ToString();
             this.DialogResult = DialogResult.OK;
         }
 
         private void btnAnnulla_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-        }
-
-        private void treeFullPath_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            txtCartella.Text = e.Node.Tag.ToString();
-            btnConferma_Click(null, null);
-        }
-
-        private void lstContenuto_MouseClick(object sender, MouseEventArgs e)
-        {
-            /*
-            if (lstContenuto.SelectedItems.Count > 0)
-            {
-                ListViewItem item = lstContenuto.SelectedItems[0];
-                if (item.Bounds.Contains(e.Location))
-                {
-                    if (item.Tag != null)
-                    {
-                        txtCartella.Text = item.Tag.ToString();
-                    }
-                    else
-                    {
-                        txtCartella.Text = String.Empty;
-                    }
-                }
-            }
-            */
-        }
-
-        private void lstContenuto_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            /*
-            if (lstContenuto.SelectedItems.Count > 0)
-            {
-                ListViewItem item = lstContenuto.SelectedItems[0];
-                if (item.Bounds.Contains(e.Location))
-                {
-                    if (item.Tag != null)
-                    {
-                        txtCartella.Text = item.Tag.ToString();
-                        btnConferma_Click(null, null);
-                    }
-                    else
-                    {
-                        txtCartella.Text = String.Empty;
-                    }
-                }
-            }
-            */
         }
     }
 }
