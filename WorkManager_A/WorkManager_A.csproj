@@ -10,6 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Configurazione\JSONwm.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Configurazione\JSONwm.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ICSharpCode.SharpZipLib.dll" Version="0.85.4.369" />
   </ItemGroup>
 

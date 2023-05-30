@@ -1,6 +1,7 @@
 ﻿using SimpleJSON;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -58,7 +59,8 @@ namespace WorkManager_A
     internal class JSONwm
     {
         private JSONNode? jnode;
-        private string pathJSONwm = "Configurazioni\\JSONwm.json";
+
+        private string pathJSONwm = "Configurazione\\JSONwm.json";
 
         private string emptyTextJSON = "{ }";
 
@@ -70,6 +72,10 @@ namespace WorkManager_A
 
         public JSONwm()
         {
+            if (Debugger.IsAttached || Path.GetFullPath(pathJSONwm).Contains("Debug"))
+            {
+                pathJSONwm = @"..\..\..\" + pathJSONwm;
+            }
             newInstance();
         }
 
