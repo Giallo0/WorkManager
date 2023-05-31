@@ -64,8 +64,8 @@ namespace WorkManager_A.Funzioni
 
             //Inizializzo i field della screen
             txtPercorso.Text = string.Empty;
+            txtProgressivo.Text = 0.ToString();
             txtNome.Text = string.Empty;
-            txtData.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
             //Riempio la combo con i tipi cartella
             cboTipoCartella.Items.Clear();
@@ -89,39 +89,59 @@ namespace WorkManager_A.Funzioni
                 cboTipoCartella.Text = LKGestioneCartella.TipoCartella;
                 cboTipoCartella.Enabled = false;
             }
+            else
+            {
+                cboTipoCartella.SelectedIndex = 0;
+            }
         }
 
         private void btnConferma_Click(object sender, EventArgs e)
         {
             if (controllaDati())
             {
-                string folderPath = $"{txtPercorso.Text}\\{txtNome.Text}";
-                JSONwsFolder wsFolder;
+                string folderPath;
+                if (cboTipoCartella.Text == "Attività")
+                {
+                    folderPath = $"{txtPercorso.Text}\\{txtProgressivo.Text.PadLeft(3, '0')}_{txtNome.Text}";
+                }
+                else
+                {
+                    folderPath = $"{txtPercorso.Text}\\{txtNome.Text}";
+                }
+                JSONwsFolder jwsF;
 
                 switch (LKGestioneCartella.funzione)
                 {
                     case "I":
                         Directory.CreateDirectory(folderPath);
 
-                        wsFolder = new JSONwsFolder(folderPath);
-                        wsFolder.setValue(ChiaviwsFolder.Tipo.ToString(), cboTipoCartella.Text);
-                        wsFolder.setValue(ChiaviwsFolder.DataCreazione.ToString(), DateTime.Now.ToString("yyyyMMdd"));
-                        wsFolder.setValue(ChiaviwsFolder.OraCreazione.ToString(), DateTime.Now.ToString("HHmmss"));
-                        wsFolder.salva();
+                        jwsF = new JSONwsFolder(folderPath);
+                        ComponentiwsFolder wsFolder = new ComponentiwsFolder();
+                        wsFolder.Tipo = cboTipoCartella.Text;
+                        wsFolder.DataCreazione = DateTime.Now.ToString("yyyyMMdd");
+                        wsFolder.OraCreazione = DateTime.Now.ToString("HHmmss");
+                        jwsF.newFolder(wsFolder);
+
+                        JSONwsFolder jwsFC = new JSONwsFolder(txtPercorso.Text);
+                        jwsFC.setValue(ChiaviwsFolder.CntAtt.ToString(), txtProgressivo.Text);
+                        jwsFC.salva();
 
                         MessageBox.Show($"La cartella {txtNome.Text} è stata creata", "Nuova cartella", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtNome.Text = string.Empty;
+                        calcolaProgressivo();
                         break;
                     case "G":
                         Directory.Move(oldPath, folderPath);
 
-                        wsFolder = new JSONwsFolder(folderPath);
-                        wsFolder.setValue(ChiaviwsFolder.DataModifica.ToString(), DateTime.Now.ToString("yyyyMMdd"));
-                        wsFolder.setValue(ChiaviwsFolder.OraModifica.ToString(), DateTime.Now.ToString("HHmmss"));
-                        wsFolder.salva();
+                        jwsF = new JSONwsFolder(folderPath);
+                        jwsF.setValue(ChiaviwsFolder.DataModifica.ToString(), DateTime.Now.ToString("yyyyMMdd"));
+                        jwsF.setValue(ChiaviwsFolder.OraModifica.ToString(), DateTime.Now.ToString("HHmmss"));
+                        jwsF.salva();
 
-                        MessageBox.Show($"La cartella '{oldPath.Remove(0, oldPath.LastIndexOf("\\") + 1)}' è stata rinominata in '{txtNome.Text}'", "Modifica cartella", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"La cartella '{oldPath.Remove(0, oldPath.LastIndexOf("\\") + 1).Substring(4)}' è stata rinominata in '{txtNome.Text}'", "Modifica cartella", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtPercorso.Text = string.Empty;
                         txtNome.Text = string.Empty;
+                        txtProgressivo.Text = "0";
                         break;
                     case "E":
                         DirectoryInfo directoryInfo = new DirectoryInfo(oldPath);
@@ -135,6 +155,7 @@ namespace WorkManager_A.Funzioni
                                 MessageBox.Show($"La cartella {txtNome.Text} è stata eliminata", "Elimina cartella", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 txtNome.Text = string.Empty;
                                 txtPercorso.Text = string.Empty;
+                                txtProgressivo.Text = "0";
                             }
                         }
                         else
@@ -185,6 +206,56 @@ namespace WorkManager_A.Funzioni
             return noErrori;
         }
 
+        private void cboTipoCartella_TextChanged(object sender, EventArgs e)
+        {
+            txtPercorso.Text = string.Empty;
+            //Se il tipo cartella che verrà generato è Cliente, non mostro il progressivo
+            if (cboTipoCartella.Text == "Cliente")
+            {
+                lblProgressivo.Visible = false;
+                txtProgressivo.Visible = false;
+            }
+            else
+            {
+                lblProgressivo.Visible = true;
+                txtProgressivo.Visible = true;
+
+                calcolaProgressivo();
+            }
+        }
+
+        private void txtPercorso_TextChanged(object sender, EventArgs e)
+        {
+            switch (LKGestioneCartella.funzione)
+            {
+                case "I":
+                    calcolaProgressivo();
+                    break;
+                case "G":
+                case "E":
+                    break;
+            }
+        }
+
+        private void calcolaProgressivo()
+        {
+            int cntAtt = 0;
+            if (!string.IsNullOrEmpty(txtPercorso.Text) && cboTipoCartella.Text == "Attività")
+            {
+                JSONwsFolder jwsFC = new JSONwsFolder(txtPercorso.Text);
+                if (!string.IsNullOrEmpty(jwsFC.getValue(ChiaviwsFolder.CntAtt.ToString())))
+                {
+                    cntAtt = int.Parse(jwsFC.getValue(ChiaviwsFolder.CntAtt.ToString()));
+                }
+                else
+                {
+                    cntAtt = 0;
+                }
+                cntAtt += 1;
+            }
+            txtProgressivo.Text = cntAtt.ToString();
+        }
+
         private void btnAnnulla_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -202,27 +273,21 @@ namespace WorkManager_A.Funzioni
             switch (LKGestioneCartella.funzione)
             {
                 case "I":
-                    if (LKGestioneCartella.TipoCartella != "ND")
+                    if (cboTipoCartella.Text == "Cliente")
                     {
-                        if (LKGestioneCartella.TipoCartella == "Cliente")
-                        {
-                            LKFinFolder.mostraRoot = true;
-                            LKFinFolder.limitaTipoCartella = "Root";
-                        }
-                        else if (LKGestioneCartella.TipoCartella == "Attività")
-                        {
-                            LKFinFolder.mostraRoot = false;
-                            LKFinFolder.limitaTipoCartella = "Cliente";
-                        }
+                        LKFinFolder.mostraRoot = true;
+                        LKFinFolder.limitaTipoCartella = "Root";
+                    }
+                    else if (cboTipoCartella.Text == "Attività")
+                    {
+                        LKFinFolder.mostraRoot = false;
+                        LKFinFolder.limitaTipoCartella = "Cliente";
                     }
                     break;
                 case "G":
                 case "E":
                     LKFinFolder.mostraRoot = false;
-                    if (LKGestioneCartella.TipoCartella != "ND")
-                    {
-                        LKFinFolder.limitaTipoCartella = LKGestioneCartella.TipoCartella;
-                    }
+                    LKFinFolder.limitaTipoCartella = cboTipoCartella.Text;
                     break;
             }
 
@@ -239,7 +304,17 @@ namespace WorkManager_A.Funzioni
                     case "E":
                         oldPath = LKFinFolder.percorsoCartella;
                         txtPercorso.Text = LKFinFolder.percorsoCartella.Remove(LKFinFolder.percorsoCartella.LastIndexOf('\\'));
-                        txtNome.Text = LKFinFolder.percorsoCartella.Remove(0, LKFinFolder.percorsoCartella.LastIndexOf('\\') + 1);
+                        string nomeCompleto = LKFinFolder.percorsoCartella.Remove(0, LKFinFolder.percorsoCartella.LastIndexOf('\\') + 1);
+                        if (cboTipoCartella.Text == "Cliente")
+                        {
+                            txtProgressivo.Text = "0";
+                            txtNome.Text = nomeCompleto;
+                        }
+                        else
+                        {
+                            txtProgressivo.Text = int.Parse(nomeCompleto.Substring(0, 3)).ToString();
+                            txtNome.Text = nomeCompleto.Substring(4);
+                        }
                         break;
                 }
             }

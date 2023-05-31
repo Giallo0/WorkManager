@@ -1,17 +1,19 @@
-Aggiungere priorità attività
-Aggiungere all'apertura un controllo di versione del programma. se la versione combacia allora non fare niente, ma se non combacia far partira una classe con la lista degli aggiornamenti automatici e vari controlli da far eseguire automaticamente dal programma.
+- Aggiungere priorità attività
 
-[Fatto] Aggiungere alle cartelle la possibilità di impostare che tipi cartella possono contenere. La finFolder potrà selezionare solo quelli in base al tipo scelto.
+- Aggiungere all'apertura un controllo di versione del programma. se la versione combacia allora non fare niente, ma se non combacia far partira una classe con la lista degli aggiornamenti automatici e vari controlli da far eseguire automaticamente dal programma.
 
-Aggiungere un progressivo nel JSON della cartella di 3 cifre da concatenare all'inizio della cartella attività in modo da far seguire un ordine di creazione. Nel programma il contatore non verrà visto ma sarà presente per poter utilizzare il percorso.
-Alla creazione dell'attività impostarla con stato "Nuovo". Creare poi una funzione per la modifica dello stato inserendo lo stato, in caso di chiusura la data di chiusura e in caso di rilascio la data di rilascio, delle note. Queste informazioni verranno scritte nel JSON dell'attività.
-Oppure ad ogni cambio di stato, aggiungere nel JSON dell'attività il nuovo stato, la data e l'ora di cambio stato, eventuali note.
+[Fatto] - Aggiungere alle cartelle la possibilità di impostare che tipi cartella possono contenere. La finFolder potrà selezionare solo quelli in base al tipo scelto.
 
-Gli stati andranno parametrizzati nelle opzioni.
+- Aggiungere un progressivo nel JSON della cartella di 3 cifre da concatenare all'inizio della cartella attività in modo da far seguire un ordine di creazione. Nel programma il contatore non verrà visto ma sarà presente per poter utilizzare il percorso.
+  Alla creazione dell'attività impostarla con stato "Nuovo". Creare poi una funzione per la modifica dello stato inserendo lo stato, in caso di chiusura la data di chiusura e in caso di rilascio la data di rilascio, delle note. Queste informazioni verranno scritte nel JSON dell'attività.
+  Oppure ad ogni cambio di stato, aggiungere nel JSON dell'attività il nuovo stato, la data e l'ora di cambio stato, eventuali note.
 
-In modifica/elimina attività, aggiungere nella ricerca del percorso una combo con la possibilità di filtrare per cliente. Aggiungere tra le colonne anche il cliente a cui fa riferimento la cartella. Per i clienti tenere vuota la colonna e disabilitato il filtro della combo.
-Nella finCartella, allungare la colonna del nome in modo automatico per la massima lunghezza del nome più lungo in modo da vedere tutti i caratteri.
+- Gli stati andranno parametrizzati nelle opzioni.
 
-Aggiungere le icone al programma.
+- In modifica/elimina attività, aggiungere nella ricerca del percorso una combo con la possibilità di filtrare per cliente. Aggiungere tra le colonne anche il cliente a cui fa riferimento la cartella. Per i clienti tenere vuota la colonna e disabilitato il filtro della combo.
 
-Per i parametri nelle opzioni, inserire una cella all'inizio con una combo in modo da poter selezionare il programma a cui fa riferimento. In questo modo tenere nel treeView solo "Parametri" senza l'elenco dei programmi.
+- Nella finCartella, allungare la colonna del nome in modo automatico per la massima lunghezza del nome più lungo in modo da vedere tutti i caratteri.
+
+- Aggiungere le icone al programma.
+
+- Per i parametri nelle opzioni, inserire una cella all'inizio con una combo in modo da poter selezionare il programma a cui fa riferimento. In questo modo tenere nel treeView solo "Parametri" senza l'elenco dei programmi.

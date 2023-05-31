@@ -53,10 +53,16 @@
          "Titolo" : "Gestione priorità attività", 
          "Programma" : " - ", 
          "Bitmap" : " - "
+      }, 
+      { 
+         "ID" : "12", 
+         "Titolo" : "test", 
+         "Programma" : "GestioneCartella", 
+         "Bitmap" : " - ", 
+         "Linkage" : "GND        "
       }
    ], 
-   "CntID" : "11", 
-   "Workspace" : "", 
+   "CntID" : "12", 
    "Parametri" : [ 
       { 
          "Programma" : "GestioneCartella", 
@@ -64,5 +70,6 @@
          "Valore" : "ND;Cliente;Attività", 
          "Descrizione" : "Tipologia di cartella separati da ;"
       }
-   ]
+   ], 
+   "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace"
 }
