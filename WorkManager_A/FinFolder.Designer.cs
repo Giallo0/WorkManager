@@ -33,13 +33,11 @@
             btnAnnulla = new Button();
             pnlPulsanti = new Panel();
             gridCartelle = new DataGridView();
-            colNome = new DataGridViewTextBoxColumn();
-            colTipo = new DataGridViewTextBoxColumn();
-            colCliente = new DataGridViewTextBoxColumn();
-            colPercorso = new DataGridViewTextBoxColumn();
             cboCliente = new ComboBox();
             lblCliente = new Label();
             groupBox1 = new GroupBox();
+            cboTipo = new ComboBox();
+            lblTipo = new Label();
             pnlPulsanti.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridCartelle).BeginInit();
             groupBox1.SuspendLayout();
@@ -90,7 +88,6 @@
             gridCartelle.AllowUserToResizeRows = false;
             gridCartelle.BackgroundColor = SystemColors.Control;
             gridCartelle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridCartelle.Columns.AddRange(new DataGridViewColumn[] { colNome, colTipo, colCliente, colPercorso });
             gridCartelle.Dock = DockStyle.Fill;
             gridCartelle.Location = new Point(0, 66);
             gridCartelle.MultiSelect = false;
@@ -102,38 +99,11 @@
             gridCartelle.TabIndex = 1;
             gridCartelle.MouseDoubleClick += gridCartelle_MouseDoubleClick;
             // 
-            // colNome
-            // 
-            colNome.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colNome.HeaderText = "Nome";
-            colNome.Name = "colNome";
-            colNome.ReadOnly = true;
-            colNome.Width = 65;
-            // 
-            // colTipo
-            // 
-            colTipo.HeaderText = "Tipo";
-            colTipo.Name = "colTipo";
-            colTipo.ReadOnly = true;
-            // 
-            // colCliente
-            // 
-            colCliente.HeaderText = "Cliente";
-            colCliente.Name = "colCliente";
-            colCliente.ReadOnly = true;
-            // 
-            // colPercorso
-            // 
-            colPercorso.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colPercorso.HeaderText = "Percorso";
-            colPercorso.Name = "colPercorso";
-            colPercorso.ReadOnly = true;
-            // 
             // cboCliente
             // 
             cboCliente.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCliente.FormattingEnabled = true;
-            cboCliente.Location = new Point(65, 31);
+            cboCliente.Location = new Point(258, 27);
             cboCliente.Name = "cboCliente";
             cboCliente.Size = new Size(144, 23);
             cboCliente.TabIndex = 0;
@@ -142,7 +112,7 @@
             // lblCliente
             // 
             lblCliente.AutoSize = true;
-            lblCliente.Location = new Point(12, 34);
+            lblCliente.Location = new Point(205, 30);
             lblCliente.Name = "lblCliente";
             lblCliente.Size = new Size(47, 15);
             lblCliente.TabIndex = 1;
@@ -150,6 +120,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(cboTipo);
+            groupBox1.Controls.Add(lblTipo);
             groupBox1.Controls.Add(lblCliente);
             groupBox1.Controls.Add(cboCliente);
             groupBox1.Dock = DockStyle.Top;
@@ -159,6 +131,25 @@
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtri di ricerca";
+            // 
+            // cboTipo
+            // 
+            cboTipo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboTipo.FormattingEnabled = true;
+            cboTipo.Location = new Point(51, 27);
+            cboTipo.Name = "cboTipo";
+            cboTipo.Size = new Size(121, 23);
+            cboTipo.TabIndex = 3;
+            cboTipo.TextChanged += cboTipo_TextChanged;
+            // 
+            // lblTipo
+            // 
+            lblTipo.AutoSize = true;
+            lblTipo.Location = new Point(12, 30);
+            lblTipo.Name = "lblTipo";
+            lblTipo.Size = new Size(33, 15);
+            lblTipo.TabIndex = 2;
+            lblTipo.Text = "Tipo:";
             // 
             // FinFolder
             // 
@@ -184,12 +175,10 @@
         private Button btnAnnulla;
         private Panel pnlPulsanti;
         private DataGridView gridCartelle;
-        private DataGridViewTextBoxColumn colNome;
-        private DataGridViewTextBoxColumn colTipo;
-        private DataGridViewTextBoxColumn colCliente;
-        private DataGridViewTextBoxColumn colPercorso;
         private ComboBox cboCliente;
         private Label lblCliente;
         private GroupBox groupBox1;
+        private ComboBox cboTipo;
+        private Label lblTipo;
     }
 }

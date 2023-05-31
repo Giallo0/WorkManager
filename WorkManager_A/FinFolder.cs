@@ -17,6 +17,7 @@ namespace WorkManager_A
     public partial class FinFolder : Form
     {
         private List<string> elencoClienti = new List<string>();
+        private DataTable dt = new DataTable();
 
         public FinFolder()
         {
@@ -34,23 +35,48 @@ namespace WorkManager_A
 
             //Riempi griglia
             gridCartelle.Rows.Clear();
+            dt.Columns.Add("Progressivo", typeof(string)).ColumnMapping = MappingType.Hidden;
+            dt.Columns.Add("Nome", typeof(string));
+            dt.Columns.Add("Tipo", typeof(string));
+            dt.Columns.Add("Cliente", typeof(string));
+            dt.Columns.Add("Percorso", typeof(string));
+
             if (LKFinFolder.mostraRoot == true)
             {
-                DataGridViewRow riga = new DataGridViewRow();
-                riga.CreateCells(gridCartelle);
-                riga.Cells[0].Value = Path.GetFileName(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString()));
-                riga.Cells[1].Value = "Root";
-                riga.Cells[2].Value = string.Empty;
-                riga.Cells[3].Value = Globale.jwm.getValue(ChiaviRoot.Workspace.ToString());
-                gridCartelle.Rows.Add(riga);
+                dt.Rows.Add(new object[] {
+                    string.Empty,
+                    Path.GetFileName(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString())),
+                    "Root",
+                    string.Empty,
+                    Globale.jwm.getValue(ChiaviRoot.Workspace.ToString())
+                });
             }
             TrovaSottoCartelle(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString()));
+            gridCartelle.DataSource = dt;
+
+            gridCartelle.Columns["Nome"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            gridCartelle.Columns["Percorso"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             //Riempi combo Clienti
             cboCliente.Items.Clear();
             cboCliente.Items.Add("Tutti");
             cboCliente.Items.AddRange(elencoClienti.ToArray());
             cboCliente.SelectedIndex = 0;
+
+            //Riempi combo Tipi
+            cboTipo.Items.Clear();
+            cboTipo.Items.Add("Tutti");
+            cboTipo.Items.Add("Root");
+            string[] tipiCartella = Globale.jwm.getParametro("GestioneCartella", "TipoCartella").Valore.ToString().Split(';') ?? new string[0];
+            cboTipo.Items.AddRange(tipiCartella);
+            cboTipo.Items.Remove("ND");
+            cboTipo.SelectedIndex = 0;
+
+            if (!string.IsNullOrEmpty(LKFinFolder.limitaTipoCartella))
+            {
+                cboTipo.SelectedItem = LKFinFolder.limitaTipoCartella;
+                cboTipo.Enabled = false;
+            }
         }
 
         private void TrovaSottoCartelle(string padre)
@@ -63,25 +89,30 @@ namespace WorkManager_A
                     JSONwsFolder jwsF = new JSONwsFolder(dir);
                     if (LKFinFolder.limitaTipoCartella == string.Empty || LKFinFolder.limitaTipoCartella == jwsF.getValue(ChiaviwsFolder.Tipo.ToString()))
                     {
-                        DataGridViewRow riga = new DataGridViewRow();
-                        riga.CreateCells(gridCartelle);
                         if (jwsF.getValue(ChiaviwsFolder.Tipo.ToString()) == "Attività")
                         {
-                            riga.Cells[0].Value = Path.GetFileName(dir).Substring(4);
-                            riga.Cells[2].Value = Directory.GetParent(dir).Name;
+                            dt.Rows.Add(new object[] {
+                                Path.GetFileName(dir).Substring(0, 3),
+                                Path.GetFileName(dir).Substring(4),
+                                jwsF.getValue(ChiaviwsFolder.Tipo.ToString()),
+                                Directory.GetParent(dir).Name,
+                                dir
+                            });
+                            if (!elencoClienti.Contains(Directory.GetParent(dir).Name))
+                            {
+                                elencoClienti.Add(Directory.GetParent(dir).Name);
+                            }
                         }
                         else
                         {
-                            riga.Cells[0].Value = Path.GetFileName(dir);
-                            riga.Cells[2].Value = string.Empty;
-                            if (jwsF.getValue(ChiaviwsFolder.Tipo.ToString()) == "Cliente")
-                            {
-                                elencoClienti.Add(Path.GetFileName(dir));
-                            }
+                            dt.Rows.Add(new object[] {
+                                string.Empty,
+                                Path.GetFileName(dir),
+                                jwsF.getValue(ChiaviwsFolder.Tipo.ToString()),
+                                string.Empty,
+                                dir
+                            });
                         }
-                        riga.Cells[1].Value = jwsF.getValue(ChiaviwsFolder.Tipo.ToString());
-                        riga.Cells[3].Value = dir;
-                        gridCartelle.Rows.Add(riga);
                     }
                     TrovaSottoCartelle(dir);
                 }
@@ -99,8 +130,8 @@ namespace WorkManager_A
 
         private void btnConferma_Click(object sender, EventArgs e)
         {
-            LKFinFolder.percorsoCartella = gridCartelle.CurrentRow.Cells["colPercorso"].Value.ToString();
-            LKFinFolder.nomeCartella = gridCartelle.CurrentRow.Cells["colNome"].Value.ToString();
+            LKFinFolder.percorsoCartella = gridCartelle.CurrentRow.Cells["Percorso"].Value.ToString();
+            LKFinFolder.nomeCartella = gridCartelle.CurrentRow.Cells["Nome"].Value.ToString();
             this.DialogResult = DialogResult.OK;
         }
 
@@ -111,7 +142,52 @@ namespace WorkManager_A
 
         private void cboCliente_TextChanged(object sender, EventArgs e)
         {
+            impostaFiltro();
+        }
 
+        private void cboTipo_TextChanged(object sender, EventArgs e)
+        {
+            if (cboTipo.Text == "Cliente" || cboTipo.Text == "Root")
+            {
+                cboCliente.SelectedIndex = 0;
+                cboCliente.Enabled = false;
+            }
+            else
+            {
+                cboCliente.Enabled = true;
+            }
+            impostaFiltro();
+        }
+
+        private void impostaFiltro()
+        {
+            dt.DefaultView.RowFilter = null;
+
+            if (cboTipo.Text != "Tutti")
+            {
+                if (string.IsNullOrEmpty(dt.DefaultView.RowFilter))
+                {
+                    dt.DefaultView.RowFilter = string.Format($"Tipo = '{cboTipo.Text}'");
+                }
+                else
+                {
+                    dt.DefaultView.RowFilter += string.Format($" and Tipo = '{cboTipo.Text}'");
+                }
+            }
+
+            if (cboCliente.Text != "Tutti")
+            {
+                if (string.IsNullOrEmpty(dt.DefaultView.RowFilter))
+                {
+                    dt.DefaultView.RowFilter = string.Format($"Cliente = '{cboCliente.Text}'");
+                }
+                else
+                {
+                    dt.DefaultView.RowFilter += string.Format($" and Cliente = '{cboCliente.Text}'");
+                }
+            }
+
+            dt.DefaultView.Sort = "Tipo DESC, Cliente ASC, Progressivo ASC, Nome ASC";
         }
     }
 }

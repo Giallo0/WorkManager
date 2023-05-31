@@ -47,19 +47,6 @@
          "Titolo" : "Apri cartella", 
          "Programma" : "ApriCartella", 
          "Bitmap" : "cartella_24x24"
-      }, 
-      { 
-         "ID" : "5", 
-         "Titolo" : "Gestione priorità attività", 
-         "Programma" : " - ", 
-         "Bitmap" : " - "
-      }, 
-      { 
-         "ID" : "12", 
-         "Titolo" : "test", 
-         "Programma" : "GestioneCartella", 
-         "Bitmap" : " - ", 
-         "Linkage" : "GND        "
       }
    ], 
    "CntID" : "12", 
@@ -71,5 +58,5 @@
          "Descrizione" : "Tipologia di cartella separati da ;"
       }
    ], 
-   "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace"
+   "Workspace" : ""
 }
