@@ -17,3 +17,11 @@
 - Aggiungere le icone al programma.
 
 - Per i parametri nelle opzioni, inserire una cella all'inizio con una combo in modo da poter selezionare il programma a cui fa riferimento. In questo modo tenere nel treeView solo "Parametri" senza l'elenco dei programmi.
+
+- Creare una funzione per la gestione delle note.
+
+- Nella generazione di una attività, specificare quali file creare, mettendo dei check su quelli comuni e una text box con nome e una con una combo editabile con le estensioni. due frecce bilaterali che vanno in un list box.
+
+- Una volta che l'attività è stata chiusa o rilasciata non sarà più possibile modificarlo sia il contenuto che la cartella in se
+
+- Aggiungere una funzione di "Esegui attività" dove selezionando il cliente, e poi l'attività verranno mostrate tutte le funzioni utili per l'esecuzione dell'attività. Una griglia con l'elenco dei file all'interno, un pulsante che rimanda alle note, la possibilità di aggiungere nuovi file all'interno, la possibilità di aprire i file con un particolare sistema di edit in base all'estensione.
