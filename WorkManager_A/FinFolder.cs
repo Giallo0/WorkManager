@@ -44,11 +44,11 @@ namespace WorkManager_A
             if (LKFinFolder.mostraRoot == true)
             {
                 dt.Rows.Add(new object[] {
-                    string.Empty,
-                    Path.GetFileName(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString())),
-                    "Root",
-                    string.Empty,
-                    Globale.jwm.getValue(ChiaviRoot.Workspace.ToString())
+                    string.Empty,                                                               //Progressivo
+                    Path.GetFileName(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString())),    //Nome
+                    "Root",                                                                     //Tipo
+                    string.Empty,                                                               //Cliente
+                    Globale.jwm.getValue(ChiaviRoot.Workspace.ToString())                       //Percorso
                 });
             }
             TrovaSottoCartelle(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString()));
@@ -92,11 +92,11 @@ namespace WorkManager_A
                         if (jwsF.getValue(ChiaviwsFolder.Tipo.ToString()) == "Attività")
                         {
                             dt.Rows.Add(new object[] {
-                                Path.GetFileName(dir).Substring(0, 3),
-                                Path.GetFileName(dir).Substring(4),
-                                jwsF.getValue(ChiaviwsFolder.Tipo.ToString()),
-                                Directory.GetParent(dir).Name,
-                                dir
+                                Path.GetFileName(dir).Substring(0, 3),          //Progressivo
+                                Path.GetFileName(dir).Substring(4),             //Nome
+                                jwsF.getValue(ChiaviwsFolder.Tipo.ToString()),  //Tipo
+                                Directory.GetParent(dir).Name,                  //Cliente
+                                dir                                             //Percorso
                             });
                             if (!elencoClienti.Contains(Directory.GetParent(dir).Name))
                             {
@@ -106,11 +106,11 @@ namespace WorkManager_A
                         else
                         {
                             dt.Rows.Add(new object[] {
-                                string.Empty,
-                                Path.GetFileName(dir),
-                                jwsF.getValue(ChiaviwsFolder.Tipo.ToString()),
-                                string.Empty,
-                                dir
+                                string.Empty,                                   //Progressivo
+                                Path.GetFileName(dir),                          //Nome
+                                jwsF.getValue(ChiaviwsFolder.Tipo.ToString()),  //Tipo
+                                Path.GetFileName(dir),                          //Cliente
+                                dir                                             //Percorso
                             });
                         }
                     }
@@ -151,17 +151,27 @@ namespace WorkManager_A
             {
                 cboCliente.SelectedIndex = 0;
                 cboCliente.Enabled = false;
+
+                chbProgDec.Checked = false;
+                chbProgDec.Enabled = false;
             }
             else
             {
                 cboCliente.Enabled = true;
+                chbProgDec.Enabled = true;
             }
+            impostaFiltro();
+        }
+
+        private void chbProgDec_CheckedChanged(object sender, EventArgs e)
+        {
             impostaFiltro();
         }
 
         private void impostaFiltro()
         {
             dt.DefaultView.RowFilter = null;
+            dt.DefaultView.Sort = null;
 
             if (cboTipo.Text != "Tutti")
             {
@@ -187,7 +197,14 @@ namespace WorkManager_A
                 }
             }
 
-            dt.DefaultView.Sort = "Tipo DESC, Cliente ASC, Progressivo ASC, Nome ASC";
+            if (chbProgDec.Checked)
+            {
+                dt.DefaultView.Sort = "Tipo DESC, Cliente ASC, Progressivo DESC, Nome ASC";
+            }
+            else
+            {
+                dt.DefaultView.Sort = "Tipo DESC, Cliente ASC, Progressivo ASC, Nome ASC";
+            }
         }
     }
 }

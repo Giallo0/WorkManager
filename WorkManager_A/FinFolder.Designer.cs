@@ -38,6 +38,7 @@
             groupBox1 = new GroupBox();
             cboTipo = new ComboBox();
             lblTipo = new Label();
+            chbProgDec = new CheckBox();
             pnlPulsanti.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridCartelle).BeginInit();
             groupBox1.SuspendLayout();
@@ -120,6 +121,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(chbProgDec);
             groupBox1.Controls.Add(cboTipo);
             groupBox1.Controls.Add(lblTipo);
             groupBox1.Controls.Add(lblCliente);
@@ -151,6 +153,17 @@
             lblTipo.TabIndex = 2;
             lblTipo.Text = "Tipo:";
             // 
+            // chbProgDec
+            // 
+            chbProgDec.AutoSize = true;
+            chbProgDec.Location = new Point(421, 29);
+            chbProgDec.Name = "chbProgDec";
+            chbProgDec.Size = new Size(153, 19);
+            chbProgDec.TabIndex = 4;
+            chbProgDec.Text = "Progressivo decrescente";
+            chbProgDec.UseVisualStyleBackColor = true;
+            chbProgDec.CheckedChanged += chbProgDec_CheckedChanged;
+            // 
             // FinFolder
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -180,5 +193,6 @@
         private GroupBox groupBox1;
         private ComboBox cboTipo;
         private Label lblTipo;
+        private CheckBox chbProgDec;
     }
 }
