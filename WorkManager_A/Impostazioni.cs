@@ -25,12 +25,8 @@ namespace WorkManager_A
 
             nodo = new TreeNode();
             nodo.Text = "Parametri";
+            nodo.Tag = "Parametri";
             treeMenu.Nodes.Add(nodo);
-
-            TreeNode subNodo = new TreeNode();
-            subNodo.Text = "Gestione Cartella";
-            subNodo.Tag = "pGestioneCartella";
-            nodo.Nodes.Add(subNodo);
 
             nodo = new TreeNode();
             nodo.Text = "Opzioni";
@@ -48,14 +44,19 @@ namespace WorkManager_A
                     case "Workspace":
                         pnlMain.Controls.Add(new pnlImpostazioniWorkspace());
                         break;
-                    case "pGestioneCartella":
-                        pnlMain.Controls.Add(new pnlImpostazioniGestioneCartella());
+                    case "Parametri":
+                        pnlMain.Controls.Add(new pnlImpostazioniParametri());
                         break;
                     case "Opzioni":
                         pnlMain.Controls.Add(new pnlImpostazioniOpzioni());
                         break;
                 }
             }
+        }
+
+        private void btnEsci_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
         }
     }
 }

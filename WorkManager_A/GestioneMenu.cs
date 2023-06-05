@@ -130,7 +130,7 @@ namespace WorkManager_A
                 }
                 pnlEditClear();
                 riempiListMenu();
-                
+
                 parteAbilitata = 1;
                 abilitaDisabilita();
 

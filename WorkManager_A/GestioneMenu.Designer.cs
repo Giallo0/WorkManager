@@ -45,7 +45,6 @@
             pnlEdit = new Panel();
             pnlItemEdit = new Panel();
             cboProgramma = new ComboBox();
-            btnLinkage = new Button();
             lblID = new Label();
             lblIDValue = new Label();
             lblTitolo = new Label();
@@ -56,6 +55,7 @@
             txtTitolo = new TextBox();
             pnlPulsEdit = new Panel();
             btnConferma = new Button();
+            btnLinkage = new Button();
             btnAnnulla = new Button();
             pnlFunzioni.SuspendLayout();
             pnlList.SuspendLayout();
@@ -74,7 +74,7 @@
             pnlFunzioni.Dock = DockStyle.Left;
             pnlFunzioni.Location = new Point(0, 0);
             pnlFunzioni.Name = "pnlFunzioni";
-            pnlFunzioni.Size = new Size(229, 661);
+            pnlFunzioni.Size = new Size(230, 700);
             pnlFunzioni.TabIndex = 0;
             // 
             // pnlList
@@ -84,7 +84,7 @@
             pnlList.Location = new Point(0, 0);
             pnlList.Name = "pnlList";
             pnlList.Padding = new Padding(6);
-            pnlList.Size = new Size(229, 592);
+            pnlList.Size = new Size(230, 640);
             pnlList.TabIndex = 1;
             // 
             // treeList
@@ -92,7 +92,7 @@
             treeList.Dock = DockStyle.Fill;
             treeList.Location = new Point(6, 6);
             treeList.Name = "treeList";
-            treeList.Size = new Size(217, 580);
+            treeList.Size = new Size(218, 628);
             treeList.TabIndex = 0;
             treeList.NodeMouseClick += treeList_NodeMouseClick;
             treeList.NodeMouseDoubleClick += treeList_NodeMouseDoubleClick;
@@ -103,19 +103,19 @@
             pnlPuls.Controls.Add(btnNuovaFunzione);
             pnlPuls.Controls.Add(btnEsci);
             pnlPuls.Dock = DockStyle.Bottom;
-            pnlPuls.Location = new Point(0, 592);
+            pnlPuls.Location = new Point(0, 640);
             pnlPuls.Name = "pnlPuls";
-            pnlPuls.Padding = new Padding(2);
-            pnlPuls.Size = new Size(229, 69);
+            pnlPuls.Size = new Size(230, 60);
             pnlPuls.TabIndex = 0;
             // 
             // btnNuovaFunzione
             // 
-            btnNuovaFunzione.Dock = DockStyle.Top;
+            btnNuovaFunzione.Dock = DockStyle.Bottom;
+            btnNuovaFunzione.FlatAppearance.BorderSize = 0;
             btnNuovaFunzione.FlatStyle = FlatStyle.Flat;
-            btnNuovaFunzione.Location = new Point(2, 2);
+            btnNuovaFunzione.Location = new Point(0, 0);
             btnNuovaFunzione.Name = "btnNuovaFunzione";
-            btnNuovaFunzione.Size = new Size(223, 30);
+            btnNuovaFunzione.Size = new Size(228, 29);
             btnNuovaFunzione.TabIndex = 3;
             btnNuovaFunzione.Text = "Nuova Funzione";
             btnNuovaFunzione.UseVisualStyleBackColor = true;
@@ -124,11 +124,12 @@
             // btnEsci
             // 
             btnEsci.Dock = DockStyle.Bottom;
+            btnEsci.FlatAppearance.BorderSize = 0;
             btnEsci.FlatStyle = FlatStyle.Flat;
-            btnEsci.Location = new Point(2, 35);
+            btnEsci.Location = new Point(0, 29);
             btnEsci.Name = "btnEsci";
-            btnEsci.Size = new Size(223, 30);
-            btnEsci.TabIndex = 2;
+            btnEsci.Size = new Size(228, 29);
+            btnEsci.TabIndex = 4;
             btnEsci.Text = "Esci";
             btnEsci.UseVisualStyleBackColor = true;
             btnEsci.Click += btnEsci_Click;
@@ -179,15 +180,14 @@
             pnlEdit.Controls.Add(pnlItemEdit);
             pnlEdit.Controls.Add(pnlPulsEdit);
             pnlEdit.Dock = DockStyle.Fill;
-            pnlEdit.Location = new Point(229, 0);
+            pnlEdit.Location = new Point(230, 0);
             pnlEdit.Name = "pnlEdit";
-            pnlEdit.Size = new Size(1005, 661);
+            pnlEdit.Size = new Size(1020, 700);
             pnlEdit.TabIndex = 1;
             // 
             // pnlItemEdit
             // 
             pnlItemEdit.Controls.Add(cboProgramma);
-            pnlItemEdit.Controls.Add(btnLinkage);
             pnlItemEdit.Controls.Add(lblID);
             pnlItemEdit.Controls.Add(lblIDValue);
             pnlItemEdit.Controls.Add(lblTitolo);
@@ -199,7 +199,7 @@
             pnlItemEdit.Dock = DockStyle.Fill;
             pnlItemEdit.Location = new Point(0, 0);
             pnlItemEdit.Name = "pnlItemEdit";
-            pnlItemEdit.Size = new Size(1005, 586);
+            pnlItemEdit.Size = new Size(1020, 640);
             pnlItemEdit.TabIndex = 11;
             // 
             // cboProgramma
@@ -211,17 +211,6 @@
             cboProgramma.Size = new Size(269, 25);
             cboProgramma.TabIndex = 12;
             cboProgramma.TextChanged += cboProgramma_TextChanged;
-            // 
-            // btnLinkage
-            // 
-            btnLinkage.FlatStyle = FlatStyle.Flat;
-            btnLinkage.Location = new Point(37, 367);
-            btnLinkage.Name = "btnLinkage";
-            btnLinkage.Size = new Size(81, 37);
-            btnLinkage.TabIndex = 11;
-            btnLinkage.Text = "Linkage";
-            btnLinkage.UseVisualStyleBackColor = true;
-            btnLinkage.Click += btnLinkage_Click;
             // 
             // lblID
             // 
@@ -297,11 +286,12 @@
             // 
             pnlPulsEdit.BorderStyle = BorderStyle.FixedSingle;
             pnlPulsEdit.Controls.Add(btnConferma);
+            pnlPulsEdit.Controls.Add(btnLinkage);
             pnlPulsEdit.Controls.Add(btnAnnulla);
             pnlPulsEdit.Dock = DockStyle.Bottom;
-            pnlPulsEdit.Location = new Point(0, 586);
+            pnlPulsEdit.Location = new Point(0, 640);
             pnlPulsEdit.Name = "pnlPulsEdit";
-            pnlPulsEdit.Size = new Size(1005, 75);
+            pnlPulsEdit.Size = new Size(1020, 60);
             pnlPulsEdit.TabIndex = 2;
             // 
             // btnConferma
@@ -309,22 +299,35 @@
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(803, 0);
+            btnConferma.Location = new Point(818, 0);
             btnConferma.Name = "btnConferma";
-            btnConferma.Size = new Size(100, 73);
+            btnConferma.Size = new Size(100, 58);
             btnConferma.TabIndex = 0;
             btnConferma.Text = "Conferma";
             btnConferma.UseVisualStyleBackColor = true;
             btnConferma.Click += btnConferma_Click;
+            // 
+            // btnLinkage
+            // 
+            btnLinkage.Dock = DockStyle.Left;
+            btnLinkage.FlatAppearance.BorderSize = 0;
+            btnLinkage.FlatStyle = FlatStyle.Flat;
+            btnLinkage.Location = new Point(0, 0);
+            btnLinkage.Name = "btnLinkage";
+            btnLinkage.Size = new Size(100, 58);
+            btnLinkage.TabIndex = 11;
+            btnLinkage.Text = "Linkage";
+            btnLinkage.UseVisualStyleBackColor = true;
+            btnLinkage.Click += btnLinkage_Click;
             // 
             // btnAnnulla
             // 
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(903, 0);
+            btnAnnulla.Location = new Point(918, 0);
             btnAnnulla.Name = "btnAnnulla";
-            btnAnnulla.Size = new Size(100, 73);
+            btnAnnulla.Size = new Size(100, 58);
             btnAnnulla.TabIndex = 1;
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
@@ -334,7 +337,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1234, 661);
+            ClientSize = new Size(1250, 700);
             Controls.Add(pnlEdit);
             Controls.Add(pnlFunzioni);
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
@@ -371,7 +374,6 @@
         private Label lblIDValue;
         private Label lblID;
         private Panel pnlPuls;
-        private Button btnEsci;
         private Panel pnlPulsEdit;
         private Panel pnlList;
         private Panel pnlItemEdit;
@@ -385,5 +387,6 @@
         private ToolStripMenuItem spostaSuToolStripMenuItem;
         private ToolStripMenuItem spostaGiùToolStripMenuItem;
         private ComboBox cboProgramma;
+        private Button btnEsci;
     }
 }

@@ -84,17 +84,13 @@ namespace WorkManager_A
         private void btnGestioneMenu_Click(object sender, EventArgs e)
         {
             Funzione.Apri(btnGestioneMenu.Tag.ToString(), "WorkManager_A");
-        }
-
-        private void btnRicaricaMenu_Click(object sender, EventArgs e)
-        {
             PersonalizzaInizializzazione();
         }
 
         private void btnImpostazioni_Click(object sender, EventArgs e)
         {
             Funzione.Apri(btnImpostazioni.Tag.ToString(), "WorkManager_A");
-            btnRicaricaMenu_Click(null, null);
+            PersonalizzaInizializzazione();
         }
 
         private void btnEsci_Click(object sender, EventArgs e)

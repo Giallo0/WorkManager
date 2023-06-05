@@ -12,14 +12,14 @@
          "Titolo" : "Modifica cliente", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "ModificaCliente_24x24", 
-         "Linkage" : "ICliente   "
+         "Linkage" : "GCliente   "
       }, 
       { 
          "ID" : "4", 
          "Titolo" : "Elimina Cliente", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "RimuoviCliente_24x24", 
-         "Linkage" : "ICliente   "
+         "Linkage" : "ECliente   "
       }, 
       { 
          "ID" : "7", 
@@ -33,14 +33,14 @@
          "Titolo" : "Modifica attività", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "ModificaAttivita_24x24", 
-         "Linkage" : "IAttività  "
+         "Linkage" : "GAttività  "
       }, 
       { 
          "ID" : "10", 
          "Titolo" : "Elimina attività", 
          "Programma" : "GestioneCartella", 
          "Bitmap" : "RimuoviAttivita_24x24", 
-         "Linkage" : "IAttività  "
+         "Linkage" : "EAttività  "
       }, 
       { 
          "ID" : "2", 
@@ -49,15 +49,15 @@
          "Bitmap" : "ApriCartella_24x24"
       }
    ], 
-   "CntID" : "12", 
+   "CntID" : "14", 
    "Parametri" : [ 
       { 
          "Programma" : "GestioneCartella", 
          "Parametro" : "TipoCartella", 
          "Valore" : "ND;Cliente;Attività", 
-         "Descrizione" : "Tipologia di cartella separati da ;"
+         "Descrizione" : "Tipologia di cartella separati da ';'"
       }
    ], 
    "Chiusura" : "F", 
-   "Workspace" : "C:\\Users\\giallombardom\\Desktop\\Workspace"
+   "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace"
 }

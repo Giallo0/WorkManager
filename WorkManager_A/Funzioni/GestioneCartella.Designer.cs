@@ -40,7 +40,6 @@
             lblTipoCartella = new Label();
             btnCerca = new Button();
             panel2 = new Panel();
-            btnHome = new Button();
             btnConferma = new Button();
             btnAnnulla = new Button();
             panel1.SuspendLayout();
@@ -95,7 +94,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1234, 586);
+            panel1.Size = new Size(1250, 640);
             panel1.TabIndex = 4;
             // 
             // txtProgressivo
@@ -149,36 +148,22 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(btnHome);
             panel2.Controls.Add(btnConferma);
             panel2.Controls.Add(btnAnnulla);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 586);
+            panel2.Location = new Point(0, 640);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1234, 75);
+            panel2.Size = new Size(1250, 60);
             panel2.TabIndex = 5;
-            // 
-            // btnHome
-            // 
-            btnHome.Dock = DockStyle.Left;
-            btnHome.FlatAppearance.BorderSize = 0;
-            btnHome.FlatStyle = FlatStyle.Flat;
-            btnHome.Image = Properties.Resources.home_24x24;
-            btnHome.Location = new Point(0, 0);
-            btnHome.Name = "btnHome";
-            btnHome.Size = new Size(100, 73);
-            btnHome.TabIndex = 2;
-            btnHome.UseVisualStyleBackColor = true;
-            btnHome.Click += btnHome_Click;
             // 
             // btnConferma
             // 
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(1032, 0);
+            btnConferma.Location = new Point(1048, 0);
             btnConferma.Name = "btnConferma";
-            btnConferma.Size = new Size(100, 73);
+            btnConferma.Size = new Size(100, 58);
             btnConferma.TabIndex = 0;
             btnConferma.Text = "Conferma";
             btnConferma.UseVisualStyleBackColor = true;
@@ -189,9 +174,9 @@
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(1132, 0);
+            btnAnnulla.Location = new Point(1148, 0);
             btnAnnulla.Name = "btnAnnulla";
-            btnAnnulla.Size = new Size(100, 73);
+            btnAnnulla.Size = new Size(100, 58);
             btnAnnulla.TabIndex = 1;
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
@@ -203,7 +188,7 @@
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnAnnulla;
-            ClientSize = new Size(1234, 661);
+            ClientSize = new Size(1250, 700);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
@@ -230,7 +215,6 @@
         private Panel panel2;
         private Button btnAnnulla;
         private Button btnConferma;
-        private Button btnHome;
         private ComboBox cboTipoCartella;
         private Label lblTipoCartella;
         private TextBox txtProgressivo;

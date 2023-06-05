@@ -59,25 +59,55 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pnlListMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 661</value>
+    <value>230, 700</value>
+  </data>
+  <data name="btnEsci.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 0</value>
+  </data>
+  <data name="btnEsci.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 78</value>
   </data>
   <data name="btnEsci.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
+  <data name="btnImpostazioni.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 0</value>
+  </data>
+  <data name="btnImpostazioni.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 78</value>
+  </data>
   <data name="btnImpostazioni.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="btnRicaricaMenu.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+  <data name="btnGestioneMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 78</value>
   </data>
   <data name="btnGestioneMenu.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
+  <data name="pnlFunction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 0</value>
+  </data>
   <data name="pnlFunction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1006, 86</value>
+    <value>1020, 80</value>
+  </data>
+  <data name="pnlAttivita.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 80</value>
   </data>
   <data name="pnlAttivita.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1006, 575</value>
+    <value>1020, 620</value>
+  </data>
+  <data name="apriToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 22</value>
+  </data>
+  <data name="apriToolStripMenuItem.Text" xml:space="preserve">
+    <value>Apri</value>
+  </data>
+  <data name="chiudiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 22</value>
+  </data>
+  <data name="chiudiToolStripMenuItem.Text" xml:space="preserve">
+    <value>Chiudi</value>
   </data>
   <data name="mnuNotifyPrgm.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 48</value>
@@ -165,20 +195,8 @@
   <data name="notifyPrgm.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="apriToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 22</value>
-  </data>
-  <data name="apriToolStripMenuItem.Text" xml:space="preserve">
-    <value>Apri</value>
-  </data>
-  <data name="chiudiToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 22</value>
-  </data>
-  <data name="chiudiToolStripMenuItem.Text" xml:space="preserve">
-    <value>Chiudi</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1234, 661</value>
+    <value>1250, 700</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

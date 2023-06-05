@@ -261,11 +261,6 @@ namespace WorkManager_A.Funzioni
             this.DialogResult = DialogResult.OK;
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
-
         private void btnCerca_Click(object sender, EventArgs e)
         {
             //Valorizzazione linkage input

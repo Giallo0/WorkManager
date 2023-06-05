@@ -41,7 +41,7 @@
             pnlLinkage.Dock = DockStyle.Fill;
             pnlLinkage.Location = new Point(0, 0);
             pnlLinkage.Name = "pnlLinkage";
-            pnlLinkage.Size = new Size(1234, 603);
+            pnlLinkage.Size = new Size(1250, 640);
             pnlLinkage.TabIndex = 0;
             // 
             // pnlButton
@@ -50,9 +50,9 @@
             pnlButton.Controls.Add(btnConferma);
             pnlButton.Controls.Add(btnAnnulla);
             pnlButton.Dock = DockStyle.Bottom;
-            pnlButton.Location = new Point(0, 603);
+            pnlButton.Location = new Point(0, 640);
             pnlButton.Name = "pnlButton";
-            pnlButton.Size = new Size(1234, 58);
+            pnlButton.Size = new Size(1250, 60);
             pnlButton.TabIndex = 1;
             // 
             // btnConferma
@@ -60,9 +60,9 @@
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(1060, 0);
+            btnConferma.Location = new Point(1076, 0);
             btnConferma.Name = "btnConferma";
-            btnConferma.Size = new Size(86, 56);
+            btnConferma.Size = new Size(86, 58);
             btnConferma.TabIndex = 0;
             btnConferma.Text = "Conferma";
             btnConferma.UseVisualStyleBackColor = true;
@@ -73,9 +73,9 @@
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(1146, 0);
+            btnAnnulla.Location = new Point(1162, 0);
             btnAnnulla.Name = "btnAnnulla";
-            btnAnnulla.Size = new Size(86, 56);
+            btnAnnulla.Size = new Size(86, 58);
             btnAnnulla.TabIndex = 1;
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnAnnulla;
-            ClientSize = new Size(1234, 661);
+            ClientSize = new Size(1250, 700);
             Controls.Add(pnlLinkage);
             Controls.Add(pnlButton);
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);

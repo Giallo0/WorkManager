@@ -55,6 +55,8 @@ namespace WorkManager_A
             gridCartelle.DataSource = dt;
 
             gridCartelle.Columns["Nome"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            gridCartelle.Columns["Tipo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            gridCartelle.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             gridCartelle.Columns["Percorso"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             //Riempi combo Clienti

@@ -242,6 +242,19 @@ namespace WorkManager_A
             return componente;
         }
 
+        public List<string> getGruppiParametri()
+        {
+            List<string> gruppi = new List<string>();
+            foreach (JSONNode nodo in jnode[ChiaviRoot.Parametri.ToString()].Childs)
+            {
+                if (!gruppi.Contains(nodo[ChiaviParametri.Programma.ToString()]))
+                {
+                    gruppi.Add(nodo[ChiaviParametri.Programma.ToString()]);
+                }
+            }
+            return gruppi;
+        }
+
         public List<ComponentiParametri> getParametriElements(string programma)
         {
             List<ComponentiParametri> elementi = new List<ComponentiParametri>();

@@ -49,9 +49,9 @@
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(698, 0);
+            btnConferma.Location = new Point(1034, 0);
             btnConferma.Name = "btnConferma";
-            btnConferma.Size = new Size(105, 67);
+            btnConferma.Size = new Size(105, 58);
             btnConferma.TabIndex = 0;
             btnConferma.Text = "Seleziona";
             btnConferma.UseVisualStyleBackColor = true;
@@ -62,9 +62,9 @@
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(803, 0);
+            btnAnnulla.Location = new Point(1139, 0);
             btnAnnulla.Name = "btnAnnulla";
-            btnAnnulla.Size = new Size(109, 67);
+            btnAnnulla.Size = new Size(109, 58);
             btnAnnulla.TabIndex = 1;
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@
             pnlPulsanti.Controls.Add(btnConferma);
             pnlPulsanti.Controls.Add(btnAnnulla);
             pnlPulsanti.Dock = DockStyle.Bottom;
-            pnlPulsanti.Location = new Point(0, 442);
+            pnlPulsanti.Location = new Point(0, 640);
             pnlPulsanti.Name = "pnlPulsanti";
-            pnlPulsanti.Size = new Size(914, 69);
+            pnlPulsanti.Size = new Size(1250, 60);
             pnlPulsanti.TabIndex = 0;
             // 
             // gridCartelle
@@ -90,13 +90,13 @@
             gridCartelle.BackgroundColor = SystemColors.Control;
             gridCartelle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridCartelle.Dock = DockStyle.Fill;
-            gridCartelle.Location = new Point(0, 75);
+            gridCartelle.Location = new Point(0, 210);
             gridCartelle.MultiSelect = false;
             gridCartelle.Name = "gridCartelle";
             gridCartelle.ReadOnly = true;
             gridCartelle.RowTemplate.Height = 25;
             gridCartelle.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridCartelle.Size = new Size(914, 367);
+            gridCartelle.Size = new Size(1250, 430);
             gridCartelle.TabIndex = 1;
             gridCartelle.MouseDoubleClick += gridCartelle_MouseDoubleClick;
             // 
@@ -129,7 +129,7 @@
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(914, 75);
+            groupBox1.Size = new Size(1250, 210);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtri di ricerca";
@@ -170,7 +170,7 @@
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnAnnulla;
-            ClientSize = new Size(914, 511);
+            ClientSize = new Size(1250, 700);
             Controls.Add(gridCartelle);
             Controls.Add(groupBox1);
             Controls.Add(pnlPulsanti);

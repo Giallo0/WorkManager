@@ -123,16 +123,6 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap home_24x24 {
-            get {
-                object obj = ResourceManager.GetObject("home_24x24", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Impostazioni_32x32 {
             get {
                 object obj = ResourceManager.GetObject("Impostazioni_32x32", resourceCulture);

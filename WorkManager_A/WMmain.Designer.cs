@@ -34,7 +34,6 @@
             pnlFunction = new Panel();
             btnEsci = new Button();
             btnImpostazioni = new Button();
-            btnRicaricaMenu = new Button();
             btnGestioneMenu = new Button();
             pnlAttivita = new Panel();
             notifyPrgm = new NotifyIcon(components);
@@ -57,7 +56,6 @@
             pnlFunction.BorderStyle = BorderStyle.FixedSingle;
             pnlFunction.Controls.Add(btnEsci);
             pnlFunction.Controls.Add(btnImpostazioni);
-            pnlFunction.Controls.Add(btnRicaricaMenu);
             pnlFunction.Controls.Add(btnGestioneMenu);
             pnlFunction.Name = "pnlFunction";
             // 
@@ -80,16 +78,6 @@
             btnImpostazioni.Tag = "Impostazioni";
             btnImpostazioni.UseVisualStyleBackColor = true;
             btnImpostazioni.Click += btnImpostazioni_Click;
-            // 
-            // btnRicaricaMenu
-            // 
-            resources.ApplyResources(btnRicaricaMenu, "btnRicaricaMenu");
-            btnRicaricaMenu.FlatAppearance.BorderSize = 0;
-            btnRicaricaMenu.Image = Properties.Resources.RicaricaMenu_32x32;
-            btnRicaricaMenu.Name = "btnRicaricaMenu";
-            btnRicaricaMenu.Tag = "RicaricaMenu";
-            btnRicaricaMenu.UseVisualStyleBackColor = true;
-            btnRicaricaMenu.Click += btnRicaricaMenu_Click;
             // 
             // btnGestioneMenu
             // 
@@ -151,7 +139,6 @@
         private Panel pnlListMenu;
         private Panel pnlFunction;
         private Button btnGestioneMenu;
-        private Button btnRicaricaMenu;
         private Button btnImpostazioni;
         private Panel pnlAttivita;
         private Button btnEsci;
