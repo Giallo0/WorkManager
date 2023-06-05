@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestioneMenu));
             pnlFunzioni = new Panel();
             pnlList = new Panel();
             treeList = new TreeView();
@@ -73,7 +74,7 @@
             pnlFunzioni.Dock = DockStyle.Left;
             pnlFunzioni.Location = new Point(0, 0);
             pnlFunzioni.Name = "pnlFunzioni";
-            pnlFunzioni.Size = new Size(229, 510);
+            pnlFunzioni.Size = new Size(229, 661);
             pnlFunzioni.TabIndex = 0;
             // 
             // pnlList
@@ -83,7 +84,7 @@
             pnlList.Location = new Point(0, 0);
             pnlList.Name = "pnlList";
             pnlList.Padding = new Padding(6);
-            pnlList.Size = new Size(229, 441);
+            pnlList.Size = new Size(229, 592);
             pnlList.TabIndex = 1;
             // 
             // treeList
@@ -91,7 +92,7 @@
             treeList.Dock = DockStyle.Fill;
             treeList.Location = new Point(6, 6);
             treeList.Name = "treeList";
-            treeList.Size = new Size(217, 429);
+            treeList.Size = new Size(217, 580);
             treeList.TabIndex = 0;
             treeList.NodeMouseClick += treeList_NodeMouseClick;
             treeList.NodeMouseDoubleClick += treeList_NodeMouseDoubleClick;
@@ -102,7 +103,7 @@
             pnlPuls.Controls.Add(btnNuovaFunzione);
             pnlPuls.Controls.Add(btnEsci);
             pnlPuls.Dock = DockStyle.Bottom;
-            pnlPuls.Location = new Point(0, 441);
+            pnlPuls.Location = new Point(0, 592);
             pnlPuls.Name = "pnlPuls";
             pnlPuls.Padding = new Padding(2);
             pnlPuls.Size = new Size(229, 69);
@@ -180,7 +181,7 @@
             pnlEdit.Dock = DockStyle.Fill;
             pnlEdit.Location = new Point(229, 0);
             pnlEdit.Name = "pnlEdit";
-            pnlEdit.Size = new Size(685, 510);
+            pnlEdit.Size = new Size(1005, 661);
             pnlEdit.TabIndex = 1;
             // 
             // pnlItemEdit
@@ -198,7 +199,7 @@
             pnlItemEdit.Dock = DockStyle.Fill;
             pnlItemEdit.Location = new Point(0, 0);
             pnlItemEdit.Name = "pnlItemEdit";
-            pnlItemEdit.Size = new Size(685, 435);
+            pnlItemEdit.Size = new Size(1005, 586);
             pnlItemEdit.TabIndex = 11;
             // 
             // cboProgramma
@@ -298,9 +299,9 @@
             pnlPulsEdit.Controls.Add(btnConferma);
             pnlPulsEdit.Controls.Add(btnAnnulla);
             pnlPulsEdit.Dock = DockStyle.Bottom;
-            pnlPulsEdit.Location = new Point(0, 435);
+            pnlPulsEdit.Location = new Point(0, 586);
             pnlPulsEdit.Name = "pnlPulsEdit";
-            pnlPulsEdit.Size = new Size(685, 75);
+            pnlPulsEdit.Size = new Size(1005, 75);
             pnlPulsEdit.TabIndex = 2;
             // 
             // btnConferma
@@ -308,7 +309,7 @@
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(483, 0);
+            btnConferma.Location = new Point(803, 0);
             btnConferma.Name = "btnConferma";
             btnConferma.Size = new Size(100, 73);
             btnConferma.TabIndex = 0;
@@ -321,7 +322,7 @@
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(583, 0);
+            btnAnnulla.Location = new Point(903, 0);
             btnAnnulla.Name = "btnAnnulla";
             btnAnnulla.Size = new Size(100, 73);
             btnAnnulla.TabIndex = 1;
@@ -333,11 +334,15 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 510);
+            ClientSize = new Size(1234, 661);
             Controls.Add(pnlEdit);
             Controls.Add(pnlFunzioni);
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "GestioneMenu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "GestioneMenu";
             pnlFunzioni.ResumeLayout(false);
             pnlList.ResumeLayout(false);

@@ -63,9 +63,9 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cartella_16x16 {
+        internal static System.Drawing.Bitmap ApriCartella_24x24 {
             get {
-                object obj = ResourceManager.GetObject("cartella_16x16", resourceCulture);
+                object obj = ResourceManager.GetObject("ApriCartella_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,16 +83,6 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cartella_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("cartella_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap cerca_24x24 {
             get {
                 object obj = ResourceManager.GetObject("cerca_24x24", resourceCulture);
@@ -103,9 +93,9 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap esci_24x24 {
+        internal static System.Drawing.Bitmap Chiudi_32x32 {
             get {
-                object obj = ResourceManager.GetObject("esci_24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("Chiudi_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +103,19 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap file_32x32 {
+        internal static System.Drawing.Bitmap esciMata_24x24 {
             get {
-                object obj = ResourceManager.GetObject("file_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("esciMata_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GestioneMenu_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("GestioneMenu_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap impostazioni_24x24 {
+        internal static System.Drawing.Bitmap Impostazioni_32x32 {
             get {
-                object obj = ResourceManager.GetObject("impostazioni_24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("Impostazioni_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap modifica_24x24 {
+        internal static System.Drawing.Bitmap ModificaAttivita_24x24 {
             get {
-                object obj = ResourceManager.GetObject("modifica_24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("ModificaAttivita_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,10 +153,70 @@ namespace WorkManager_A.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ricarica_24x24 {
+        internal static System.Drawing.Bitmap ModificaCliente_24x24 {
             get {
-                object obj = ResourceManager.GetObject("ricarica_24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("ModificaCliente_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NuovaAttivita_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("NuovaAttivita_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NuovoCliente_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("NuovoCliente_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RicaricaMenu_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("RicaricaMenu_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RimuoviAttivita_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("RimuoviAttivita_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RimuoviCliente_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("RimuoviCliente_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Icon simile a (Icona).
+        /// </summary>
+        internal static System.Drawing.Icon WorkManager_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("WorkManager_32x32", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

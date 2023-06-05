@@ -19,6 +19,9 @@ namespace WorkManager_A
          * - gestione attività
          * 
          */
+        private bool mnuClosePressed = false;
+        private string chiusuraForm;
+
         public WMmain()
         {
             InitializeComponent();
@@ -27,6 +30,17 @@ namespace WorkManager_A
 
         private void PersonalizzaInizializzazione()
         {
+            chiusuraForm = string.IsNullOrEmpty(Globale.jwm.getValue(ChiaviRoot.Chiusura.ToString())) ? "F" : Globale.jwm.getValue(ChiaviRoot.Chiusura.ToString());
+
+            if (chiusuraForm == "F")
+            {
+                notifyPrgm.Visible = false;
+            }
+            else
+            {
+                notifyPrgm.Visible = true;
+            }
+
             pnlListMenu.Controls.Clear();
 
             int locationY = 3;
@@ -80,11 +94,47 @@ namespace WorkManager_A
         private void btnImpostazioni_Click(object sender, EventArgs e)
         {
             Funzione.Apri(btnImpostazioni.Tag.ToString(), "WorkManager_A");
+            btnRicaricaMenu_Click(null, null);
         }
 
         private void btnEsci_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void apriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openProgram();
+        }
+
+        private void chiudiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mnuClosePressed = true;
+            this.Close();
+        }
+
+        private void notifyPrgm_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            openProgram();
+        }
+
+        private void WMmain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Se 'B' la chiusura è gestita dall'icona nella barra delle applicazioni
+            // Se spazio o 'F' la chiusura è gestita dal form
+            if (chiusuraForm == "B" && !mnuClosePressed)
+            {
+                this.WindowState = FormWindowState.Minimized;
+                this.ShowInTaskbar = false;
+                e.Cancel = true;
+            }
+        }
+
+        private void openProgram()
+        {
+            this.ShowInTaskbar = true;
+            this.WindowState = FormWindowState.Normal;
+            this.Activate();
         }
     }
 }

@@ -36,9 +36,9 @@
             cboCliente = new ComboBox();
             lblCliente = new Label();
             groupBox1 = new GroupBox();
+            chbProgDec = new CheckBox();
             cboTipo = new ComboBox();
             lblTipo = new Label();
-            chbProgDec = new CheckBox();
             pnlPulsanti.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridCartelle).BeginInit();
             groupBox1.SuspendLayout();
@@ -49,9 +49,9 @@
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(611, 0);
+            btnConferma.Location = new Point(698, 0);
             btnConferma.Name = "btnConferma";
-            btnConferma.Size = new Size(92, 59);
+            btnConferma.Size = new Size(105, 67);
             btnConferma.TabIndex = 0;
             btnConferma.Text = "Seleziona";
             btnConferma.UseVisualStyleBackColor = true;
@@ -62,9 +62,9 @@
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(703, 0);
+            btnAnnulla.Location = new Point(803, 0);
             btnAnnulla.Name = "btnAnnulla";
-            btnAnnulla.Size = new Size(95, 59);
+            btnAnnulla.Size = new Size(109, 67);
             btnAnnulla.TabIndex = 1;
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@
             pnlPulsanti.Controls.Add(btnConferma);
             pnlPulsanti.Controls.Add(btnAnnulla);
             pnlPulsanti.Dock = DockStyle.Bottom;
-            pnlPulsanti.Location = new Point(0, 389);
+            pnlPulsanti.Location = new Point(0, 442);
             pnlPulsanti.Name = "pnlPulsanti";
-            pnlPulsanti.Size = new Size(800, 61);
+            pnlPulsanti.Size = new Size(914, 69);
             pnlPulsanti.TabIndex = 0;
             // 
             // gridCartelle
@@ -90,13 +90,13 @@
             gridCartelle.BackgroundColor = SystemColors.Control;
             gridCartelle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridCartelle.Dock = DockStyle.Fill;
-            gridCartelle.Location = new Point(0, 66);
+            gridCartelle.Location = new Point(0, 75);
             gridCartelle.MultiSelect = false;
             gridCartelle.Name = "gridCartelle";
             gridCartelle.ReadOnly = true;
             gridCartelle.RowTemplate.Height = 25;
             gridCartelle.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridCartelle.Size = new Size(800, 323);
+            gridCartelle.Size = new Size(914, 367);
             gridCartelle.TabIndex = 1;
             gridCartelle.MouseDoubleClick += gridCartelle_MouseDoubleClick;
             // 
@@ -104,18 +104,18 @@
             // 
             cboCliente.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCliente.FormattingEnabled = true;
-            cboCliente.Location = new Point(258, 27);
+            cboCliente.Location = new Point(295, 31);
             cboCliente.Name = "cboCliente";
-            cboCliente.Size = new Size(144, 23);
+            cboCliente.Size = new Size(164, 25);
             cboCliente.TabIndex = 0;
             cboCliente.TextChanged += cboCliente_TextChanged;
             // 
             // lblCliente
             // 
             lblCliente.AutoSize = true;
-            lblCliente.Location = new Point(205, 30);
+            lblCliente.Location = new Point(234, 34);
             lblCliente.Name = "lblCliente";
-            lblCliente.Size = new Size(47, 15);
+            lblCliente.Size = new Size(58, 17);
             lblCliente.TabIndex = 1;
             lblCliente.Text = "Cliente:";
             // 
@@ -129,51 +129,57 @@
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(800, 66);
+            groupBox1.Size = new Size(914, 75);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtri di ricerca";
+            // 
+            // chbProgDec
+            // 
+            chbProgDec.AutoSize = true;
+            chbProgDec.Location = new Point(481, 33);
+            chbProgDec.Name = "chbProgDec";
+            chbProgDec.Size = new Size(182, 21);
+            chbProgDec.TabIndex = 4;
+            chbProgDec.Text = "Progressivo decrescente";
+            chbProgDec.UseVisualStyleBackColor = true;
+            chbProgDec.CheckedChanged += chbProgDec_CheckedChanged;
             // 
             // cboTipo
             // 
             cboTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             cboTipo.FormattingEnabled = true;
-            cboTipo.Location = new Point(51, 27);
+            cboTipo.Location = new Point(58, 31);
             cboTipo.Name = "cboTipo";
-            cboTipo.Size = new Size(121, 23);
+            cboTipo.Size = new Size(138, 25);
             cboTipo.TabIndex = 3;
             cboTipo.TextChanged += cboTipo_TextChanged;
             // 
             // lblTipo
             // 
             lblTipo.AutoSize = true;
-            lblTipo.Location = new Point(12, 30);
+            lblTipo.Location = new Point(14, 34);
             lblTipo.Name = "lblTipo";
-            lblTipo.Size = new Size(33, 15);
+            lblTipo.Size = new Size(38, 17);
             lblTipo.TabIndex = 2;
             lblTipo.Text = "Tipo:";
             // 
-            // chbProgDec
-            // 
-            chbProgDec.AutoSize = true;
-            chbProgDec.Location = new Point(421, 29);
-            chbProgDec.Name = "chbProgDec";
-            chbProgDec.Size = new Size(153, 19);
-            chbProgDec.TabIndex = 4;
-            chbProgDec.Text = "Progressivo decrescente";
-            chbProgDec.UseVisualStyleBackColor = true;
-            chbProgDec.CheckedChanged += chbProgDec_CheckedChanged;
-            // 
             // FinFolder
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AcceptButton = btnConferma;
+            AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            CancelButton = btnAnnulla;
+            ClientSize = new Size(914, 511);
             Controls.Add(gridCartelle);
             Controls.Add(groupBox1);
             Controls.Add(pnlPulsanti);
+            Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FinFolder";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Cerca Percorso";
             pnlPulsanti.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridCartelle).EndInit();

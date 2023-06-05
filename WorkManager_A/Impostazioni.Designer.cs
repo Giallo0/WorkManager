@@ -38,9 +38,9 @@
             // pnlMain
             // 
             pnlMain.Dock = DockStyle.Fill;
-            pnlMain.Location = new Point(196, 0);
+            pnlMain.Location = new Point(224, 0);
             pnlMain.Name = "pnlMain";
-            pnlMain.Size = new Size(604, 450);
+            pnlMain.Size = new Size(1010, 661);
             pnlMain.TabIndex = 1;
             // 
             // pnlMenu
@@ -49,7 +49,7 @@
             pnlMenu.Dock = DockStyle.Left;
             pnlMenu.Location = new Point(0, 0);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(196, 450);
+            pnlMenu.Size = new Size(224, 661);
             pnlMenu.TabIndex = 0;
             // 
             // treeMenu
@@ -57,19 +57,23 @@
             treeMenu.Dock = DockStyle.Fill;
             treeMenu.Location = new Point(0, 0);
             treeMenu.Name = "treeMenu";
-            treeMenu.Size = new Size(196, 450);
+            treeMenu.Size = new Size(224, 661);
             treeMenu.TabIndex = 0;
             treeMenu.AfterSelect += treeMenu_AfterSelect;
             // 
             // Impostazioni
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1234, 661);
             Controls.Add(pnlMain);
             Controls.Add(pnlMenu);
+            Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Impostazioni";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Impostazioni";
             pnlMenu.ResumeLayout(false);
             ResumeLayout(false);

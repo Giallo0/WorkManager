@@ -20,6 +20,7 @@ namespace WorkManager_A
     {
         private string linkageFunction;
         private int posizioneElementoNew;
+        private int parteAbilitata;
 
         public GestioneMenu()
         {
@@ -29,8 +30,8 @@ namespace WorkManager_A
 
         private void PersonalizzaInizializzazione()
         {
-            pnlFunzioni.Enabled = true;
-            pnlEdit.Enabled = false;
+            parteAbilitata = 1;
+            abilitaDisabilita();
 
             riempiListMenu();
             LKGestioneLinkage.ClearLinkage();
@@ -55,6 +56,26 @@ namespace WorkManager_A
                 }
             }
             pnlEditClear();
+        }
+
+        private void abilitaDisabilita()
+        {
+            switch (parteAbilitata)
+            {
+                case 1:
+                    LKGestioneLinkage.linkage = string.Empty;
+                    pnlFunzioni.Enabled = true;
+                    pnlEdit.Enabled = false;
+
+                    break;
+                case 2:
+                    pnlFunzioni.Enabled = false;
+                    pnlEdit.Enabled = true;
+                    btnLinkage.Enabled = false;
+
+                    txtTitolo.Focus();
+                    break;
+            }
         }
 
         private void riempiListMenu()
@@ -109,8 +130,10 @@ namespace WorkManager_A
                 }
                 pnlEditClear();
                 riempiListMenu();
-                pnlFunzioni.Enabled = true;
-                pnlEdit.Enabled = false;
+                
+                parteAbilitata = 1;
+                abilitaDisabilita();
+
                 posizioneElementoNew = 0;
             }
         }
@@ -147,8 +170,9 @@ namespace WorkManager_A
         private void btnAnnulla_Click(object sender, EventArgs e)
         {
             pnlEditClear();
-            pnlFunzioni.Enabled = true;
-            pnlEdit.Enabled = false;
+
+            parteAbilitata = 1;
+            abilitaDisabilita();
         }
 
         private void btnEsci_Click(object sender, EventArgs e)
@@ -158,9 +182,8 @@ namespace WorkManager_A
 
         private void btnNuovaFunzione_Click(object sender, EventArgs e)
         {
-            pnlFunzioni.Enabled = false;
-            pnlEdit.Enabled = true;
-            btnLinkage.Enabled = false;
+            parteAbilitata = 2;
+            abilitaDisabilita();
 
             pnlEditClear();
             lblIDValue.Text = "0";
@@ -188,14 +211,16 @@ namespace WorkManager_A
         private void modificaFunzioneMenu(ComponentiMenu function)
         {
             pnlEditClear();
-            pnlFunzioni.Enabled = false;
-            pnlEdit.Enabled = true;
+
+            parteAbilitata = 2;
+            abilitaDisabilita();
 
             lblIDValue.Text = function.ID;
             txtTitolo.Text = function.Titolo;
             cboProgramma.Text = function.Programma;
             cboBitmap.Text = function.Bitmap;
             linkageFunction = function.Linkage;
+            LKGestioneLinkage.linkage = function.Linkage;
         }
 
         private void eliminaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -247,9 +272,8 @@ namespace WorkManager_A
         {
             posizioneElementoNew = treeList.SelectedNode.Index + 1;
 
-            pnlFunzioni.Enabled = false;
-            pnlEdit.Enabled = true;
-            btnLinkage.Enabled = false;
+            parteAbilitata = 2;
+            abilitaDisabilita();
 
             pnlEditClear();
             lblIDValue.Text = "0";

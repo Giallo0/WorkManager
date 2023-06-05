@@ -110,7 +110,7 @@ namespace WorkManager_A.Linkage.PnlLinkage
             // 
             cbTipoCartella.FormattingEnabled = true;
             cbTipoCartella.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbTipoCartella.Location = new Point(300, 19);
+            cbTipoCartella.Location = new Point(312, 19);
             cbTipoCartella.Name = "cbTipoCartella";
             cbTipoCartella.Size = new Size(126, 23);
             cbTipoCartella.TabIndex = 5;

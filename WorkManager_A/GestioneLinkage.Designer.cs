@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestioneLinkage));
             pnlLinkage = new Panel();
             pnlButton = new Panel();
             btnConferma = new Button();
@@ -40,7 +41,7 @@
             pnlLinkage.Dock = DockStyle.Fill;
             pnlLinkage.Location = new Point(0, 0);
             pnlLinkage.Name = "pnlLinkage";
-            pnlLinkage.Size = new Size(800, 399);
+            pnlLinkage.Size = new Size(1234, 603);
             pnlLinkage.TabIndex = 0;
             // 
             // pnlButton
@@ -49,9 +50,9 @@
             pnlButton.Controls.Add(btnConferma);
             pnlButton.Controls.Add(btnAnnulla);
             pnlButton.Dock = DockStyle.Bottom;
-            pnlButton.Location = new Point(0, 399);
+            pnlButton.Location = new Point(0, 603);
             pnlButton.Name = "pnlButton";
-            pnlButton.Size = new Size(800, 51);
+            pnlButton.Size = new Size(1234, 58);
             pnlButton.TabIndex = 1;
             // 
             // btnConferma
@@ -59,9 +60,9 @@
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(648, 0);
+            btnConferma.Location = new Point(1060, 0);
             btnConferma.Name = "btnConferma";
-            btnConferma.Size = new Size(75, 49);
+            btnConferma.Size = new Size(86, 56);
             btnConferma.TabIndex = 0;
             btnConferma.Text = "Conferma";
             btnConferma.UseVisualStyleBackColor = true;
@@ -72,9 +73,9 @@
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(723, 0);
+            btnAnnulla.Location = new Point(1146, 0);
             btnAnnulla.Name = "btnAnnulla";
-            btnAnnulla.Size = new Size(75, 49);
+            btnAnnulla.Size = new Size(86, 56);
             btnAnnulla.TabIndex = 1;
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
@@ -82,12 +83,19 @@
             // 
             // GestioneLinkage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AcceptButton = btnConferma;
+            AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            CancelButton = btnAnnulla;
+            ClientSize = new Size(1234, 661);
             Controls.Add(pnlLinkage);
             Controls.Add(pnlButton);
+            Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "GestioneLinkage";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "GestioneLinkage";
             pnlButton.ResumeLayout(false);
             ResumeLayout(false);

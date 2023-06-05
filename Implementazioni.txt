@@ -14,7 +14,7 @@
 
 [Fatto] - Nella finCartella, allungare la colonna del nome in modo automatico per la massima lunghezza del nome più lungo in modo da vedere tutti i caratteri.
 
-- Aggiungere le icone al programma.
+[Fatto] - Aggiungere le icone al programma.
 
 - Per i parametri nelle opzioni, inserire una cella all'inizio con una combo in modo da poter selezionare il programma a cui fa riferimento. In questo modo tenere nel treeView solo "Parametri" senza l'elenco dei programmi.
 
@@ -25,3 +25,9 @@
 - Una volta che l'attività è stata chiusa o rilasciata non sarà più possibile modificarlo sia il contenuto che la cartella in se
 
 - Aggiungere una funzione di "Esegui attività" dove selezionando il cliente, e poi l'attività verranno mostrate tutte le funzioni utili per l'esecuzione dell'attività. Una griglia con l'elenco dei file all'interno, un pulsante che rimanda alle note, la possibilità di aggiungere nuovi file all'interno, la possibilità di aprire i file con un particolare sistema di edit in base all'estensione.
+
+- Alla chiusura di un'attività specificare l'intervento eseguito obbligatorio. Questo ovviamente se non è stata cancellata l'attività
+
+[Fatto] - Quando si chiude il programma provare a metterlo tra i programmi in basso a destra tra le icone di notifica
+
+- Aggiungere una finestra per l'elenco delle attività aperte in modo da raggiungerle subito, magari inserendo nella finCartella anche una colonna stato e filtrare per quelli aperti.

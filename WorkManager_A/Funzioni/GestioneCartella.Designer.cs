@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestioneCartella));
             lblPercorso = new Label();
             txtPercorso = new TextBox();
             txtNome = new TextBox();
@@ -94,7 +95,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(914, 435);
+            panel1.Size = new Size(1234, 586);
             panel1.TabIndex = 4;
             // 
             // txtProgressivo
@@ -138,9 +139,9 @@
             // btnCerca
             // 
             btnCerca.Image = Properties.Resources.cerca_24x24;
-            btnCerca.Location = new Point(751, 30);
+            btnCerca.Location = new Point(751, 35);
             btnCerca.Name = "btnCerca";
-            btnCerca.Size = new Size(40, 40);
+            btnCerca.Size = new Size(36, 31);
             btnCerca.TabIndex = 4;
             btnCerca.UseVisualStyleBackColor = true;
             btnCerca.Click += btnCerca_Click;
@@ -152,9 +153,9 @@
             panel2.Controls.Add(btnConferma);
             panel2.Controls.Add(btnAnnulla);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 435);
+            panel2.Location = new Point(0, 586);
             panel2.Name = "panel2";
-            panel2.Size = new Size(914, 75);
+            panel2.Size = new Size(1234, 75);
             panel2.TabIndex = 5;
             // 
             // btnHome
@@ -175,7 +176,7 @@
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(712, 0);
+            btnConferma.Location = new Point(1032, 0);
             btnConferma.Name = "btnConferma";
             btnConferma.Size = new Size(100, 73);
             btnConferma.TabIndex = 0;
@@ -188,7 +189,7 @@
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(812, 0);
+            btnAnnulla.Location = new Point(1132, 0);
             btnAnnulla.Name = "btnAnnulla";
             btnAnnulla.Size = new Size(100, 73);
             btnAnnulla.TabIndex = 1;
@@ -198,13 +199,19 @@
             // 
             // GestioneCartella
             // 
+            AcceptButton = btnConferma;
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 510);
+            CancelButton = btnAnnulla;
+            ClientSize = new Size(1234, 661);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "GestioneCartella";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestione Cartella";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

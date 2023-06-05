@@ -25,11 +25,19 @@
     <Compile Update="PanelImpostazioni\pnlImpostazioniGestioneCartella.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="PanelImpostazioni\pnlImpostazioniOpzioni.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="PanelImpostazioni\pnlImpostazioniWorkspace.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="WMmain.cs">
       <SubType>Form</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="WMmain.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

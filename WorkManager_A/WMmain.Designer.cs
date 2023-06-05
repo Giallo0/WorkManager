@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WMmain));
             pnlListMenu = new Panel();
             pnlFunction = new Panel();
             btnEsci = new Button();
@@ -35,121 +37,112 @@
             btnRicaricaMenu = new Button();
             btnGestioneMenu = new Button();
             pnlAttivita = new Panel();
+            notifyPrgm = new NotifyIcon(components);
+            mnuNotifyPrgm = new ContextMenuStrip(components);
+            apriToolStripMenuItem = new ToolStripMenuItem();
+            chiudiToolStripMenuItem = new ToolStripMenuItem();
             pnlFunction.SuspendLayout();
+            mnuNotifyPrgm.SuspendLayout();
             SuspendLayout();
             // 
             // pnlListMenu
             // 
-            pnlListMenu.AutoScroll = true;
+            resources.ApplyResources(pnlListMenu, "pnlListMenu");
             pnlListMenu.BorderStyle = BorderStyle.FixedSingle;
-            pnlListMenu.Dock = DockStyle.Left;
-            pnlListMenu.Location = new Point(0, 0);
             pnlListMenu.Name = "pnlListMenu";
-            pnlListMenu.Size = new Size(228, 672);
-            pnlListMenu.TabIndex = 0;
             // 
             // pnlFunction
             // 
+            resources.ApplyResources(pnlFunction, "pnlFunction");
             pnlFunction.BorderStyle = BorderStyle.FixedSingle;
             pnlFunction.Controls.Add(btnEsci);
             pnlFunction.Controls.Add(btnImpostazioni);
             pnlFunction.Controls.Add(btnRicaricaMenu);
             pnlFunction.Controls.Add(btnGestioneMenu);
-            pnlFunction.Dock = DockStyle.Top;
-            pnlFunction.Location = new Point(228, 0);
             pnlFunction.Name = "pnlFunction";
-            pnlFunction.Size = new Size(1029, 86);
-            pnlFunction.TabIndex = 1;
             // 
             // btnEsci
             // 
-            btnEsci.Dock = DockStyle.Left;
+            resources.ApplyResources(btnEsci, "btnEsci");
             btnEsci.FlatAppearance.BorderSize = 0;
-            btnEsci.FlatStyle = FlatStyle.Flat;
-            btnEsci.Image = Properties.Resources.esci_24x24;
-            btnEsci.Location = new Point(300, 0);
+            btnEsci.Image = Properties.Resources.Chiudi_32x32;
             btnEsci.Name = "btnEsci";
-            btnEsci.Size = new Size(100, 84);
-            btnEsci.TabIndex = 3;
             btnEsci.Tag = "Esci";
-            btnEsci.Text = "Esci";
-            btnEsci.TextAlign = ContentAlignment.BottomCenter;
-            btnEsci.TextImageRelation = TextImageRelation.ImageAboveText;
             btnEsci.UseVisualStyleBackColor = true;
             btnEsci.Click += btnEsci_Click;
             // 
             // btnImpostazioni
             // 
-            btnImpostazioni.Dock = DockStyle.Left;
+            resources.ApplyResources(btnImpostazioni, "btnImpostazioni");
             btnImpostazioni.FlatAppearance.BorderSize = 0;
-            btnImpostazioni.FlatStyle = FlatStyle.Flat;
-            btnImpostazioni.Image = Properties.Resources.impostazioni_24x24;
-            btnImpostazioni.Location = new Point(200, 0);
+            btnImpostazioni.Image = Properties.Resources.Impostazioni_32x32;
             btnImpostazioni.Name = "btnImpostazioni";
-            btnImpostazioni.Size = new Size(100, 84);
-            btnImpostazioni.TabIndex = 2;
             btnImpostazioni.Tag = "Impostazioni";
-            btnImpostazioni.Text = "Impostazioni";
-            btnImpostazioni.TextAlign = ContentAlignment.BottomCenter;
-            btnImpostazioni.TextImageRelation = TextImageRelation.ImageAboveText;
             btnImpostazioni.UseVisualStyleBackColor = true;
             btnImpostazioni.Click += btnImpostazioni_Click;
             // 
             // btnRicaricaMenu
             // 
-            btnRicaricaMenu.Dock = DockStyle.Left;
+            resources.ApplyResources(btnRicaricaMenu, "btnRicaricaMenu");
             btnRicaricaMenu.FlatAppearance.BorderSize = 0;
-            btnRicaricaMenu.FlatStyle = FlatStyle.Flat;
-            btnRicaricaMenu.Image = Properties.Resources.ricarica_24x24;
-            btnRicaricaMenu.Location = new Point(100, 0);
+            btnRicaricaMenu.Image = Properties.Resources.RicaricaMenu_32x32;
             btnRicaricaMenu.Name = "btnRicaricaMenu";
-            btnRicaricaMenu.Size = new Size(100, 84);
-            btnRicaricaMenu.TabIndex = 1;
             btnRicaricaMenu.Tag = "RicaricaMenu";
-            btnRicaricaMenu.Text = "Ricarica menù";
-            btnRicaricaMenu.TextAlign = ContentAlignment.BottomCenter;
-            btnRicaricaMenu.TextImageRelation = TextImageRelation.ImageAboveText;
             btnRicaricaMenu.UseVisualStyleBackColor = true;
             btnRicaricaMenu.Click += btnRicaricaMenu_Click;
             // 
             // btnGestioneMenu
             // 
-            btnGestioneMenu.Dock = DockStyle.Left;
+            resources.ApplyResources(btnGestioneMenu, "btnGestioneMenu");
             btnGestioneMenu.FlatAppearance.BorderSize = 0;
-            btnGestioneMenu.FlatStyle = FlatStyle.Flat;
-            btnGestioneMenu.Image = Properties.Resources.modifica_24x24;
-            btnGestioneMenu.Location = new Point(0, 0);
+            btnGestioneMenu.Image = Properties.Resources.GestioneMenu_32x32;
             btnGestioneMenu.Name = "btnGestioneMenu";
-            btnGestioneMenu.Size = new Size(100, 84);
-            btnGestioneMenu.TabIndex = 0;
             btnGestioneMenu.Tag = "GestioneMenu";
-            btnGestioneMenu.Text = "Gestione menù";
-            btnGestioneMenu.TextAlign = ContentAlignment.BottomCenter;
-            btnGestioneMenu.TextImageRelation = TextImageRelation.ImageAboveText;
             btnGestioneMenu.UseVisualStyleBackColor = true;
             btnGestioneMenu.Click += btnGestioneMenu_Click;
             // 
             // pnlAttivita
             // 
-            pnlAttivita.Dock = DockStyle.Fill;
-            pnlAttivita.Location = new Point(228, 86);
+            resources.ApplyResources(pnlAttivita, "pnlAttivita");
             pnlAttivita.Name = "pnlAttivita";
-            pnlAttivita.Size = new Size(1029, 586);
-            pnlAttivita.TabIndex = 2;
+            // 
+            // notifyPrgm
+            // 
+            resources.ApplyResources(notifyPrgm, "notifyPrgm");
+            notifyPrgm.ContextMenuStrip = mnuNotifyPrgm;
+            notifyPrgm.MouseDoubleClick += notifyPrgm_MouseDoubleClick;
+            // 
+            // mnuNotifyPrgm
+            // 
+            resources.ApplyResources(mnuNotifyPrgm, "mnuNotifyPrgm");
+            mnuNotifyPrgm.Items.AddRange(new ToolStripItem[] { apriToolStripMenuItem, chiudiToolStripMenuItem });
+            mnuNotifyPrgm.Name = "contextMenuStrip1";
+            // 
+            // apriToolStripMenuItem
+            // 
+            resources.ApplyResources(apriToolStripMenuItem, "apriToolStripMenuItem");
+            apriToolStripMenuItem.Name = "apriToolStripMenuItem";
+            apriToolStripMenuItem.Click += apriToolStripMenuItem_Click;
+            // 
+            // chiudiToolStripMenuItem
+            // 
+            resources.ApplyResources(chiudiToolStripMenuItem, "chiudiToolStripMenuItem");
+            chiudiToolStripMenuItem.Name = "chiudiToolStripMenuItem";
+            chiudiToolStripMenuItem.Click += chiudiToolStripMenuItem_Click;
             // 
             // WMmain
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1257, 672);
             Controls.Add(pnlAttivita);
             Controls.Add(pnlFunction);
             Controls.Add(pnlListMenu);
-            Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "WMmain";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "WorkManager";
+            FormClosing += WMmain_FormClosing;
             pnlFunction.ResumeLayout(false);
+            mnuNotifyPrgm.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -162,5 +155,9 @@
         private Button btnImpostazioni;
         private Panel pnlAttivita;
         private Button btnEsci;
+        private NotifyIcon notifyPrgm;
+        private ContextMenuStrip mnuNotifyPrgm;
+        private ToolStripMenuItem apriToolStripMenuItem;
+        private ToolStripMenuItem chiudiToolStripMenuItem;
     }
 }

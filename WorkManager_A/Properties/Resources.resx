@@ -118,34 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cartella_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cartella_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ApriCartella_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ApriCartella_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cartella_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cartella.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cartella_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cartella_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\cartella_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cerca_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cerca.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\cerca_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="esci_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\esci.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Chiudi_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chiudi_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="file_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="esciMata_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\esciMata_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GestioneMenu_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GestioneMenu_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="home_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\home_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="impostazioni_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\impostazioni.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Impostazioni_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Impostazioni_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="modifica_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\modifica.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ModificaAttivita_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ModificaAttivita_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ricarica_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ricarica.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ModificaCliente_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ModificaCliente_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NuovaAttivita_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NuovaAttivita_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NuovoCliente_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NuovoCliente_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RicaricaMenu_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RicaricaMenu_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RimuoviAttivita_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RimuoviAttivita_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RimuoviCliente_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RimuoviCliente_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WorkManager_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WorkManager_32x32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

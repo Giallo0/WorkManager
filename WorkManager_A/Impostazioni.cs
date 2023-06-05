@@ -31,6 +31,11 @@ namespace WorkManager_A
             subNodo.Text = "Gestione Cartella";
             subNodo.Tag = "pGestioneCartella";
             nodo.Nodes.Add(subNodo);
+
+            nodo = new TreeNode();
+            nodo.Text = "Opzioni";
+            nodo.Tag = "Opzioni";
+            treeMenu.Nodes.Add(nodo);
         }
 
         private void treeMenu_AfterSelect(object sender, TreeViewEventArgs e)
@@ -45,6 +50,9 @@ namespace WorkManager_A
                         break;
                     case "pGestioneCartella":
                         pnlMain.Controls.Add(new pnlImpostazioniGestioneCartella());
+                        break;
+                    case "Opzioni":
+                        pnlMain.Controls.Add(new pnlImpostazioniOpzioni());
                         break;
                 }
             }

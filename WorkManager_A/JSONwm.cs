@@ -12,7 +12,7 @@ namespace WorkManager_A
 {
     internal enum ChiaviRoot
     {
-        Workspace, CntID, Menu, Parametri
+        Workspace, CntID, Menu, Parametri, Chiusura
     }
 
     internal class ComponentiRoot
@@ -20,6 +20,8 @@ namespace WorkManager_A
         public string? Workspace { get; set; }
 
         public string? CntID { get; set; }
+
+        public string? Chiusura { get; set; }
     }
 
     internal enum ChiaviMenu
