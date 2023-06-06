@@ -1,6 +1,6 @@
-using WorkManager_A.Properties;
+using WorkManager.Properties;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     public partial class WMmain : Form
     {
@@ -83,13 +83,13 @@ namespace WorkManager_A
 
         private void btnGestioneMenu_Click(object sender, EventArgs e)
         {
-            Funzione.Apri(btnGestioneMenu.Tag.ToString(), "WorkManager_A");
+            Funzione.Apri(btnGestioneMenu.Tag.ToString(), "WorkManager");
             PersonalizzaInizializzazione();
         }
 
         private void btnImpostazioni_Click(object sender, EventArgs e)
         {
-            Funzione.Apri(btnImpostazioni.Tag.ToString(), "WorkManager_A");
+            Funzione.Apri(btnImpostazioni.Tag.ToString(), "WorkManager");
             PersonalizzaInizializzazione();
         }
 

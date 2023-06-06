@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     public partial class Login : Form
     {

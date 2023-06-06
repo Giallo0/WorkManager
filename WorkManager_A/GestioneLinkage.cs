@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WorkManager_A.Linkage;
-using WorkManager_A.Linkage.PnlLinkage;
-using WorkManager_A.PanelImpostazioni;
+using WorkManager.Linkage;
+using WorkManager.Linkage.PnlLinkage;
+using WorkManager.PanelImpostazioni;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     public partial class GestioneLinkage : Form
     {

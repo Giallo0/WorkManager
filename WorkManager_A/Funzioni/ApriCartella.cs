@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkManager_A.Linkage;
+using WorkManager.Linkage;
 
-namespace WorkManager_A.Funzioni
+namespace WorkManager.Funzioni
 {
     internal class ApriCartella
     {
@@ -14,7 +14,7 @@ namespace WorkManager_A.Funzioni
         {
             LKFinFolder.ClearLinkage();
             LKFinFolder.mostraRoot = true;
-            if (Funzione.Apri("FinFolder", "WorkManager_A") == DialogResult.OK)
+            if (Funzione.Apri("FinFolder", "WorkManager") == DialogResult.OK)
             {
                 Process.Start("explorer.exe", LKFinFolder.percorsoCartella);
             }

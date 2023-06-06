@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WorkManager_A.PanelImpostazioni
+namespace WorkManager.PanelImpostazioni
 {
     public partial class pnlImpostazioniOpzioni : UserControl
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WorkManager_A.Linkage
+namespace WorkManager.Linkage
 {
     internal class LKGestioneCartella
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     internal enum ChiaviwsFolder
     {

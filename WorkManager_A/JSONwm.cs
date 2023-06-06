@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     internal enum ChiaviRoot
     {

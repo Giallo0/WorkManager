@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WorkManager_A.Linkage;
+using WorkManager.Linkage;
 
-namespace WorkManager_A.Funzioni
+namespace WorkManager.Funzioni
 {
     public partial class GestioneCartella : Form
     {
@@ -287,7 +287,7 @@ namespace WorkManager_A.Funzioni
             }
 
             //Chiamata programma
-            if (Funzione.Apri("FinFolder", "WorkManager_A") == DialogResult.OK)
+            if (Funzione.Apri("FinFolder", "WorkManager") == DialogResult.OK)
             {
                 //Valorizzazione con valori linkage output
                 switch (LKGestioneCartella.funzione)

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WorkManager_A.Linkage.PnlLinkage
+namespace WorkManager.Linkage.PnlLinkage
 {
     public partial class pnlLKGestioneCartella : UserControl
     {

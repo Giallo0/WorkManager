@@ -1,4 +1,4 @@
-﻿namespace WorkManager_A.Linkage.PnlLinkage
+﻿namespace WorkManager.Linkage.PnlLinkage
 {
     partial class pnlLKGestioneCartella
     {

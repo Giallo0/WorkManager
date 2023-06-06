@@ -7,6 +7,11 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
 	<PublishSingleFile>true</PublishSingleFile>
+	<ApplicationIcon>Resources\WorkManager_32x32.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +22,7 @@
     <Content Include="Configurazione\JSONwm.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\WorkManager_32x32.ico" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,10 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using WorkManager_A.Linkage;
+using WorkManager.Linkage;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     public partial class FinFolder : Form
     {

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     internal class Funzione
     {
-        public static DialogResult Apri(string funcName, string nameSpace = "WorkManager_A.Funzioni")
+        public static DialogResult Apri(string funcName, string nameSpace = "WorkManager.Funzioni")
         {
             DialogResult result = DialogResult.None;
             try

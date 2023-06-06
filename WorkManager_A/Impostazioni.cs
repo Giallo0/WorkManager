@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WorkManager_A.PanelImpostazioni;
+using WorkManager.PanelImpostazioni;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     public partial class Impostazioni : Form
     {

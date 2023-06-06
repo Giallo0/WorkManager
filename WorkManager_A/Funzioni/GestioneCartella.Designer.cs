@@ -1,4 +1,4 @@
-﻿namespace WorkManager_A.Funzioni
+﻿namespace WorkManager.Funzioni
 {
     partial class GestioneCartella
     {

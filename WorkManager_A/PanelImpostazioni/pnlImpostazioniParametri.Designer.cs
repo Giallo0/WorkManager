@@ -1,4 +1,4 @@
-﻿namespace WorkManager_A.PanelImpostazioni
+﻿namespace WorkManager.PanelImpostazioni
 {
     partial class pnlImpostazioniParametri
     {

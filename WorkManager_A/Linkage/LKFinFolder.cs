@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorkManager_A.Linkage
+namespace WorkManager.Linkage
 {
     internal class LKFinFolder
     {

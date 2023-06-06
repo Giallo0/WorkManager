@@ -1,4 +1,4 @@
-namespace WorkManager_A
+namespace WorkManager
 {
     internal static class Program
     {

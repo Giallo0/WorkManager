@@ -10,11 +10,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WorkManager_A.Linkage;
-using WorkManager_A.Properties;
+using WorkManager.Linkage;
+using WorkManager.Properties;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace WorkManager_A
+namespace WorkManager
 {
     public partial class GestioneMenu : Form
     {
@@ -38,7 +38,7 @@ namespace WorkManager_A
 
             cboProgramma.Items.Clear();
             cboProgramma.Items.Add(" - ");
-            Type[] typeList = Assembly.GetExecutingAssembly().GetTypes().Where(t => String.Equals(t.Namespace, "WorkManager_A.Funzioni", StringComparison.Ordinal)).ToArray();
+            Type[] typeList = Assembly.GetExecutingAssembly().GetTypes().Where(t => String.Equals(t.Namespace, "WorkManager.Funzioni", StringComparison.Ordinal)).ToArray();
             for (int i = 0; i < typeList.Length - 1; i++)
             {
                 string nome = typeList[i].Name;
@@ -155,7 +155,7 @@ namespace WorkManager_A
                 noErrori = false;
                 goto controllaDatiErr;
             }
-            if (Type.GetType($"WorkManager_A.Linkage.LK{cboProgramma.Text}") != null && string.IsNullOrEmpty(LKGestioneLinkage.linkage))
+            if (Type.GetType($"WorkManager.Linkage.LK{cboProgramma.Text}") != null && string.IsNullOrEmpty(LKGestioneLinkage.linkage))
             {
                 MessageBox.Show("Linkage non valorizzata", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnLinkage.Focus();
@@ -235,7 +235,7 @@ namespace WorkManager_A
         private void cboProgramma_TextChanged(object sender, EventArgs e)
         {
             btnLinkage.Enabled = false;
-            if (Type.GetType($"WorkManager_A.Linkage.LK{cboProgramma.Text}") != null)
+            if (Type.GetType($"WorkManager.Linkage.LK{cboProgramma.Text}") != null)
             {
                 btnLinkage.Enabled = true;
             }
@@ -246,7 +246,7 @@ namespace WorkManager_A
             LKGestioneLinkage.ClearLinkage();
             LKGestioneLinkage.nomePgm = cboProgramma.Text;
             LKGestioneLinkage.linkage = linkageFunction;
-            Funzione.Apri("GestioneLinkage", "WorkManager_A");
+            Funzione.Apri("GestioneLinkage", "WorkManager");
             linkageFunction = LKGestioneLinkage.linkage;
         }
 
