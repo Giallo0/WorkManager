@@ -88,8 +88,9 @@ namespace WorkManager_A
                 DirectoryInfo di = new DirectoryInfo(dir);
                 if (!di.Attributes.HasFlag(FileAttributes.Hidden))
                 {
-                    JSONwsFolder jwsF = new JSONwsFolder(dir);
-                    if (LKFinFolder.limitaTipoCartella == string.Empty || LKFinFolder.limitaTipoCartella == jwsF.getValue(ChiaviwsFolder.Tipo.ToString()))
+                    JSONwsFolder jwsF = new JSONwsFolder(dir, false);
+                    if (!jwsF.isNull() &&
+                        (LKFinFolder.limitaTipoCartella == string.Empty || LKFinFolder.limitaTipoCartella == jwsF.getValue(ChiaviwsFolder.Tipo.ToString())))
                     {
                         if (jwsF.getValue(ChiaviwsFolder.Tipo.ToString()) == "Attività")
                         {

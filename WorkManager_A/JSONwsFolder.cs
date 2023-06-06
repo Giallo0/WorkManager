@@ -33,10 +33,16 @@ namespace WorkManager_A
         private string path;
         private string emptyTextJSON = "{ }";
 
-        public JSONwsFolder(string folderPath) 
+        public JSONwsFolder(string folderPath)
         {
             path = folderPath + "\\wsFolder.json";
             newInstance();
+        }
+
+        public JSONwsFolder(string folderPath, bool createJSON) 
+        {
+            path = folderPath + "\\wsFolder.json";
+            if (createJSON) newInstance(); else newInstanceOpen();
         }
 
         private void newInstance()
@@ -57,6 +63,18 @@ namespace WorkManager_A
             jnode = JSONNode.Parse(File.ReadAllText(path));
         }
 
+        private void newInstanceOpen()
+        {
+            if (File.Exists(path) && !string.IsNullOrEmpty(File.ReadAllText(path)))
+            {
+                jnode = JSONNode.Parse(File.ReadAllText(path));
+            }
+            else
+            {
+                jnode = null;
+            }
+        }
+
         public string getValue(string key)
         {
             return jnode[key].Value;
@@ -72,6 +90,11 @@ namespace WorkManager_A
             File.SetAttributes(path, FileAttributes.Normal);
             File.WriteAllText(path, jnode.ToString(""));
             File.SetAttributes(path, FileAttributes.Hidden);
+        }
+
+        public bool isNull()
+        {
+            return jnode == null ? true : false;
         }
 
         public void newFolder(ComponentiwsFolder fold)
