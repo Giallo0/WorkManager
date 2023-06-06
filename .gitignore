@@ -1,6 +1,6 @@
-WorkManager_A/.vs/WorkManager_A/FileContentIndex/*
+WorkManager/.vs/WorkManager_A/FileContentIndex/*
 *.cache
-WorkManager_A/obj/*
-WorkManager_A/bin/*
-WorkManager_A/Properties/PublishProfiles/FolderProfile.pubxml
-WorkManager_A/Properties/PublishProfiles/FolderProfile.pubxml.user
+WorkManager/obj/*
+WorkManager/bin/*
+WorkManager/Properties/PublishProfiles/FolderProfile.pubxml
+WorkManager/Properties/PublishProfiles/FolderProfile.pubxml.user
