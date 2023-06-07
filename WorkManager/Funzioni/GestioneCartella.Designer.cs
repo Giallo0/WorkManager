@@ -34,6 +34,8 @@
             txtNome = new TextBox();
             lblNome = new Label();
             panel1 = new Panel();
+            cboStato = new ComboBox();
+            lblStato = new Label();
             txtProgressivo = new TextBox();
             lblProgressivo = new Label();
             cboTipoCartella = new ComboBox();
@@ -82,6 +84,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(cboStato);
+            panel1.Controls.Add(lblStato);
             panel1.Controls.Add(txtProgressivo);
             panel1.Controls.Add(lblProgressivo);
             panel1.Controls.Add(cboTipoCartella);
@@ -96,6 +100,25 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1250, 640);
             panel1.TabIndex = 4;
+            // 
+            // cboStato
+            // 
+            cboStato.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboStato.Enabled = false;
+            cboStato.FormattingEnabled = true;
+            cboStato.Location = new Point(575, 156);
+            cboStato.Name = "cboStato";
+            cboStato.Size = new Size(170, 25);
+            cboStato.TabIndex = 13;
+            // 
+            // lblStato
+            // 
+            lblStato.AutoSize = true;
+            lblStato.Location = new Point(523, 159);
+            lblStato.Name = "lblStato";
+            lblStato.Size = new Size(46, 17);
+            lblStato.TabIndex = 12;
+            lblStato.Text = "Stato:";
             // 
             // txtProgressivo
             // 
@@ -219,5 +242,7 @@
         private Label lblTipoCartella;
         private TextBox txtProgressivo;
         private Label lblProgressivo;
+        private ComboBox cboStato;
+        private Label lblStato;
     }
 }

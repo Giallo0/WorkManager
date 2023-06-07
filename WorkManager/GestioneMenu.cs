@@ -18,6 +18,7 @@ namespace WorkManager
 {
     public partial class GestioneMenu : Form
     {
+        private const string bitmapFormat = "24x24";
         private string linkageFunction;
         private int posizioneElementoNew;
         private int parteAbilitata;
@@ -50,11 +51,12 @@ namespace WorkManager
             foreach (DictionaryEntry entry in Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true))
             {
                 string name = entry.Key.ToString();
-                if (name.Contains('_') && name.Substring(name.LastIndexOf('_') + 1) == "24x24")
+                if (name.Contains('_') && name.Substring(name.LastIndexOf('_') + 1) == bitmapFormat)
                 {
-                    cboBitmap.Items.Add(name);
+                    cboBitmap.Items.Add(name.Remove(name.LastIndexOf('_')));
                 }
             }
+            cboBitmap.Sorted = true;
             pnlEditClear();
         }
 
@@ -100,7 +102,7 @@ namespace WorkManager
 
         private void cboBitmap_TextChanged(object sender, EventArgs e)
         {
-            picBitmap.Image = (Image)Resources.ResourceManager.GetObject(cboBitmap.Text);
+            picBitmap.Image = (Image)Resources.ResourceManager.GetObject(cboBitmap.Text + "_" + bitmapFormat);
         }
 
         private void btnConferma_Click(object sender, EventArgs e)
@@ -110,7 +112,7 @@ namespace WorkManager
                 ComponentiMenu function = new ComponentiMenu();
                 function.Titolo = txtTitolo.Text;
                 function.Programma = cboProgramma.Text;
-                function.Bitmap = cboBitmap.SelectedItem.ToString();
+                function.Bitmap = cboBitmap.SelectedItem.ToString() + "_" + bitmapFormat;
                 function.Linkage = LKGestioneLinkage.linkage;
 
                 if (int.Parse(lblIDValue.Text) == 0)
@@ -218,7 +220,7 @@ namespace WorkManager
             lblIDValue.Text = function.ID;
             txtTitolo.Text = function.Titolo;
             cboProgramma.Text = function.Programma;
-            cboBitmap.Text = function.Bitmap;
+            cboBitmap.Text = function.Bitmap.Remove(function.Bitmap.LastIndexOf('_'));
             linkageFunction = function.Linkage;
             LKGestioneLinkage.linkage = function.Linkage;
         }

@@ -9,7 +9,7 @@ namespace WorkManager
 {
     internal enum ChiaviwsFolder
     {
-        Tipo, DataCreazione, OraCreazione, DataModifica, OraModifica, CntAtt
+        Tipo, DataCreazione, OraCreazione, DataModifica, OraModifica, CntAtt, Stato
     }
 
     internal class ComponentiwsFolder
@@ -25,6 +25,8 @@ namespace WorkManager
         public string? OraModifica { get; set;}
 
         public string? CntAtt { get; set; }
+
+        public string? Stato { get; set; }
     }
 
     internal class JSONwsFolder
@@ -102,6 +104,7 @@ namespace WorkManager
             setValue(ChiaviwsFolder.Tipo.ToString(), fold.Tipo);
             setValue(ChiaviwsFolder.DataCreazione.ToString(), fold.DataCreazione);
             setValue(ChiaviwsFolder.OraCreazione.ToString(), fold.OraCreazione);
+            setValue(ChiaviwsFolder.Stato.ToString(), fold.Stato);
             salva();
         }
     }

@@ -56,6 +56,12 @@
          "Parametro" : "TipoCartella", 
          "Valore" : "ND;Cliente;Attività", 
          "Descrizione" : "Tipologia di cartella separati da ';'"
+      }, 
+      { 
+         "Programma" : "GestioneCartella", 
+         "Parametro" : "StatiAttivita", 
+         "Valore" : "Aperta;Chiusa", 
+         "Descrizione" : "Stati attività separati da ';'"
       }
    ], 
    "Chiusura" : "F", 

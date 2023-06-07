@@ -69,9 +69,14 @@ namespace WorkManager.Funzioni
 
             //Riempio la combo con i tipi cartella
             cboTipoCartella.Items.Clear();
-            string[] tipiCartella = Globale.jwm.getParametro("GestioneCartella", "TipoCartella").Valore.ToString().Split(';') ?? new string[0];
-            cboTipoCartella.Items.AddRange(tipiCartella);
+            string tipiCartella = Globale.jwm.getParametro("GestioneCartella", "TipoCartella").Valore ?? string.Empty;
+            cboTipoCartella.Items.AddRange(tipiCartella.Split(';'));
             cboTipoCartella.Items.Remove("ND");
+
+            //Riempio la combo con gli stati
+            cboStato.Items.Clear();
+            string statiAttivita = Globale.jwm.getParametro("GestioneCartella", "StatiAttivita").Valore ?? string.Empty;
+            cboStato.Items.AddRange(statiAttivita.Split(';'));
 
             if (LKGestioneCartella.funzione == "G")
             {
@@ -93,6 +98,16 @@ namespace WorkManager.Funzioni
             {
                 cboTipoCartella.SelectedIndex = 0;
             }
+
+            switch (LKGestioneCartella.funzione)
+            {
+                case "I":
+                    cboStato.Text = "Aperta";
+                    break;
+                case "G":
+                case "E":
+                    break;
+            }
         }
 
         private void btnConferma_Click(object sender, EventArgs e)
@@ -100,13 +115,16 @@ namespace WorkManager.Funzioni
             if (controllaDati())
             {
                 string folderPath;
+                string stato;
                 if (cboTipoCartella.Text == "Attività")
                 {
                     folderPath = $"{txtPercorso.Text}\\{txtProgressivo.Text.PadLeft(3, '0')}_{txtNome.Text}";
+                    stato = cboStato.Text;
                 }
                 else
                 {
                     folderPath = $"{txtPercorso.Text}\\{txtNome.Text}";
+                    stato = string.Empty;
                 }
                 JSONwsFolder jwsF;
 
@@ -120,6 +138,7 @@ namespace WorkManager.Funzioni
                         wsFolder.Tipo = cboTipoCartella.Text;
                         wsFolder.DataCreazione = DateTime.Now.ToString("yyyyMMdd");
                         wsFolder.OraCreazione = DateTime.Now.ToString("HHmmss");
+                        wsFolder.Stato = stato;
                         jwsF.newFolder(wsFolder);
 
                         JSONwsFolder jwsFC = new JSONwsFolder(txtPercorso.Text);
@@ -131,7 +150,10 @@ namespace WorkManager.Funzioni
                         calcolaProgressivo();
                         break;
                     case "G":
-                        Directory.Move(oldPath, folderPath);
+                        if (oldPath != folderPath)
+                        {
+                            Directory.Move(oldPath, folderPath);
+                        }
 
                         jwsF = new JSONwsFolder(folderPath);
                         jwsF.setValue(ChiaviwsFolder.DataModifica.ToString(), DateTime.Now.ToString("yyyyMMdd"));
@@ -142,6 +164,7 @@ namespace WorkManager.Funzioni
                         txtPercorso.Text = string.Empty;
                         txtNome.Text = string.Empty;
                         txtProgressivo.Text = "0";
+                        cboStato.Text = string.Empty;
                         break;
                     case "E":
                         DirectoryInfo directoryInfo = new DirectoryInfo(oldPath);
@@ -156,6 +179,7 @@ namespace WorkManager.Funzioni
                                 txtNome.Text = string.Empty;
                                 txtPercorso.Text = string.Empty;
                                 txtProgressivo.Text = "0";
+                                cboStato.Text = string.Empty;
                             }
                         }
                         else
@@ -202,6 +226,13 @@ namespace WorkManager.Funzioni
                 noErrori = false;
                 goto controllaDatiErr;
             }
+            if (string.IsNullOrEmpty(cboStato.Text))
+            {
+                MessageBox.Show("Stato non valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboStato.Focus();
+                noErrori = false;
+                goto controllaDatiErr;
+            }
         controllaDatiErr:
             return noErrori;
         }
@@ -214,11 +245,16 @@ namespace WorkManager.Funzioni
             {
                 lblProgressivo.Visible = false;
                 txtProgressivo.Visible = false;
+                lblStato.Visible = false;
+                cboStato.Visible = false;
             }
             else
             {
                 lblProgressivo.Visible = true;
                 txtProgressivo.Visible = true;
+                lblStato.Visible = true;
+                cboStato.Visible = true;
+
 
                 calcolaProgressivo();
             }
@@ -233,6 +269,7 @@ namespace WorkManager.Funzioni
                     break;
                 case "G":
                 case "E":
+                    recuperaStato();
                     break;
             }
         }
@@ -254,6 +291,20 @@ namespace WorkManager.Funzioni
                 cntAtt += 1;
             }
             txtProgressivo.Text = cntAtt.ToString();
+        }
+
+        private void recuperaStato()
+        {
+            string stato = string.Empty;
+            if (!string.IsNullOrEmpty(txtPercorso.Text) && cboTipoCartella.Text == "Attività")
+            {
+                JSONwsFolder jwsFC = new JSONwsFolder(oldPath);
+                if (!string.IsNullOrEmpty(jwsFC.getValue(ChiaviwsFolder.Stato.ToString())))
+                {
+                    stato = jwsFC.getValue(ChiaviwsFolder.Stato.ToString());
+                }
+            }
+            cboStato.Text = stato;
         }
 
         private void btnAnnulla_Click(object sender, EventArgs e)
@@ -309,6 +360,7 @@ namespace WorkManager.Funzioni
                         {
                             txtProgressivo.Text = int.Parse(nomeCompleto.Substring(0, 3)).ToString();
                             txtNome.Text = nomeCompleto.Substring(4);
+                            recuperaStato();
                         }
                         break;
                 }
