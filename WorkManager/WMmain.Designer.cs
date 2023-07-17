@@ -35,12 +35,16 @@
             btnEsci = new Button();
             btnImpostazioni = new Button();
             btnGestioneMenu = new Button();
+            btnAggiornaGriglia = new Button();
             pnlAttivita = new Panel();
+            gridAttivitaAperte = new DataGridView();
             notifyPrgm = new NotifyIcon(components);
             mnuNotifyPrgm = new ContextMenuStrip(components);
             apriToolStripMenuItem = new ToolStripMenuItem();
             chiudiToolStripMenuItem = new ToolStripMenuItem();
             pnlFunction.SuspendLayout();
+            pnlAttivita.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridAttivitaAperte).BeginInit();
             mnuNotifyPrgm.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,6 +61,7 @@
             pnlFunction.Controls.Add(btnEsci);
             pnlFunction.Controls.Add(btnImpostazioni);
             pnlFunction.Controls.Add(btnGestioneMenu);
+            pnlFunction.Controls.Add(btnAggiornaGriglia);
             pnlFunction.Name = "pnlFunction";
             // 
             // btnEsci
@@ -89,10 +94,37 @@
             btnGestioneMenu.UseVisualStyleBackColor = true;
             btnGestioneMenu.Click += btnGestioneMenu_Click;
             // 
+            // btnAggiornaGriglia
+            // 
+            resources.ApplyResources(btnAggiornaGriglia, "btnAggiornaGriglia");
+            btnAggiornaGriglia.FlatAppearance.BorderSize = 0;
+            btnAggiornaGriglia.Image = Properties.Resources.RicaricaMenu_32x32;
+            btnAggiornaGriglia.Name = "btnAggiornaGriglia";
+            btnAggiornaGriglia.Tag = "GestioneMenu";
+            btnAggiornaGriglia.UseVisualStyleBackColor = true;
+            btnAggiornaGriglia.Click += btnAggiornaGriglia_Click;
+            // 
             // pnlAttivita
             // 
             resources.ApplyResources(pnlAttivita, "pnlAttivita");
+            pnlAttivita.Controls.Add(gridAttivitaAperte);
             pnlAttivita.Name = "pnlAttivita";
+            // 
+            // gridAttivitaAperte
+            // 
+            resources.ApplyResources(gridAttivitaAperte, "gridAttivitaAperte");
+            gridAttivitaAperte.AllowUserToAddRows = false;
+            gridAttivitaAperte.AllowUserToDeleteRows = false;
+            gridAttivitaAperte.AllowUserToResizeColumns = false;
+            gridAttivitaAperte.AllowUserToResizeRows = false;
+            gridAttivitaAperte.BackgroundColor = SystemColors.ButtonFace;
+            gridAttivitaAperte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridAttivitaAperte.MultiSelect = false;
+            gridAttivitaAperte.Name = "gridAttivitaAperte";
+            gridAttivitaAperte.ReadOnly = true;
+            gridAttivitaAperte.RowTemplate.Height = 25;
+            gridAttivitaAperte.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gridAttivitaAperte.MouseDoubleClick += gridAttivitaAperte_MouseDoubleClick;
             // 
             // notifyPrgm
             // 
@@ -130,6 +162,8 @@
             Name = "WMmain";
             FormClosing += WMmain_FormClosing;
             pnlFunction.ResumeLayout(false);
+            pnlAttivita.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridAttivitaAperte).EndInit();
             mnuNotifyPrgm.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -146,5 +180,7 @@
         private ContextMenuStrip mnuNotifyPrgm;
         private ToolStripMenuItem apriToolStripMenuItem;
         private ToolStripMenuItem chiudiToolStripMenuItem;
+        private DataGridView gridAttivitaAperte;
+        private Button btnAggiornaGriglia;
     }
 }

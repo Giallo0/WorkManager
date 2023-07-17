@@ -1,3 +1,7 @@
+using System.Data;
+using System.Diagnostics;
+using System.Globalization;
+using WorkManager.Linkage;
 using WorkManager.Properties;
 
 namespace WorkManager
@@ -22,15 +26,22 @@ namespace WorkManager
         private bool mnuClosePressed = false;
         private string chiusuraForm;
 
+
+        private DataTable dt = new DataTable();
+        private List<string> elencoClienti = new List<string>();
+
         public WMmain()
         {
             InitializeComponent();
             PersonalizzaInizializzazione();
+
+            //Popolo la griglia con le attività aperte
+            GeneraGrigliaAttivita();
         }
 
         private void PersonalizzaInizializzazione()
         {
-            chiusuraForm = string.IsNullOrEmpty(Globale.jwm.getValue(ChiaviRoot.Chiusura.ToString())) ? "F" : Globale.jwm.getValue(ChiaviRoot.Chiusura.ToString());
+            chiusuraForm = string.IsNullOrEmpty(Globale.jwm.getValue(ChiaviRoot.Chiusura)) ? "F" : Globale.jwm.getValue(ChiaviRoot.Chiusura);
 
             if (chiusuraForm == "F")
             {
@@ -131,6 +142,107 @@ namespace WorkManager
             this.ShowInTaskbar = true;
             this.WindowState = FormWindowState.Normal;
             this.Activate();
+        }
+
+        private void GeneraGrigliaAttivita()
+        {
+            gridAttivitaAperte.Rows.Clear();
+
+            dt.Columns.Add("Attivita", typeof(string));
+            dt.Columns.Add("Cliente", typeof(string));
+            dt.Columns.Add("Priorita", typeof(string));
+            dt.Columns.Add("Data", typeof(string));
+            dt.Columns.Add("Ora", typeof(string));
+            dt.Columns.Add("Progressivo", typeof(string));
+            dt.Columns.Add("Percorso", typeof(string));
+
+            AggiornaGrigliaAttivita();
+        }
+
+        private void AggiornaGrigliaAttivita()
+        {
+            dt.Rows.Clear();
+
+            TrovaSottoCartelle(Globale.jwm.getValue(ChiaviRoot.Workspace));
+            gridAttivitaAperte.DataSource = dt;
+
+            gridAttivitaAperte.Columns["Attivita"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            gridAttivitaAperte.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            gridAttivitaAperte.Columns["Priorita"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            gridAttivitaAperte.Columns["Data"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            gridAttivitaAperte.Columns["Ora"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            gridAttivitaAperte.Columns["Progressivo"].MinimumWidth = 2;
+            gridAttivitaAperte.Columns["Progressivo"].Width = 0;
+            gridAttivitaAperte.Columns["Percorso"].MinimumWidth = 2;
+            gridAttivitaAperte.Columns["Percorso"].Width = 0;
+
+            foreach (DataGridViewColumn column in gridAttivitaAperte.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
+            ImpostaFiltro();
+
+            gridAttivitaAperte.Rows[0].Selected = true;
+        }
+
+        private void TrovaSottoCartelle(string padre)
+        {
+            foreach (string dir in Directory.GetDirectories(padre))
+            {
+                DirectoryInfo di = new DirectoryInfo(dir);
+                if (!di.Attributes.HasFlag(FileAttributes.Hidden))
+                {
+                    JSONwsFolder jwsF = new JSONwsFolder(dir, false);
+                    if (!jwsF.isNull() && jwsF.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita) &&
+                        jwsF.getValue(ChiaviwsFolder.Stato) == ParametriCostanti<StatiAttivita>.getName(StatiAttivita.Aperta))
+                    {
+                        DateTime data = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.DataCreazione), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        DateTime ora = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.OraCreazione), "HHmmss", System.Globalization.CultureInfo.InvariantCulture);
+
+                        dt.Rows.Add(new object[] {
+                                Path.GetFileName(dir).Substring(4),             //Nome
+                                Directory.GetParent(dir).Name,                  //Cliente
+                                jwsF.getValue(ChiaviwsFolder.Priorita),         //Priorita
+                                data.ToString("yyyy/MM/dd"),                    //Data creazione
+                                ora.ToString("HH:mm:ss"),                       //Ora creazione
+                                Path.GetFileName(dir).Substring(0, 3),          //Progressivo
+                                Directory.GetParent(dir)                        //Percorso cliente
+                            });
+                        if (!elencoClienti.Contains(Directory.GetParent(dir).Name))
+                        {
+                            elencoClienti.Add(Directory.GetParent(dir).Name);
+                        }
+                    }
+                    TrovaSottoCartelle(dir);
+                }
+            }
+        }
+
+        private void ImpostaFiltro()
+        {
+            dt.DefaultView.Sort = null;
+
+            dt.DefaultView.Sort = "Priorita desc, Data, Ora, Cliente, Progressivo";
+        }
+
+        private void btnAggiornaGriglia_Click(object sender, EventArgs e)
+        {
+            AggiornaGrigliaAttivita();
+        }
+
+        private void gridAttivitaAperte_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int row = gridAttivitaAperte.HitTest(e.X, e.Y).RowIndex;
+            if (row > -1)
+            {
+                LKOperaAttivita.ClearLinkage();
+                LKOperaAttivita.cliente = gridAttivitaAperte.CurrentRow.Cells["Cliente"].Value.ToString();
+                LKOperaAttivita.percorsoCliente = gridAttivitaAperte.CurrentRow.Cells["Percorso"].Value.ToString();
+                LKOperaAttivita.attivita = $"{gridAttivitaAperte.CurrentRow.Cells["Progressivo"].Value.ToString()} - {gridAttivitaAperte.CurrentRow.Cells["Attivita"].Value.ToString()}";
+                Funzione.Apri("OperaAttivita");
+                LKOperaAttivita.ClearLinkage();
+            }
         }
     }
 }

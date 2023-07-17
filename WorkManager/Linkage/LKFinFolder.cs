@@ -13,7 +13,7 @@ namespace WorkManager.Linkage
         //Se non valorizzato, impostato a true
         //public static string tipologiaCartella;
         //Tipologia da mostrare nella ricerca delle cartelle. Se spazio mostra tutto
-        public static string limitaTipoCartella;
+        public static string TipoCartella;
         //Tipologia da limitare nella visualizzazione delle cartelle. Se spazio mostro tutto
 
         //Output
@@ -25,7 +25,7 @@ namespace WorkManager.Linkage
         public static void ClearLinkageInput()
         {
             mostraRoot = true;
-            limitaTipoCartella = string.Empty;
+            TipoCartella = string.Empty;
         }
 
         public static void ClearLinkageOutput()

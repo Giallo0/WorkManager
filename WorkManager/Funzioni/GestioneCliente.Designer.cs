@@ -1,6 +1,6 @@
 ﻿namespace WorkManager.Funzioni
 {
-    partial class GestioneCartella
+    partial class GestioneCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestioneCartella));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestioneCliente));
             lblPercorso = new Label();
             txtPercorso = new TextBox();
             txtNome = new TextBox();
             lblNome = new Label();
             panel1 = new Panel();
-            cboStato = new ComboBox();
-            lblStato = new Label();
-            txtProgressivo = new TextBox();
-            lblProgressivo = new Label();
-            cboTipoCartella = new ComboBox();
-            lblTipoCartella = new Label();
             btnCerca = new Button();
             panel2 = new Panel();
             btnConferma = new Button();
@@ -64,11 +58,10 @@
             txtPercorso.Name = "txtPercorso";
             txtPercorso.Size = new Size(587, 23);
             txtPercorso.TabIndex = 1;
-            txtPercorso.TextChanged += txtPercorso_TextChanged;
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(320, 76);
+            txtNome.Location = new Point(158, 76);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(425, 23);
             txtNome.TabIndex = 2;
@@ -76,7 +69,7 @@
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Location = new Point(262, 79);
+            lblNome.Location = new Point(100, 79);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(52, 17);
             lblNome.TabIndex = 3;
@@ -84,12 +77,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(cboStato);
-            panel1.Controls.Add(lblStato);
-            panel1.Controls.Add(txtProgressivo);
-            panel1.Controls.Add(lblProgressivo);
-            panel1.Controls.Add(cboTipoCartella);
-            panel1.Controls.Add(lblTipoCartella);
             panel1.Controls.Add(btnCerca);
             panel1.Controls.Add(txtNome);
             panel1.Controls.Add(lblPercorso);
@@ -101,69 +88,12 @@
             panel1.Size = new Size(1250, 640);
             panel1.TabIndex = 4;
             // 
-            // cboStato
-            // 
-            cboStato.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboStato.Enabled = false;
-            cboStato.FormattingEnabled = true;
-            cboStato.Location = new Point(575, 156);
-            cboStato.Name = "cboStato";
-            cboStato.Size = new Size(170, 25);
-            cboStato.TabIndex = 13;
-            // 
-            // lblStato
-            // 
-            lblStato.AutoSize = true;
-            lblStato.Location = new Point(523, 159);
-            lblStato.Name = "lblStato";
-            lblStato.Size = new Size(46, 17);
-            lblStato.TabIndex = 12;
-            lblStato.Text = "Stato:";
-            // 
-            // txtProgressivo
-            // 
-            txtProgressivo.Enabled = false;
-            txtProgressivo.Location = new Point(160, 76);
-            txtProgressivo.MaxLength = 3;
-            txtProgressivo.Name = "txtProgressivo";
-            txtProgressivo.Size = new Size(58, 23);
-            txtProgressivo.TabIndex = 11;
-            txtProgressivo.TextAlign = HorizontalAlignment.Right;
-            // 
-            // lblProgressivo
-            // 
-            lblProgressivo.AutoSize = true;
-            lblProgressivo.Location = new Point(70, 79);
-            lblProgressivo.Name = "lblProgressivo";
-            lblProgressivo.Size = new Size(84, 17);
-            lblProgressivo.TabIndex = 10;
-            lblProgressivo.Text = "Progressivo:";
-            // 
-            // cboTipoCartella
-            // 
-            cboTipoCartella.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboTipoCartella.FormattingEnabled = true;
-            cboTipoCartella.Location = new Point(575, 114);
-            cboTipoCartella.Name = "cboTipoCartella";
-            cboTipoCartella.Size = new Size(170, 25);
-            cboTipoCartella.TabIndex = 9;
-            cboTipoCartella.TextChanged += cboTipoCartella_TextChanged;
-            // 
-            // lblTipoCartella
-            // 
-            lblTipoCartella.AutoSize = true;
-            lblTipoCartella.Location = new Point(531, 117);
-            lblTipoCartella.Name = "lblTipoCartella";
-            lblTipoCartella.Size = new Size(38, 17);
-            lblTipoCartella.TabIndex = 8;
-            lblTipoCartella.Text = "Tipo:";
-            // 
             // btnCerca
             // 
             btnCerca.Image = Properties.Resources.cerca_24x24;
-            btnCerca.Location = new Point(751, 35);
+            btnCerca.Location = new Point(751, 34);
             btnCerca.Name = "btnCerca";
-            btnCerca.Size = new Size(36, 31);
+            btnCerca.Size = new Size(32, 32);
             btnCerca.TabIndex = 4;
             btnCerca.UseVisualStyleBackColor = true;
             btnCerca.Click += btnCerca_Click;
@@ -205,7 +135,7 @@
             btnAnnulla.UseVisualStyleBackColor = true;
             btnAnnulla.Click += btnAnnulla_Click;
             // 
-            // GestioneCartella
+            // GestioneCliente
             // 
             AcceptButton = btnConferma;
             AutoScaleDimensions = new SizeF(8F, 17F);
@@ -218,7 +148,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "GestioneCartella";
+            Name = "GestioneCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestione Cartella";
             panel1.ResumeLayout(false);
@@ -238,11 +168,5 @@
         private Panel panel2;
         private Button btnAnnulla;
         private Button btnConferma;
-        private ComboBox cboTipoCartella;
-        private Label lblTipoCartella;
-        private TextBox txtProgressivo;
-        private Label lblProgressivo;
-        private ComboBox cboStato;
-        private Label lblStato;
     }
 }

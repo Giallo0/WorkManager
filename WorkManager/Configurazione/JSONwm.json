@@ -3,67 +3,63 @@
       { 
          "ID" : "1", 
          "Titolo" : "Nuovo cliente", 
-         "Programma" : "GestioneCartella", 
+         "Programma" : "GestioneCliente", 
          "Bitmap" : "NuovoCliente_24x24", 
          "Linkage" : "ICliente   "
       }, 
       { 
          "ID" : "3", 
          "Titolo" : "Modifica cliente", 
-         "Programma" : "GestioneCartella", 
+         "Programma" : "GestioneCliente", 
          "Bitmap" : "ModificaCliente_24x24", 
          "Linkage" : "GCliente   "
       }, 
       { 
          "ID" : "4", 
          "Titolo" : "Elimina Cliente", 
-         "Programma" : "GestioneCartella", 
+         "Programma" : "GestioneCliente", 
          "Bitmap" : "RimuoviCliente_24x24", 
          "Linkage" : "ECliente   "
       }, 
       { 
          "ID" : "7", 
          "Titolo" : "Nuova attività", 
-         "Programma" : "GestioneCartella", 
+         "Programma" : "GestioneAttivita", 
          "Bitmap" : "NuovaAttivita_24x24", 
-         "Linkage" : "IAttività  "
+         "Linkage" : "IAttivita  "
       }, 
       { 
          "ID" : "9", 
          "Titolo" : "Modifica attività", 
-         "Programma" : "GestioneCartella", 
+         "Programma" : "GestioneAttivita", 
          "Bitmap" : "ModificaAttivita_24x24", 
-         "Linkage" : "GAttività  "
+         "Linkage" : "GAttivita  "
       }, 
       { 
          "ID" : "10", 
          "Titolo" : "Elimina attività", 
-         "Programma" : "GestioneCartella", 
+         "Programma" : "GestioneAttivita", 
          "Bitmap" : "RimuoviAttivita_24x24", 
-         "Linkage" : "EAttività  "
+         "Linkage" : "EAttivita  "
+      }, 
+      { 
+         "ID" : "16", 
+         "Titolo" : "Opera attività", 
+         "Programma" : "OperaAttivita", 
+         "Bitmap" : "OperaAttivita_24x24", 
+         "Linkage" : ""
       }, 
       { 
          "ID" : "2", 
          "Titolo" : "Apri cartella", 
          "Programma" : "ApriCartella", 
-         "Bitmap" : "ApriCartella_24x24"
+         "Bitmap" : "ApriCartella_24x24", 
+         "Linkage" : ""
       }
    ], 
-   "CntID" : "15", 
+   "CntID" : "16", 
    "Parametri" : [ 
-      { 
-         "Programma" : "GestioneCartella", 
-         "Parametro" : "TipoCartella", 
-         "Valore" : "ND;Cliente;Attività", 
-         "Descrizione" : "Tipologia di cartella separati da ';'"
-      }, 
-      { 
-         "Programma" : "GestioneCartella", 
-         "Parametro" : "StatiAttivita", 
-         "Valore" : "Aperta;Chiusa", 
-         "Descrizione" : "Stati attività separati da ';'"
-      }
    ], 
    "Chiusura" : "F", 
-   "Workspace" : ""
+   "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace"
 }

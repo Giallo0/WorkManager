@@ -26,8 +26,11 @@ namespace WorkManager
             pnlLinkage.Controls.Clear();
             switch (LKGestioneLinkage.nomePgm)
             {
-                case "GestioneCartella":
-                    pnlLinkage.Controls.Add(new pnlLKGestioneCartella());
+                case "GestioneCliente":
+                    pnlLinkage.Controls.Add(new pnlLKGestioneCliente());
+                    break;
+                case "GestioneAttivita":
+                    pnlLinkage.Controls.Add(new pnlLKGestioneAttivita());
                     break;
             }
         }
@@ -37,7 +40,10 @@ namespace WorkManager
             switch (LKGestioneLinkage.nomePgm)
             {
                 case "GestioneCartella":
-                    LKGestioneLinkage.linkage = LKGestioneCartella.CodificaLinkageString();
+                    LKGestioneLinkage.linkage = LKGestioneCliente.CodificaLinkageString();
+                    break;
+                case "GestioneAttivita":
+                    LKGestioneLinkage.linkage = LKGestioneAttivita.CodificaLinkageString();
                     break;
             }
             this.DialogResult = DialogResult.OK;

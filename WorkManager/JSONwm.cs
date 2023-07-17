@@ -44,12 +44,12 @@ namespace WorkManager
 
     internal enum ChiaviParametri
     {
-        Programma, Parametro, Valore, Descrizione
+        Gruppo, Parametro, Valore, Descrizione
     }
 
     internal class ComponentiParametri
     {
-        public string? Programma { get; set; }
+        public string? Gruppo { get; set; }
 
         public string? Parametro { get; set; }
 
@@ -99,14 +99,14 @@ namespace WorkManager
             jnode = JSONNode.Parse(File.ReadAllText(pathJSONwm));
         }
 
-        public string getValue(string key)
+        public string getValue<T>(T key)
         {
-            return jnode[key].Value;
+            return jnode[key.ToString()].Value;
         }
 
-        public void setValue(string key, string value) 
+        public void setValue<T>(T key, string value) 
         {
-            jnode[key] = value;
+            jnode[key.ToString()] = value;
         }
         
         public void salva()
@@ -194,7 +194,7 @@ namespace WorkManager
                     nodo[ChiaviMenu.Titolo.ToString()] = function.Titolo;
                     nodo[ChiaviMenu.Programma.ToString()] = function.Programma;
                     nodo[ChiaviMenu.Bitmap.ToString()] = function.Bitmap;
-                    nodo[ChiaviMenu.Linkage.ToString()] = function.Linkage;
+                    nodo[ChiaviMenu.Linkage.ToString()] = function.Linkage ?? string.Empty;
                     break;
                 }
             }
@@ -228,11 +228,11 @@ namespace WorkManager
             ComponentiParametri componente = new ComponentiParametri();
             foreach (JSONNode nodo in jnode[ChiaviRoot.Parametri.ToString()].Childs)
             {
-                string prog = nodo[ChiaviParametri.Programma.ToString()];
+                string prog = nodo[ChiaviParametri.Gruppo.ToString()];
                 string param = nodo[ChiaviParametri.Parametro.ToString()];
                 if (prog == programma && param == parametro)
                 {
-                    componente.Programma = nodo[ChiaviParametri.Programma.ToString()];
+                    componente.Gruppo = nodo[ChiaviParametri.Gruppo.ToString()];
                     componente.Parametro = nodo[ChiaviParametri.Parametro.ToString()];
                     componente.Valore = nodo[ChiaviParametri.Valore.ToString()];
                     componente.Descrizione = nodo[ChiaviParametri.Descrizione.ToString()];
@@ -247,24 +247,24 @@ namespace WorkManager
             List<string> gruppi = new List<string>();
             foreach (JSONNode nodo in jnode[ChiaviRoot.Parametri.ToString()].Childs)
             {
-                if (!gruppi.Contains(nodo[ChiaviParametri.Programma.ToString()]))
+                if (!gruppi.Contains(nodo[ChiaviParametri.Gruppo.ToString()]))
                 {
-                    gruppi.Add(nodo[ChiaviParametri.Programma.ToString()]);
+                    gruppi.Add(nodo[ChiaviParametri.Gruppo.ToString()]);
                 }
             }
             return gruppi;
         }
 
-        public List<ComponentiParametri> getParametriElements(string programma)
+        public List<ComponentiParametri> getParametriElements(string gruppo)
         {
             List<ComponentiParametri> elementi = new List<ComponentiParametri>();
             foreach (JSONNode nodo in jnode[ChiaviRoot.Parametri.ToString()].Childs)
             {
-                string p = nodo[ChiaviParametri.Programma.ToString()];
-                if (p == programma)
+                string p = nodo[ChiaviParametri.Gruppo.ToString()];
+                if (p == gruppo)
                 {
                     ComponentiParametri componente = new ComponentiParametri();
-                    componente.Programma = nodo[ChiaviParametri.Programma.ToString()];
+                    componente.Gruppo = nodo[ChiaviParametri.Gruppo.ToString()];
                     componente.Parametro = nodo[ChiaviParametri.Parametro.ToString()];
                     componente.Valore = nodo[ChiaviParametri.Valore.ToString()];
                     componente.Descrizione = nodo[ChiaviParametri.Descrizione.ToString()];
@@ -277,7 +277,7 @@ namespace WorkManager
         public void addParametri(ComponentiParametri function)
         {
             JSONNode nodo = JSONNode.Parse("{ }");
-            nodo[ChiaviParametri.Programma.ToString()] = function.Programma;
+            nodo[ChiaviParametri.Gruppo.ToString()] = function.Gruppo;
             nodo[ChiaviParametri.Parametro.ToString()] = function.Parametro;
             nodo[ChiaviParametri.Valore.ToString()] = function.Valore;
             nodo[ChiaviParametri.Descrizione.ToString()] = function.Descrizione;
@@ -290,7 +290,7 @@ namespace WorkManager
         {
             foreach (JSONNode nodo in jnode[ChiaviRoot.Parametri.ToString()].Childs)
             {
-                if ((nodo[ChiaviParametri.Programma.ToString()].Value == function.Programma) &&
+                if ((nodo[ChiaviParametri.Gruppo.ToString()].Value == function.Gruppo) &&
                     (nodo[ChiaviParametri.Parametro.ToString()].Value == oldParametro))
                 {
                     nodo[ChiaviParametri.Parametro.ToString()] = function.Parametro;
@@ -306,7 +306,7 @@ namespace WorkManager
         {
             for (int cnt = 0; cnt < jnode[ChiaviRoot.Parametri.ToString()].Count; cnt++)
             {
-                if ((jnode[ChiaviRoot.Parametri.ToString()][cnt][ChiaviParametri.Programma.ToString()].Value == function.Programma) &&
+                if ((jnode[ChiaviRoot.Parametri.ToString()][cnt][ChiaviParametri.Gruppo.ToString()].Value == function.Gruppo) &&
                     (jnode[ChiaviRoot.Parametri.ToString()][cnt][ChiaviParametri.Parametro.ToString()].Value == function.Parametro))
                 {
                     jnode[ChiaviRoot.Parametri.ToString()].Remove(cnt);

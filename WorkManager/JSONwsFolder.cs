@@ -9,7 +9,7 @@ namespace WorkManager
 {
     internal enum ChiaviwsFolder
     {
-        Tipo, DataCreazione, OraCreazione, DataModifica, OraModifica, CntAtt, Stato
+        Tipo, DataCreazione, OraCreazione, DataModifica, OraModifica, CntAtt, Stato, Priorita
     }
 
     internal class ComponentiwsFolder
@@ -27,6 +27,8 @@ namespace WorkManager
         public string? CntAtt { get; set; }
 
         public string? Stato { get; set; }
+
+        public string? Priorita { get; set; }
     }
 
     internal class JSONwsFolder
@@ -77,14 +79,14 @@ namespace WorkManager
             }
         }
 
-        public string getValue(string key)
+        public string getValue(ChiaviwsFolder key)
         {
-            return jnode[key].Value;
+            return jnode[key.ToString()].Value;
         }
 
-        public void setValue(string key, string value)
+        public void setValue(ChiaviwsFolder key, string value)
         {
-            jnode[key] = value;
+            jnode[key.ToString()] = value;
         }
 
         public void salva()
@@ -101,10 +103,11 @@ namespace WorkManager
 
         public void newFolder(ComponentiwsFolder fold)
         {
-            setValue(ChiaviwsFolder.Tipo.ToString(), fold.Tipo);
-            setValue(ChiaviwsFolder.DataCreazione.ToString(), fold.DataCreazione);
-            setValue(ChiaviwsFolder.OraCreazione.ToString(), fold.OraCreazione);
-            setValue(ChiaviwsFolder.Stato.ToString(), fold.Stato);
+            setValue(ChiaviwsFolder.Tipo, fold.Tipo);
+            setValue(ChiaviwsFolder.DataCreazione, fold.DataCreazione);
+            setValue(ChiaviwsFolder.OraCreazione, fold.OraCreazione);
+            setValue(ChiaviwsFolder.Stato, fold.Stato);
+            setValue(ChiaviwsFolder.Priorita, fold.Priorita);
             salva();
         }
     }

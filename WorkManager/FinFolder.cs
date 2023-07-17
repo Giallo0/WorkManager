@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using WorkManager.Linkage;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static WorkManager.TipiCartella;
 
 namespace WorkManager
 {
@@ -45,13 +46,13 @@ namespace WorkManager
             {
                 dt.Rows.Add(new object[] {
                     string.Empty,                                                               //Progressivo
-                    Path.GetFileName(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString())),    //Nome
-                    "Root",                                                                     //Tipo
+                    Path.GetFileName(Globale.jwm.getValue(ChiaviRoot.Workspace)),               //Nome
+                    ParametriCostanti<TipiCartella>.getName(TipiCartella.Root),                //Tipo
                     string.Empty,                                                               //Cliente
-                    Globale.jwm.getValue(ChiaviRoot.Workspace.ToString())                       //Percorso
+                    Globale.jwm.getValue(ChiaviRoot.Workspace)                                  //Percorso
                 });
             }
-            TrovaSottoCartelle(Globale.jwm.getValue(ChiaviRoot.Workspace.ToString()));
+            TrovaSottoCartelle(Globale.jwm.getValue(ChiaviRoot.Workspace));
             gridCartelle.DataSource = dt;
 
             gridCartelle.Columns["Nome"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -68,15 +69,12 @@ namespace WorkManager
             //Riempi combo Tipi
             cboTipo.Items.Clear();
             cboTipo.Items.Add("Tutti");
-            cboTipo.Items.Add("Root");
-            string[] tipiCartella = Globale.jwm.getParametro("GestioneCartella", "TipoCartella").Valore.ToString().Split(';') ?? new string[0];
-            cboTipo.Items.AddRange(tipiCartella);
-            cboTipo.Items.Remove("ND");
+            cboTipo.Items.AddRange(ParametriCostanti<TipiCartella>.getNames());
             cboTipo.SelectedIndex = 0;
 
-            if (!string.IsNullOrEmpty(LKFinFolder.limitaTipoCartella))
+            if (!string.IsNullOrEmpty(LKFinFolder.TipoCartella))
             {
-                cboTipo.SelectedItem = LKFinFolder.limitaTipoCartella;
+                cboTipo.SelectedItem = LKFinFolder.TipoCartella;
                 cboTipo.Enabled = false;
             }
         }
@@ -90,14 +88,14 @@ namespace WorkManager
                 {
                     JSONwsFolder jwsF = new JSONwsFolder(dir, false);
                     if (!jwsF.isNull() &&
-                        (LKFinFolder.limitaTipoCartella == string.Empty || LKFinFolder.limitaTipoCartella == jwsF.getValue(ChiaviwsFolder.Tipo.ToString())))
+                        (LKFinFolder.TipoCartella == string.Empty || LKFinFolder.TipoCartella == jwsF.getValue(ChiaviwsFolder.Tipo)))
                     {
-                        if (jwsF.getValue(ChiaviwsFolder.Tipo.ToString()) == "Attività")
+                        if (jwsF.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita))
                         {
                             dt.Rows.Add(new object[] {
                                 Path.GetFileName(dir).Substring(0, 3),          //Progressivo
                                 Path.GetFileName(dir).Substring(4),             //Nome
-                                jwsF.getValue(ChiaviwsFolder.Tipo.ToString()),  //Tipo
+                                jwsF.getValue(ChiaviwsFolder.Tipo),             //Tipo
                                 Directory.GetParent(dir).Name,                  //Cliente
                                 dir                                             //Percorso
                             });
@@ -111,7 +109,7 @@ namespace WorkManager
                             dt.Rows.Add(new object[] {
                                 string.Empty,                                   //Progressivo
                                 Path.GetFileName(dir),                          //Nome
-                                jwsF.getValue(ChiaviwsFolder.Tipo.ToString()),  //Tipo
+                                jwsF.getValue(ChiaviwsFolder.Tipo),             //Tipo
                                 Path.GetFileName(dir),                          //Cliente
                                 dir                                             //Percorso
                             });
@@ -150,7 +148,8 @@ namespace WorkManager
 
         private void cboTipo_TextChanged(object sender, EventArgs e)
         {
-            if (cboTipo.Text == "Cliente" || cboTipo.Text == "Root")
+            if (cboTipo.Text == ParametriCostanti<TipiCartella>.getName(TipiCartella.Cliente) || 
+                cboTipo.Text == ParametriCostanti<TipiCartella>.getName(TipiCartella.Root))
             {
                 cboCliente.SelectedIndex = 0;
                 cboCliente.Enabled = false;

@@ -25,13 +25,17 @@ namespace WorkManager.PanelImpostazioni
         {
             cboGruppo.Items.Clear();
             cboGruppo.Items.AddRange(Globale.jwm.getGruppiParametri().ToArray());
-            cboGruppo.SelectedIndex = 0;
+            if (cboGruppo.Items.Count > 0)
+            {
+                cboGruppo.SelectedIndex = 0;
+            }
+            cboGruppo_TextChanged(null, null);
         }
 
         private void eliminaRigaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ComponentiParametri param = new ComponentiParametri();
-            param.Programma = cboGruppo.Text;
+            param.Gruppo = cboGruppo.Text;
             param.Parametro = parametro;
             Globale.jwm.removeParametri(param);
             gridGestioneCartella.Rows.RemoveAt(gridGestioneCartella.CurrentRow.Index);
@@ -44,7 +48,7 @@ namespace WorkManager.PanelImpostazioni
                 if (controllaDati(e.RowIndex))
                 {
                     ComponentiParametri param = new ComponentiParametri();
-                    param.Programma = cboGruppo.Text;
+                    param.Gruppo = cboGruppo.Text;
                     param.Parametro = gridGestioneCartella[0, e.RowIndex].Value.ToString();
                     param.Valore = gridGestioneCartella[1, e.RowIndex].Value.ToString();
                     param.Descrizione = (gridGestioneCartella[2, e.RowIndex].Value ?? string.Empty).ToString();
@@ -110,10 +114,18 @@ namespace WorkManager.PanelImpostazioni
 
         private void cboGruppo_TextChanged(object sender, EventArgs e)
         {
-            gridGestioneCartella.Rows.Clear();
-            foreach (ComponentiParametri param in Globale.jwm.getParametriElements(cboGruppo.Text))
+            if (!string.IsNullOrEmpty(cboGruppo.Text))
             {
-                gridGestioneCartella.Rows.Add(param.Parametro, param.Valore, param.Descrizione);
+                gridGestioneCartella.Enabled = true;
+                gridGestioneCartella.Rows.Clear();
+                foreach (ComponentiParametri param in Globale.jwm.getParametriElements(cboGruppo.Text))
+                {
+                    gridGestioneCartella.Rows.Add(param.Parametro, param.Valore, param.Descrizione);
+                }
+            }
+            else
+            {
+                gridGestioneCartella.Enabled = false;
             }
         }
     }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WorkManager.Linkage.PnlLinkage
 {
-    public partial class pnlLKGestioneCartella : UserControl
+    public partial class pnlLKGestioneCliente : UserControl
     {
-        public pnlLKGestioneCartella()
+        public pnlLKGestioneCliente()
         {
             InitializeComponent();
             InitializeComponentPersonalizzato();
@@ -20,17 +20,14 @@ namespace WorkManager.Linkage.PnlLinkage
 
         private void InitializeComponentPersonalizzato()
         {
-            string[] tipiCartella = Globale.jwm.getParametro("GestioneCartella", "TipoCartella").Valore.ToString().Split(';') ?? new string[0];
-            cboTipoCartella.Items.AddRange(tipiCartella);
-
             //Imposta linkage
-            LKGestioneCartella.ClearLinkage();
+            LKGestioneCliente.ClearLinkage();
             if (!string.IsNullOrEmpty(LKGestioneLinkage.linkage))
             {
-                LKGestioneCartella.DecodificaLinkageString(LKGestioneLinkage.linkage);
+                LKGestioneCliente.DecodificaLinkageString(LKGestioneLinkage.linkage);
             }
 
-            switch (LKGestioneCartella.funzione)
+            switch (LKGestioneCliente.funzione)
             {
                 case "I":
                     rbtInserimento.Checked = true;
@@ -45,36 +42,21 @@ namespace WorkManager.Linkage.PnlLinkage
                     rbtInserimento.Checked = true;
                     break;
             }
-
-            if (string.IsNullOrEmpty(LKGestioneCartella.TipoCartella))
-            {
-                cboTipoCartella.SelectedIndex = 0;
-                LKGestioneCartella.TipoCartella = cboTipoCartella.Text;
-            }
-            else
-            {
-                cboTipoCartella.Text = LKGestioneCartella.TipoCartella;
-            }
         }
 
         private void rbtInserimento_CheckedChanged(object sender, EventArgs e)
         {
-            LKGestioneCartella.funzione = "I";
+            LKGestioneCliente.funzione = "I";
         }
 
         private void rbtModifica_CheckedChanged(object sender, EventArgs e)
         {
-            LKGestioneCartella.funzione = "G";
+            LKGestioneCliente.funzione = "G";
         }
 
         private void rbtEliminazione_CheckedChanged(object sender, EventArgs e)
         {
-            LKGestioneCartella.funzione = "E";
-        }
-
-        private void cboTipoCartella_TextChanged(object sender, EventArgs e)
-        {
-            LKGestioneCartella.TipoCartella = cboTipoCartella.Text;
+            LKGestioneCliente.funzione = "E";
         }
     }
 }

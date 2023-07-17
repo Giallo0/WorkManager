@@ -4,7 +4,16 @@
     <_LastSelectedProfileId>C:\Users\giallombardom\Documents\GitHub\WorkManager\WorkManager\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Funzioni\GestioneCartella.cs">
+    <Compile Update="Funzioni\CambiaStatoAttivita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Funzioni\GestioneAttivita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Funzioni\GestioneCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Funzioni\OperaAttivita.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GestioneLinkage.cs">
@@ -13,7 +22,10 @@
     <Compile Update="GestioneMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Linkage\PnlLinkage\pnlLKGestioneCartella.cs">
+    <Compile Update="Linkage\PnlLinkage\pnlLKGestioneAttivita.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Linkage\PnlLinkage\pnlLKGestioneCliente.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Login.cs">

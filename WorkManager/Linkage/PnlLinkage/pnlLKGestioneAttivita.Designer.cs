@@ -1,6 +1,6 @@
 ﻿namespace WorkManager.Linkage.PnlLinkage
 {
-    partial class pnlLKGestioneCartella
+    partial class pnlLKGestioneAttivita
     {
         /// <summary> 
         /// Variabile di progettazione necessaria.
@@ -32,8 +32,6 @@
             rbtEliminazione = new RadioButton();
             rbtModifica = new RadioButton();
             rbtInserimento = new RadioButton();
-            label1 = new Label();
-            cboTipoCartella = new ComboBox();
             gbxFunzione.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,7 +43,7 @@
             gbxFunzione.Location = new Point(20, 20);
             gbxFunzione.Name = "gbxFunzione";
             gbxFunzione.Size = new Size(200, 101);
-            gbxFunzione.TabIndex = 0;
+            gbxFunzione.TabIndex = 1;
             gbxFunzione.TabStop = false;
             gbxFunzione.Text = "Funzione";
             // 
@@ -85,39 +83,17 @@
             rbtInserimento.UseVisualStyleBackColor = true;
             rbtInserimento.CheckedChanged += rbtInserimento_CheckedChanged;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(240, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(90, 17);
-            label1.TabIndex = 1;
-            label1.Text = "TipoCartella:";
-            // 
-            // cboTipoCartella
-            // 
-            cboTipoCartella.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboTipoCartella.FormattingEnabled = true;
-            cboTipoCartella.Location = new Point(336, 37);
-            cboTipoCartella.Name = "cboTipoCartella";
-            cboTipoCartella.Size = new Size(180, 25);
-            cboTipoCartella.TabIndex = 2;
-            cboTipoCartella.TextChanged += cboTipoCartella_TextChanged;
-            // 
-            // pnlLKGestioneCartella
+            // pnlLKGestioneAttivita
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(cboTipoCartella);
-            Controls.Add(label1);
             Controls.Add(gbxFunzione);
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            Name = "pnlLKGestioneCartella";
+            Name = "pnlLKGestioneAttivita";
             Size = new Size(1250, 640);
             gbxFunzione.ResumeLayout(false);
             gbxFunzione.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -126,7 +102,5 @@
         private RadioButton rbtEliminazione;
         private RadioButton rbtModifica;
         private RadioButton rbtInserimento;
-        private Label label1;
-        private ComboBox cboTipoCartella;
     }
 }

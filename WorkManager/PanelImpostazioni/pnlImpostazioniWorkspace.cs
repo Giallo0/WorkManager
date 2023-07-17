@@ -20,7 +20,7 @@ namespace WorkManager.PanelImpostazioni
 
         private void InitializeComponentPersonalizzato()
         {
-            txtPath.Text = Globale.jwm.getValue(ChiaviRoot.Workspace.ToString());
+            txtPath.Text = Globale.jwm.getValue(ChiaviRoot.Workspace);
 
             txtDescrizione.Lines = getDescrizione();
         }
@@ -29,7 +29,7 @@ namespace WorkManager.PanelImpostazioni
         {
             if (DialogResult.Yes == MessageBox.Show("Cambiare percorso del Workspace?", "Attenzione", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                Globale.jwm.setValue(ChiaviRoot.Workspace.ToString(), string.Empty);
+                Globale.jwm.setValue(ChiaviRoot.Workspace, string.Empty);
                 Globale.jwm.salva();
                 Application.Restart();
             }

@@ -157,7 +157,7 @@ namespace WorkManager
                 noErrori = false;
                 goto controllaDatiErr;
             }
-            if (Type.GetType($"WorkManager.Linkage.LK{cboProgramma.Text}") != null && string.IsNullOrEmpty(LKGestioneLinkage.linkage))
+            if (Type.GetType($"WorkManager.Linkage.PnlLinkage.pnlLK{cboProgramma.Text}") != null && string.IsNullOrEmpty(LKGestioneLinkage.linkage))
             {
                 MessageBox.Show("Linkage non valorizzata", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnLinkage.Focus();
@@ -237,7 +237,7 @@ namespace WorkManager
         private void cboProgramma_TextChanged(object sender, EventArgs e)
         {
             btnLinkage.Enabled = false;
-            if (Type.GetType($"WorkManager.Linkage.LK{cboProgramma.Text}") != null)
+            if (Type.GetType($"WorkManager.Linkage.PnlLinkage.pnlLK{cboProgramma.Text}") != null)
             {
                 btnLinkage.Enabled = true;
             }

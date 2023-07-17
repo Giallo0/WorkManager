@@ -13,7 +13,7 @@ namespace WorkManager
             ApplicationConfiguration.Initialize();
             
             Globale.jwm = new JSONwm();
-            string workspace = Globale.jwm.getValue(ChiaviRoot.Workspace.ToString());
+            string workspace = Globale.jwm.getValue(ChiaviRoot.Workspace);
 
             if (string.IsNullOrEmpty(workspace) || !Directory.Exists(workspace)) 
             { 

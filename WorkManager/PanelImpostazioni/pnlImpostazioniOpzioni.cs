@@ -20,13 +20,13 @@ namespace WorkManager.PanelImpostazioni
 
         private void InitializeComponentPersonalizzato()
         {
-            string chiusura = string.IsNullOrEmpty(Globale.jwm.getValue(ChiaviRoot.Chiusura.ToString())) ? "F" : Globale.jwm.getValue(ChiaviRoot.Chiusura.ToString());
+            string chiusura = string.IsNullOrEmpty(Globale.jwm.getValue(ChiaviRoot.Chiusura)) ? "F" : Globale.jwm.getValue(ChiaviRoot.Chiusura);
             chkChiusura.Checked = chiusura == "B" ? true : false;
         }
 
         private void chkChiusura_CheckedChanged(object sender, EventArgs e)
         {
-            Globale.jwm.setValue(ChiaviRoot.Chiusura.ToString(), chkChiusura.Checked ? "B" : "F");
+            Globale.jwm.setValue(ChiaviRoot.Chiusura, chkChiusura.Checked ? "B" : "F");
             Globale.jwm.salva();
         }
     }

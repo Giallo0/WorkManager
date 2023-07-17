@@ -34,7 +34,7 @@ namespace WorkManager
             {
                 if (Directory.Exists(txtPath.Text))
                 {
-                    Globale.jwm.setValue(ChiaviRoot.Workspace.ToString(), txtPath.Text);
+                    Globale.jwm.setValue(ChiaviRoot.Workspace, txtPath.Text);
                     Globale.jwm.salva();
                     this.DialogResult = DialogResult.OK;
                 }
