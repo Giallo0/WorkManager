@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,8 +43,11 @@ namespace WorkManager
             Type[] typeList = Assembly.GetExecutingAssembly().GetTypes().Where(t => String.Equals(t.Namespace, "WorkManager.Funzioni", StringComparison.Ordinal)).ToArray();
             for (int i = 0; i < typeList.Length - 1; i++)
             {
-                string nome = typeList[i].Name;
-                cboProgramma.Items.Add(nome);
+                if (Attribute.GetCustomAttribute(typeList[i], typeof(CompilerGeneratedAttribute)) == null)
+                {
+                    string nome = typeList[i].Name;
+                    cboProgramma.Items.Add(nome);
+                }
             }
 
             cboBitmap.Items.Clear();

@@ -120,6 +120,11 @@ namespace WorkManager
             this.Close();
         }
 
+        private void btnBonifica_Click(object sender, EventArgs e)
+        {
+            Funzione.Apri(btnBonifica.Tag.ToString(), "WorkManager");
+        }
+
         private void notifyPrgm_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             openProgram();
@@ -183,7 +188,10 @@ namespace WorkManager
 
             ImpostaFiltro();
 
-            gridAttivitaAperte.Rows[0].Selected = true;
+            if (gridAttivitaAperte.Rows.Count > 0)
+            {
+                gridAttivitaAperte.Rows[0].Selected = true;
+            }
         }
 
         private void TrovaSottoCartelle(string padre)

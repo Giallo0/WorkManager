@@ -46,20 +46,24 @@
          "ID" : "16", 
          "Titolo" : "Opera attività", 
          "Programma" : "OperaAttivita", 
-         "Bitmap" : "OperaAttivita_24x24", 
-         "Linkage" : ""
+         "Bitmap" : "OperaAttivita_24x24"
       }, 
       { 
          "ID" : "2", 
          "Titolo" : "Apri cartella", 
          "Programma" : "ApriCartella", 
-         "Bitmap" : "ApriCartella_24x24", 
-         "Linkage" : ""
+         "Bitmap" : "ApriCartella_24x24"
       }
    ], 
    "CntID" : "16", 
    "Parametri" : [ 
+      { 
+         "Gruppo" : "BONIFICA", 
+         "Parametro" : "EseguiBonifica", 
+         "Valore" : "N", 
+         "Descrizione" : "Parametro per abilitare o disabilitare l'esecuzione del programma di bonifica lanciabile da menù"
+      }
    ], 
    "Chiusura" : "F", 
-   "Workspace" : "C:\\Users\\matti\\Desktop\\Workspace"
+   "Workspace" : ""
 }

@@ -73,6 +73,16 @@ namespace WorkManager.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Bonifica_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Bonifica_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cartella_24x24 {
             get {
                 object obj = ResourceManager.GetObject("cartella_24x24", resourceCulture);

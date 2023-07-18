@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WMmain));
             pnlListMenu = new Panel();
             pnlFunction = new Panel();
+            btnBonifica = new Button();
             btnEsci = new Button();
             btnImpostazioni = new Button();
             btnGestioneMenu = new Button();
@@ -58,11 +59,22 @@
             // 
             resources.ApplyResources(pnlFunction, "pnlFunction");
             pnlFunction.BorderStyle = BorderStyle.FixedSingle;
+            pnlFunction.Controls.Add(btnBonifica);
             pnlFunction.Controls.Add(btnEsci);
             pnlFunction.Controls.Add(btnImpostazioni);
             pnlFunction.Controls.Add(btnGestioneMenu);
             pnlFunction.Controls.Add(btnAggiornaGriglia);
             pnlFunction.Name = "pnlFunction";
+            // 
+            // btnBonifica
+            // 
+            resources.ApplyResources(btnBonifica, "btnBonifica");
+            btnBonifica.FlatAppearance.BorderSize = 0;
+            btnBonifica.Image = Properties.Resources.Bonifica_32x32;
+            btnBonifica.Name = "btnBonifica";
+            btnBonifica.Tag = "BonificaCartelle";
+            btnBonifica.UseVisualStyleBackColor = true;
+            btnBonifica.Click += btnBonifica_Click;
             // 
             // btnEsci
             // 
@@ -182,5 +194,6 @@
         private ToolStripMenuItem chiudiToolStripMenuItem;
         private DataGridView gridAttivitaAperte;
         private Button btnAggiornaGriglia;
+        private Button btnBonifica;
     }
 }
