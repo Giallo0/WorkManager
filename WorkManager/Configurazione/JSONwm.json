@@ -53,9 +53,16 @@
          "Titolo" : "Apri cartella", 
          "Programma" : "ApriCartella", 
          "Bitmap" : "ApriCartella_24x24"
+      }, 
+      { 
+         "ID" : "17", 
+         "Titolo" : "Cambia Stato", 
+         "Programma" : "CambiaStatoAttivita", 
+         "Bitmap" : " - _24x24", 
+         "Linkage" : ""
       }
    ], 
-   "CntID" : "16", 
+   "CntID" : "17", 
    "Parametri" : [ 
       { 
          "Gruppo" : "BONIFICA", 
@@ -65,5 +72,5 @@
       }
    ], 
    "Chiusura" : "F", 
-   "Workspace" : ""
+   "Workspace" : "C:\\Users\\giallombardom\\Desktop\\Workspace"
 }

@@ -29,96 +29,51 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CambiaStatoAttivita));
-            pnlPrimaParte = new Panel();
-            pnlSecondaParte = new Panel();
-            lblAttivita = new Label();
-            txtAttivita = new TextBox();
-            btnCerca = new Button();
             btnConferma = new Button();
             btnAnnulla = new Button();
             pnlPulsanti = new Panel();
-            groupBox1 = new GroupBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton3 = new RadioButton();
-            radioButton4 = new RadioButton();
+            pnlPrimaParte = new Panel();
+            txtCliente = new TextBox();
+            btnCercaCliente = new Button();
+            lblCliente = new Label();
+            cboAttivita = new ComboBox();
+            lblAttivita = new Label();
+            pnlSecondaParte = new Panel();
+            gbStati = new GroupBox();
+            pnlPulsanti.SuspendLayout();
             pnlPrimaParte.SuspendLayout();
             pnlSecondaParte.SuspendLayout();
-            pnlPulsanti.SuspendLayout();
-            groupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnlPrimaParte
-            // 
-            pnlPrimaParte.Controls.Add(btnCerca);
-            pnlPrimaParte.Controls.Add(txtAttivita);
-            pnlPrimaParte.Controls.Add(lblAttivita);
-            pnlPrimaParte.Dock = DockStyle.Top;
-            pnlPrimaParte.Location = new Point(0, 0);
-            pnlPrimaParte.Name = "pnlPrimaParte";
-            pnlPrimaParte.Size = new Size(1250, 66);
-            pnlPrimaParte.TabIndex = 0;
-            // 
-            // pnlSecondaParte
-            // 
-            pnlSecondaParte.Controls.Add(groupBox1);
-            pnlSecondaParte.Dock = DockStyle.Fill;
-            pnlSecondaParte.Location = new Point(0, 66);
-            pnlSecondaParte.Name = "pnlSecondaParte";
-            pnlSecondaParte.Size = new Size(1250, 584);
-            pnlSecondaParte.TabIndex = 1;
-            // 
-            // lblAttivita
-            // 
-            lblAttivita.AutoSize = true;
-            lblAttivita.Location = new Point(12, 24);
-            lblAttivita.Name = "lblAttivita";
-            lblAttivita.Size = new Size(59, 17);
-            lblAttivita.TabIndex = 0;
-            lblAttivita.Text = "Attività:";
-            // 
-            // txtAttivita
-            // 
-            txtAttivita.Location = new Point(77, 21);
-            txtAttivita.Name = "txtAttivita";
-            txtAttivita.Size = new Size(616, 23);
-            txtAttivita.TabIndex = 1;
-            // 
-            // btnCerca
-            // 
-            btnCerca.Image = Properties.Resources.cerca_24x24;
-            btnCerca.Location = new Point(699, 16);
-            btnCerca.Name = "btnCerca";
-            btnCerca.Size = new Size(32, 32);
-            btnCerca.TabIndex = 2;
-            btnCerca.UseVisualStyleBackColor = true;
             // 
             // btnConferma
             // 
             btnConferma.Dock = DockStyle.Right;
             btnConferma.FlatAppearance.BorderSize = 0;
             btnConferma.FlatStyle = FlatStyle.Flat;
-            btnConferma.Location = new Point(1070, 0);
+            btnConferma.Location = new Point(1068, 0);
             btnConferma.Name = "btnConferma";
-            btnConferma.Size = new Size(90, 50);
+            btnConferma.Size = new Size(90, 48);
             btnConferma.TabIndex = 0;
             btnConferma.Text = "Conferma";
             btnConferma.UseVisualStyleBackColor = true;
+            btnConferma.Click += btnConferma_Click;
             // 
             // btnAnnulla
             // 
             btnAnnulla.Dock = DockStyle.Right;
             btnAnnulla.FlatAppearance.BorderSize = 0;
             btnAnnulla.FlatStyle = FlatStyle.Flat;
-            btnAnnulla.Location = new Point(1160, 0);
+            btnAnnulla.Location = new Point(1158, 0);
             btnAnnulla.Name = "btnAnnulla";
-            btnAnnulla.Size = new Size(90, 50);
+            btnAnnulla.Size = new Size(90, 48);
             btnAnnulla.TabIndex = 1;
             btnAnnulla.Text = "Annulla";
             btnAnnulla.UseVisualStyleBackColor = true;
+            btnAnnulla.Click += btnAnnulla_Click;
             // 
             // pnlPulsanti
             // 
+            pnlPulsanti.BorderStyle = BorderStyle.FixedSingle;
             pnlPulsanti.Controls.Add(btnConferma);
             pnlPulsanti.Controls.Add(btnAnnulla);
             pnlPulsanti.Dock = DockStyle.Bottom;
@@ -127,62 +82,80 @@
             pnlPulsanti.Size = new Size(1250, 50);
             pnlPulsanti.TabIndex = 2;
             // 
-            // groupBox1
+            // pnlPrimaParte
             // 
-            groupBox1.Controls.Add(radioButton4);
-            groupBox1.Controls.Add(radioButton3);
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
-            groupBox1.Location = new Point(77, 72);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(288, 364);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            pnlPrimaParte.Controls.Add(txtCliente);
+            pnlPrimaParte.Controls.Add(btnCercaCliente);
+            pnlPrimaParte.Controls.Add(lblCliente);
+            pnlPrimaParte.Controls.Add(cboAttivita);
+            pnlPrimaParte.Controls.Add(lblAttivita);
+            pnlPrimaParte.Dock = DockStyle.Top;
+            pnlPrimaParte.Location = new Point(0, 0);
+            pnlPrimaParte.Name = "pnlPrimaParte";
+            pnlPrimaParte.Size = new Size(1250, 50);
+            pnlPrimaParte.TabIndex = 6;
             // 
-            // radioButton1
+            // txtCliente
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(62, 59);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(109, 21);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "radioButton1";
-            radioButton1.UseVisualStyleBackColor = true;
+            txtCliente.Enabled = false;
+            txtCliente.Location = new Point(76, 12);
+            txtCliente.Name = "txtCliente";
+            txtCliente.Size = new Size(125, 23);
+            txtCliente.TabIndex = 4;
             // 
-            // radioButton2
+            // btnCercaCliente
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(61, 89);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(109, 21);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "radioButton2";
-            radioButton2.UseVisualStyleBackColor = true;
+            btnCercaCliente.Image = Properties.Resources.cerca_24x24;
+            btnCercaCliente.Location = new Point(207, 7);
+            btnCercaCliente.Name = "btnCercaCliente";
+            btnCercaCliente.Size = new Size(32, 32);
+            btnCercaCliente.TabIndex = 3;
+            btnCercaCliente.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // lblCliente
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(58, 127);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(109, 21);
-            radioButton3.TabIndex = 2;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "radioButton3";
-            radioButton3.UseVisualStyleBackColor = true;
+            lblCliente.AutoSize = true;
+            lblCliente.Location = new Point(12, 15);
+            lblCliente.Name = "lblCliente";
+            lblCliente.Size = new Size(58, 17);
+            lblCliente.TabIndex = 2;
+            lblCliente.Text = "Cliente:";
             // 
-            // radioButton4
+            // cboAttivita
             // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(62, 166);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(109, 21);
-            radioButton4.TabIndex = 3;
-            radioButton4.TabStop = true;
-            radioButton4.Text = "radioButton4";
-            radioButton4.UseVisualStyleBackColor = true;
+            cboAttivita.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboAttivita.FormattingEnabled = true;
+            cboAttivita.Location = new Point(365, 12);
+            cboAttivita.Name = "cboAttivita";
+            cboAttivita.Size = new Size(675, 25);
+            cboAttivita.TabIndex = 1;
+            // 
+            // lblAttivita
+            // 
+            lblAttivita.AutoSize = true;
+            lblAttivita.Location = new Point(300, 15);
+            lblAttivita.Name = "lblAttivita";
+            lblAttivita.Size = new Size(59, 17);
+            lblAttivita.TabIndex = 0;
+            lblAttivita.Text = "Attività:";
+            // 
+            // pnlSecondaParte
+            // 
+            pnlSecondaParte.Controls.Add(gbStati);
+            pnlSecondaParte.Dock = DockStyle.Fill;
+            pnlSecondaParte.Location = new Point(0, 50);
+            pnlSecondaParte.Name = "pnlSecondaParte";
+            pnlSecondaParte.Size = new Size(1250, 600);
+            pnlSecondaParte.TabIndex = 7;
+            // 
+            // gbStati
+            // 
+            gbStati.Location = new Point(27, 21);
+            gbStati.Name = "gbStati";
+            gbStati.Size = new Size(283, 555);
+            gbStati.TabIndex = 0;
+            gbStati.TabStop = false;
+            gbStati.Text = "Stati";
             // 
             // CambiaStatoAttivita
             // 
@@ -190,8 +163,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1250, 700);
             Controls.Add(pnlSecondaParte);
-            Controls.Add(pnlPulsanti);
             Controls.Add(pnlPrimaParte);
+            Controls.Add(pnlPulsanti);
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -199,29 +172,24 @@
             Name = "CambiaStatoAttivita";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CambiaStatoAttivita";
+            pnlPulsanti.ResumeLayout(false);
             pnlPrimaParte.ResumeLayout(false);
             pnlPrimaParte.PerformLayout();
             pnlSecondaParte.ResumeLayout(false);
-            pnlPulsanti.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel pnlPrimaParte;
-        private Button btnCerca;
-        private TextBox txtAttivita;
-        private Label lblAttivita;
-        private Panel pnlSecondaParte;
-        private GroupBox groupBox1;
-        private RadioButton radioButton4;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
         private Button btnConferma;
         private Button btnAnnulla;
         private Panel pnlPulsanti;
+        private Panel pnlPrimaParte;
+        private TextBox txtCliente;
+        private Button btnCercaCliente;
+        private Label lblCliente;
+        private ComboBox cboAttivita;
+        private Label lblAttivita;
+        private Panel pnlSecondaParte;
+        private GroupBox gbStati;
     }
 }
