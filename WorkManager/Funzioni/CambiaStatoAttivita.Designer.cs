@@ -111,6 +111,7 @@
             btnCercaCliente.Size = new Size(32, 32);
             btnCercaCliente.TabIndex = 3;
             btnCercaCliente.UseVisualStyleBackColor = true;
+            btnCercaCliente.Click += btnCercaCliente_Click;
             // 
             // lblCliente
             // 

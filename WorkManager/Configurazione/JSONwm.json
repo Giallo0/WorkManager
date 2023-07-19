@@ -58,7 +58,7 @@
          "ID" : "17", 
          "Titolo" : "Cambia Stato", 
          "Programma" : "CambiaStatoAttivita", 
-         "Bitmap" : " - _24x24", 
+         "Bitmap" : "CambioStato_24x24", 
          "Linkage" : ""
       }
    ], 

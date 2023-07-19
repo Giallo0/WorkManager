@@ -46,7 +46,10 @@ namespace WorkManager
                 if (Attribute.GetCustomAttribute(typeList[i], typeof(CompilerGeneratedAttribute)) == null)
                 {
                     string nome = typeList[i].Name;
-                    cboProgramma.Items.Add(nome);
+                    if (nome.Substring(0, 1) != "_")
+                    {
+                        cboProgramma.Items.Add(nome);
+                    }
                 }
             }
 

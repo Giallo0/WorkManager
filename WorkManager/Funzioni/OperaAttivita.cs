@@ -42,11 +42,13 @@ namespace WorkManager.Funzioni
             cboAttivita.Items.Clear();
             cboAttivita.Enabled = false;
 
-            if (!string.IsNullOrEmpty(LKOperaAttivita.cliente) && !string.IsNullOrEmpty(LKOperaAttivita.attivita))
+            if (!string.IsNullOrEmpty(LKOperaAttivita.cliente) &&
+                !string.IsNullOrEmpty(LKOperaAttivita.percorsoCliente) &&
+                !string.IsNullOrEmpty(LKOperaAttivita.attivita))
             {
                 txtCliente.Text = LKOperaAttivita.cliente;
                 percorsoCliente = LKOperaAttivita.percorsoCliente;
-                
+
                 TrovaAttivita(percorsoCliente);
                 cboAttivita.Text = LKOperaAttivita.attivita;
                 btnConferma_Click(null, null);
@@ -301,9 +303,30 @@ namespace WorkManager.Funzioni
 
         }
 
-        private void btnCambiaStato_Click(object sender, EventArgs e)
+        private void btnChiudiAttivita_Click(object sender, EventArgs e)
         {
+            LK_CambiaStatoAttivita.ClearLinkage();
+            LK_CambiaStatoAttivita.percorsoCliente = percorsoCliente;
+            LK_CambiaStatoAttivita.attivita = $"{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+            LK_CambiaStatoAttivita.stato = ParametriCostanti<StatiAttivita>.getName(StatiAttivita.Chiusa);
+            Funzione.Apri("_CambiaStatoAttivita");
 
+            if (!LK_CambiaStatoAttivita.erroriElab)
+            {                
+                if (linkageValorizzata)
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    parteAbilitata = 1;
+                    abilitaDisabilita();
+
+                    cboAttivita.Items.Clear();
+                    TrovaAttivita(percorsoCliente);
+                }
+            }
+            LK_CambiaStatoAttivita.ClearLinkage();
         }
     }
 }

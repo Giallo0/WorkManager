@@ -48,7 +48,7 @@
             pnlFunzioni = new Panel();
             btnRimuovi = new Button();
             btnRinomina = new Button();
-            btnCambiaStato = new Button();
+            btnChiudiAttivita = new Button();
             btnAddFile = new Button();
             btnAddCartella = new Button();
             pnlTop.SuspendLayout();
@@ -229,7 +229,7 @@
             // 
             pnlFunzioni.Controls.Add(btnRimuovi);
             pnlFunzioni.Controls.Add(btnRinomina);
-            pnlFunzioni.Controls.Add(btnCambiaStato);
+            pnlFunzioni.Controls.Add(btnChiudiAttivita);
             pnlFunzioni.Controls.Add(btnAddFile);
             pnlFunzioni.Controls.Add(btnAddCartella);
             pnlFunzioni.Dock = DockStyle.Right;
@@ -258,15 +258,15 @@
             btnRinomina.UseVisualStyleBackColor = true;
             btnRinomina.Click += btnRinomina_Click;
             // 
-            // btnCambiaStato
+            // btnChiudiAttivita
             // 
-            btnCambiaStato.Location = new Point(3, 129);
-            btnCambiaStato.Name = "btnCambiaStato";
-            btnCambiaStato.Size = new Size(191, 25);
-            btnCambiaStato.TabIndex = 2;
-            btnCambiaStato.Text = "Cambia Stato";
-            btnCambiaStato.UseVisualStyleBackColor = true;
-            btnCambiaStato.Click += btnCambiaStato_Click;
+            btnChiudiAttivita.Location = new Point(3, 129);
+            btnChiudiAttivita.Name = "btnChiudiAttivita";
+            btnChiudiAttivita.Size = new Size(191, 25);
+            btnChiudiAttivita.TabIndex = 2;
+            btnChiudiAttivita.Text = "Chiudi attività";
+            btnChiudiAttivita.UseVisualStyleBackColor = true;
+            btnChiudiAttivita.Click += btnChiudiAttivita_Click;
             // 
             // btnAddFile
             // 
@@ -328,7 +328,7 @@
         private DataGridViewTextBoxColumn colTipo;
         private DataGridViewTextBoxColumn colPercorso;
         private Panel pnlFunzioni;
-        private Button btnCambiaStato;
+        private Button btnChiudiAttivita;
         private Button btnAddFile;
         private Button btnAddCartella;
         private Button btnRinomina;

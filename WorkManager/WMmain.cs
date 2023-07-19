@@ -80,6 +80,23 @@ namespace WorkManager
 
                 locationY += 45;
             }
+
+            //Imposto il timer
+            string timerAbilitato = Globale.jwm.getParametro("TIMER_MENU", "millisecondi").Valore ?? "N";
+            if (timerAbilitato == "S")
+            {
+                //Imposto l'intervallo di aggiornamento
+                if (string.IsNullOrEmpty(Globale.jwm.getParametro("TIMER_MENU", "millisecondi").Valore))
+                {
+                    timerGridAttivita.Interval = 45000; //1 minuto in millisecondi
+                }
+                else
+                {
+                    timerGridAttivita.Interval = int.Parse(Globale.jwm.getParametro("TIMER_MENU", "millisecondi").Valore);
+                }
+
+                timerGridAttivita.Enabled = true;
+            }
         }
 
         private void btn_Click(object? sender, EventArgs e)
@@ -250,6 +267,7 @@ namespace WorkManager
                 LKOperaAttivita.attivita = $"{gridAttivitaAperte.CurrentRow.Cells["Progressivo"].Value.ToString()} - {gridAttivitaAperte.CurrentRow.Cells["Attivita"].Value.ToString()}";
                 Funzione.Apri("OperaAttivita");
                 LKOperaAttivita.ClearLinkage();
+                AggiornaGrigliaAttivita();
             }
         }
     }

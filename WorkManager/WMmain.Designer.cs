@@ -43,6 +43,7 @@
             mnuNotifyPrgm = new ContextMenuStrip(components);
             apriToolStripMenuItem = new ToolStripMenuItem();
             chiudiToolStripMenuItem = new ToolStripMenuItem();
+            timerGridAttivita = new System.Windows.Forms.Timer(components);
             pnlFunction.SuspendLayout();
             pnlAttivita.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridAttivitaAperte).BeginInit();
@@ -162,6 +163,10 @@
             chiudiToolStripMenuItem.Name = "chiudiToolStripMenuItem";
             chiudiToolStripMenuItem.Click += chiudiToolStripMenuItem_Click;
             // 
+            // timerGridAttivita
+            // 
+            timerGridAttivita.Interval = 45000;
+            // 
             // WMmain
             // 
             resources.ApplyResources(this, "$this");
@@ -195,5 +200,6 @@
         private DataGridView gridAttivitaAperte;
         private Button btnAggiornaGriglia;
         private Button btnBonifica;
+        private System.Windows.Forms.Timer timerGridAttivita;
     }
 }

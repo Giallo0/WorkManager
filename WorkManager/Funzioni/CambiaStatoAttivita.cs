@@ -14,8 +14,9 @@ namespace WorkManager.Funzioni
     public partial class CambiaStatoAttivita : Form
     {
         private int parteAbilitata;
-        private string statoAttivita;
         private string percorsoCliente;
+        private string percorsoAtt;
+        private JSONwsFolder jwsF;
 
         public CambiaStatoAttivita()
         {
@@ -25,6 +26,12 @@ namespace WorkManager.Funzioni
 
         private void PersonalizzaInizializzazione()
         {
+            //Titolo programma
+            if (Globale.functionCall != null)
+            {
+                this.Text = Globale.functionCall.Titolo;
+            }
+
             int Y = 0;
             foreach (string stato in ParametriCostanti<StatiAttivita>.getNames())
             {
@@ -40,9 +47,8 @@ namespace WorkManager.Funzioni
                 rbStato.TabStop = true;
                 rbStato.Text = stato;
                 rbStato.UseVisualStyleBackColor = true;
-                rbStato.CheckedChanged += rbStato_CheckedChanged;
 
-                if(Y == 30)
+                if (Y == 30)
                 {
                     rbStato.Checked = true;
                 }
@@ -50,6 +56,10 @@ namespace WorkManager.Funzioni
 
             parteAbilitata = 1;
             abilitaDisabilita();
+
+            txtCliente.Text = string.Empty;
+            cboAttivita.Items.Clear();
+            cboAttivita.Enabled = false;            
         }
 
         private void abilitaDisabilita()
@@ -57,6 +67,7 @@ namespace WorkManager.Funzioni
             switch (parteAbilitata)
             {
                 case 1:
+                    jwsF = null;
                     pnlPrimaParte.Enabled = true;
                     pnlSecondaParte.Enabled = false;
                     break;
@@ -64,15 +75,6 @@ namespace WorkManager.Funzioni
                     pnlPrimaParte.Enabled = false;
                     pnlSecondaParte.Enabled = true;
                     break;
-            }
-        }
-
-        private void rbStato_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton rb = (RadioButton)sender;
-            if (rb.Checked)
-            {
-                statoAttivita = rb.Text;
             }
         }
 
@@ -112,8 +114,7 @@ namespace WorkManager.Funzioni
                 {
                     JSONwsFolder jwsF = new JSONwsFolder(dir, false);
                     if (!jwsF.isNull() &&
-                        (jwsF.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita)) &&
-                        (jwsF.getValue(ChiaviwsFolder.Stato) == ParametriCostanti<StatiAttivita>.getName(StatiAttivita.Aperta)))
+                        (jwsF.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita)))
                     {
                         cboAttivita.Items.Add($"{Path.GetFileName(dir).Substring(0, 3)} - {Path.GetFileName(dir).Substring(4)}");
                     }
@@ -127,12 +128,50 @@ namespace WorkManager.Funzioni
             {
                 if (controllaDati())
                 {
-                    //Recupero stato
-                    //((RadioButton)gbStati.Controls[]).Checked = true;
+                    percorsoAtt = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+                    
+                    jwsF = new JSONwsFolder(percorsoAtt);
+                    if(!string.IsNullOrEmpty(jwsF.getValue(ChiaviwsFolder.Stato)) &&
+                        ParametriCostanti<StatiAttivita>.getNames().Contains(jwsF.getValue(ChiaviwsFolder.Stato)))
+                    {
+                        foreach(RadioButton rbStato in gbStati.Controls)
+                        {
+                            if (rbStato.Text == jwsF.getValue(ChiaviwsFolder.Stato)) 
+                            {
+                                rbStato.Checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ((RadioButton)gbStati.Controls[ParametriCostanti<StatiAttivita>.getName(StatiAttivita.Aperta)]).Checked = true;
+                    }
 
                     parteAbilitata = 2;
                     abilitaDisabilita();
                 }
+            }
+            else
+            {
+                LK_CambiaStatoAttivita.ClearLinkage();
+                LK_CambiaStatoAttivita.percorsoCliente = percorsoCliente;
+                LK_CambiaStatoAttivita.attivita = $"{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+
+                foreach (RadioButton rbStato in gbStati.Controls )
+                {
+                    if (rbStato.Checked)
+                    {
+                        LK_CambiaStatoAttivita.stato = rbStato.Text;
+                    }
+                }
+                Funzione.Apri("_CambiaStatoAttivita");
+                if (!LK_CambiaStatoAttivita.erroriElab)
+                {
+                    parteAbilitata = 1;
+                    abilitaDisabilita();
+                }
+                LK_CambiaStatoAttivita.ClearLinkage();
             }
         }
 
