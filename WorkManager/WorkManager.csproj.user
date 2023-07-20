@@ -4,6 +4,9 @@
     <_LastSelectedProfileId>C:\Users\giallombardom\Documents\GitHub\WorkManager\WorkManager\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="CustomDialogBox\GestioneCartellaAttivita.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Funzioni\CambiaStatoAttivita.cs">
       <SubType>Form</SubType>
     </Compile>

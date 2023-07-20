@@ -42,15 +42,17 @@
             pnlSecondaParte = new Panel();
             pnlContenuto = new Panel();
             gridContenuto = new DataGridView();
-            colNome = new DataGridViewTextBoxColumn();
-            colTipo = new DataGridViewTextBoxColumn();
-            colPercorso = new DataGridViewTextBoxColumn();
             pnlFunzioni = new Panel();
+            btnApriAttivita = new Button();
             btnRimuovi = new Button();
             btnRinomina = new Button();
             btnChiudiAttivita = new Button();
             btnAddFile = new Button();
             btnAddCartella = new Button();
+            colNome = new DataGridViewTextBoxColumn();
+            colEstensione = new DataGridViewTextBoxColumn();
+            colTipo = new DataGridViewTextBoxColumn();
+            colPercorso = new DataGridViewTextBoxColumn();
             pnlTop.SuspendLayout();
             pnlPrimaParte.SuspendLayout();
             pnlPulsanti.SuspendLayout();
@@ -192,7 +194,7 @@
             gridContenuto.AllowUserToResizeRows = false;
             gridContenuto.BackgroundColor = SystemColors.Control;
             gridContenuto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridContenuto.Columns.AddRange(new DataGridViewColumn[] { colNome, colTipo, colPercorso });
+            gridContenuto.Columns.AddRange(new DataGridViewColumn[] { colNome, colEstensione, colTipo, colPercorso });
             gridContenuto.Dock = DockStyle.Fill;
             gridContenuto.Location = new Point(10, 10);
             gridContenuto.MultiSelect = false;
@@ -202,6 +204,80 @@
             gridContenuto.Size = new Size(1030, 630);
             gridContenuto.TabIndex = 0;
             // 
+            // pnlFunzioni
+            // 
+            pnlFunzioni.Controls.Add(btnApriAttivita);
+            pnlFunzioni.Controls.Add(btnRimuovi);
+            pnlFunzioni.Controls.Add(btnRinomina);
+            pnlFunzioni.Controls.Add(btnChiudiAttivita);
+            pnlFunzioni.Controls.Add(btnAddFile);
+            pnlFunzioni.Controls.Add(btnAddCartella);
+            pnlFunzioni.Dock = DockStyle.Right;
+            pnlFunzioni.Location = new Point(1050, 0);
+            pnlFunzioni.Name = "pnlFunzioni";
+            pnlFunzioni.Size = new Size(200, 650);
+            pnlFunzioni.TabIndex = 1;
+            // 
+            // btnApriAttivita
+            // 
+            btnApriAttivita.Location = new Point(3, 6);
+            btnApriAttivita.Name = "btnApriAttivita";
+            btnApriAttivita.Size = new Size(191, 25);
+            btnApriAttivita.TabIndex = 5;
+            btnApriAttivita.Text = "Apri Attività";
+            btnApriAttivita.UseVisualStyleBackColor = true;
+            btnApriAttivita.Click += btnApriAttivita_Click;
+            // 
+            // btnRimuovi
+            // 
+            btnRimuovi.Location = new Point(3, 130);
+            btnRimuovi.Name = "btnRimuovi";
+            btnRimuovi.Size = new Size(191, 25);
+            btnRimuovi.TabIndex = 4;
+            btnRimuovi.Text = "Rimuovi";
+            btnRimuovi.UseVisualStyleBackColor = true;
+            btnRimuovi.Click += btnRimuovi_Click;
+            // 
+            // btnRinomina
+            // 
+            btnRinomina.Location = new Point(3, 99);
+            btnRinomina.Name = "btnRinomina";
+            btnRinomina.Size = new Size(191, 25);
+            btnRinomina.TabIndex = 3;
+            btnRinomina.Text = "Rinomina";
+            btnRinomina.UseVisualStyleBackColor = true;
+            btnRinomina.Click += btnRinomina_Click;
+            // 
+            // btnChiudiAttivita
+            // 
+            btnChiudiAttivita.Location = new Point(3, 161);
+            btnChiudiAttivita.Name = "btnChiudiAttivita";
+            btnChiudiAttivita.Size = new Size(191, 25);
+            btnChiudiAttivita.TabIndex = 2;
+            btnChiudiAttivita.Text = "Chiudi attività";
+            btnChiudiAttivita.UseVisualStyleBackColor = true;
+            btnChiudiAttivita.Click += btnChiudiAttivita_Click;
+            // 
+            // btnAddFile
+            // 
+            btnAddFile.Location = new Point(3, 68);
+            btnAddFile.Name = "btnAddFile";
+            btnAddFile.Size = new Size(191, 25);
+            btnAddFile.TabIndex = 1;
+            btnAddFile.Text = "Aggiungi file";
+            btnAddFile.UseVisualStyleBackColor = true;
+            btnAddFile.Click += btnAddFile_Click;
+            // 
+            // btnAddCartella
+            // 
+            btnAddCartella.Location = new Point(3, 37);
+            btnAddCartella.Name = "btnAddCartella";
+            btnAddCartella.Size = new Size(191, 25);
+            btnAddCartella.TabIndex = 0;
+            btnAddCartella.Text = "Aggiungi cartella";
+            btnAddCartella.UseVisualStyleBackColor = true;
+            btnAddCartella.Click += btnAddCartella_Click;
+            // 
             // colNome
             // 
             colNome.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -209,6 +285,14 @@
             colNome.Name = "colNome";
             colNome.ReadOnly = true;
             colNome.Width = 73;
+            // 
+            // colEstensione
+            // 
+            colEstensione.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colEstensione.HeaderText = "Estensione";
+            colEstensione.Name = "colEstensione";
+            colEstensione.ReadOnly = true;
+            colEstensione.Width = 99;
             // 
             // colTipo
             // 
@@ -224,69 +308,6 @@
             colPercorso.HeaderText = "Percorso";
             colPercorso.Name = "colPercorso";
             colPercorso.ReadOnly = true;
-            // 
-            // pnlFunzioni
-            // 
-            pnlFunzioni.Controls.Add(btnRimuovi);
-            pnlFunzioni.Controls.Add(btnRinomina);
-            pnlFunzioni.Controls.Add(btnChiudiAttivita);
-            pnlFunzioni.Controls.Add(btnAddFile);
-            pnlFunzioni.Controls.Add(btnAddCartella);
-            pnlFunzioni.Dock = DockStyle.Right;
-            pnlFunzioni.Location = new Point(1050, 0);
-            pnlFunzioni.Name = "pnlFunzioni";
-            pnlFunzioni.Size = new Size(200, 650);
-            pnlFunzioni.TabIndex = 1;
-            // 
-            // btnRimuovi
-            // 
-            btnRimuovi.Location = new Point(3, 98);
-            btnRimuovi.Name = "btnRimuovi";
-            btnRimuovi.Size = new Size(191, 25);
-            btnRimuovi.TabIndex = 4;
-            btnRimuovi.Text = "Rimuovi";
-            btnRimuovi.UseVisualStyleBackColor = true;
-            btnRimuovi.Click += btnRimuovi_Click;
-            // 
-            // btnRinomina
-            // 
-            btnRinomina.Location = new Point(3, 67);
-            btnRinomina.Name = "btnRinomina";
-            btnRinomina.Size = new Size(191, 25);
-            btnRinomina.TabIndex = 3;
-            btnRinomina.Text = "Rinomina";
-            btnRinomina.UseVisualStyleBackColor = true;
-            btnRinomina.Click += btnRinomina_Click;
-            // 
-            // btnChiudiAttivita
-            // 
-            btnChiudiAttivita.Location = new Point(3, 129);
-            btnChiudiAttivita.Name = "btnChiudiAttivita";
-            btnChiudiAttivita.Size = new Size(191, 25);
-            btnChiudiAttivita.TabIndex = 2;
-            btnChiudiAttivita.Text = "Chiudi attività";
-            btnChiudiAttivita.UseVisualStyleBackColor = true;
-            btnChiudiAttivita.Click += btnChiudiAttivita_Click;
-            // 
-            // btnAddFile
-            // 
-            btnAddFile.Location = new Point(3, 36);
-            btnAddFile.Name = "btnAddFile";
-            btnAddFile.Size = new Size(191, 25);
-            btnAddFile.TabIndex = 1;
-            btnAddFile.Text = "Aggiungi file";
-            btnAddFile.UseVisualStyleBackColor = true;
-            btnAddFile.Click += btnAddFile_Click;
-            // 
-            // btnAddCartella
-            // 
-            btnAddCartella.Location = new Point(3, 5);
-            btnAddCartella.Name = "btnAddCartella";
-            btnAddCartella.Size = new Size(191, 25);
-            btnAddCartella.TabIndex = 0;
-            btnAddCartella.Text = "Aggiungi cartella";
-            btnAddCartella.UseVisualStyleBackColor = true;
-            btnAddCartella.Click += btnAddCartella_Click;
             // 
             // OperaAttivita
             // 
@@ -324,9 +345,6 @@
         private Panel pnlSecondaParte;
         private Panel pnlContenuto;
         private DataGridView gridContenuto;
-        private DataGridViewTextBoxColumn colNome;
-        private DataGridViewTextBoxColumn colTipo;
-        private DataGridViewTextBoxColumn colPercorso;
         private Panel pnlFunzioni;
         private Button btnChiudiAttivita;
         private Button btnAddFile;
@@ -337,5 +355,10 @@
         private TextBox txtCliente;
         private Button btnCercaCliente;
         private Label lblCliente;
+        private Button btnApriAttivita;
+        private DataGridViewTextBoxColumn colNome;
+        private DataGridViewTextBoxColumn colEstensione;
+        private DataGridViewTextBoxColumn colTipo;
+        private DataGridViewTextBoxColumn colPercorso;
     }
 }
