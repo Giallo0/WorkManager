@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +9,15 @@ namespace WorkManager
 {
     internal class BonificaCartelle
     {
+        private int counter = 0;
 
         public BonificaCartelle() 
         {
             string paramEsegui = Globale.jwm.getParametro("BONIFICA", "EseguiBonifica").Valore ?? string.Empty;
             if (paramEsegui == "S")
             {
-                int counter = EseguiBonifica();
+                counter = 0;
+                counter = EseguiBonifica();
                 MessageBox.Show($"Bonifica terminata. Sono stati bonificati {counter} attività.", "Bonifica cartelle", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -28,7 +31,8 @@ namespace WorkManager
             //BonificaTipoCartella(Globale.jwm.getValue(ChiaviRoot.Workspace));
             //BonificaStatoPrioritaAttivita(Globale.jwm.getValue(ChiaviRoot.Workspace));
             //BonificaStatoChiuso(Globale.jwm.getValue(ChiaviRoot.Workspace));
-            return BonificaPriorita(Globale.jwm.getValue(ChiaviRoot.Workspace));
+            //return BonificaPriorita(Globale.jwm.getValue(ChiaviRoot.Workspace));
+            return BonificaStati(Globale.jwm.getValue(ChiaviRoot.Workspace));
         }
 
         private void BonificaTipoCartella(string padre)
@@ -95,7 +99,6 @@ namespace WorkManager
 
         private int BonificaPriorita(string padre)
         {
-            int counter = 0;
             foreach (string dir in Directory.GetDirectories(padre))
             {
                 DirectoryInfo di = new DirectoryInfo(dir);
@@ -118,6 +121,37 @@ namespace WorkManager
                     BonificaPriorita(dir);
                 }
             }
+            return counter;
+        }
+
+        private int BonificaStati(string padre)
+        {
+            foreach (string dir in Directory.GetDirectories(padre))
+            {
+                DirectoryInfo di = new DirectoryInfo(dir);
+                if (!di.Attributes.HasFlag(FileAttributes.Hidden))
+                {
+                    JSONwsFolder jwsF = new JSONwsFolder(dir, false);
+                    if (!jwsF.isNull() && jwsF.getValue(ChiaviwsFolder.Tipo) == TipiCartella.Attivita.ToString())
+                    {
+                        if (ParametriCostanti<StatiAttivita>.getNames().Contains(jwsF.getValue(ChiaviwsFolder.Stato)))
+                        {
+                            jwsF.setValue(ChiaviwsFolder.Stato, ParametriCostanti<StatiAttivita>.getNameWithId(
+                                (StatiAttivita)Enum.Parse(typeof(StatiAttivita), jwsF.getValue(ChiaviwsFolder.Stato))));
+                            jwsF.salva();
+                            counter++;
+                        }
+                        else if (!ParametriCostanti<StatiAttivita>.getNames().Contains(jwsF.getValue(ChiaviwsFolder.Stato)))
+                        {
+                            jwsF.setValue(ChiaviwsFolder.Stato, ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Aperta));
+                            jwsF.salva();
+                            counter++;
+                        }
+                    }
+                    BonificaStati(dir);
+                }
+            }
+
             return counter;
         }
     }

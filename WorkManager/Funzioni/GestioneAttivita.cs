@@ -67,7 +67,7 @@ namespace WorkManager.Funzioni
 
             //Riempio la combo con gli stati
             cboStato.Items.Clear();
-            cboStato.Items.AddRange(ParametriCostanti<StatiAttivita>.getNames());
+            cboStato.Items.AddRange(ParametriCostanti<StatiAttivita>.getNamesWithId());
 
             //Riempio la combo con le priorita
             cboPriorita.Items.Clear();
@@ -77,13 +77,14 @@ namespace WorkManager.Funzioni
             if (LKGestioneAttivita.funzione == "E")
             {
                 txtNome.Enabled = false;
+                cboPriorita.Enabled = false;
             }
 
             //Se la funzione è inserimento, imposto lo stato in Aperta
             //Se la funzione è inserimento, imposto la priorita in Bassa
             if (LKGestioneAttivita.funzione == "I")
             {
-                cboStato.Text = ParametriCostanti<StatiAttivita>.getName(StatiAttivita.Aperta);
+                cboStato.Text = ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Aperta);
                 cboPriorita.Text = ParametriCostanti<PrioritaAttivita>.getNameWithId(PrioritaAttivita.Bassa);
             }
         }

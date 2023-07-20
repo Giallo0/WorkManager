@@ -55,7 +55,7 @@ namespace WorkManager.Funzioni
                 LK_CambiaStatoAttivita.erroriElab = true;
                 goto ControllaLinkageErr;
             }
-            if (!ParametriCostanti<StatiAttivita>.getNames().Contains(LK_CambiaStatoAttivita.stato))
+            if (!ParametriCostanti<StatiAttivita>.getNamesWithId().Contains(LK_CambiaStatoAttivita.stato))
             {
                 MessageBox.Show($"Stato '{LK_CambiaStatoAttivita.stato}' non esistente tra gli stati disponibili", "Cambio stato attivita", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 noerrori = false;

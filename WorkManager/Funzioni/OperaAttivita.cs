@@ -115,7 +115,7 @@ namespace WorkManager.Funzioni
                     JSONwsFolder jwsF = new JSONwsFolder(dir, false);
                     if (!jwsF.isNull() &&
                         (jwsF.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita)) &&
-                        (jwsF.getValue(ChiaviwsFolder.Stato) == ParametriCostanti<StatiAttivita>.getName(StatiAttivita.Aperta)))
+                        (jwsF.getValue(ChiaviwsFolder.Stato) == ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Aperta)))
                     {
                         cboAttivita.Items.Add($"{Path.GetFileName(dir).Substring(0, 3)} - {Path.GetFileName(dir).Substring(4)}");
                     }
@@ -308,7 +308,7 @@ namespace WorkManager.Funzioni
             LK_CambiaStatoAttivita.ClearLinkage();
             LK_CambiaStatoAttivita.percorsoCliente = percorsoCliente;
             LK_CambiaStatoAttivita.attivita = $"{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
-            LK_CambiaStatoAttivita.stato = ParametriCostanti<StatiAttivita>.getName(StatiAttivita.Chiusa);
+            LK_CambiaStatoAttivita.stato = ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Chiusa);
             Funzione.Apri("_CambiaStatoAttivita");
 
             if (!LK_CambiaStatoAttivita.erroriElab)

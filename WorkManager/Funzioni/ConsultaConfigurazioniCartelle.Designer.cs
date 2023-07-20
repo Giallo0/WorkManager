@@ -139,6 +139,7 @@
             gridConfig.Location = new Point(0, 0);
             gridConfig.MultiSelect = false;
             gridConfig.Name = "gridConfig";
+            gridConfig.ReadOnly = true;
             gridConfig.RowTemplate.Height = 25;
             gridConfig.Size = new Size(1250, 600);
             gridConfig.TabIndex = 0;

@@ -39,7 +39,7 @@ namespace WorkManager.Funzioni
             gridConfig.Rows.Clear();
 
             dt.Columns.Add("Attività", typeof(string));
-            foreach(string col in Enum.GetNames(typeof(ChiaviwsFolder)))
+            foreach (string col in Enum.GetNames(typeof(ChiaviwsFolder)))
             {
                 if (col != ChiaviwsFolder.CntAtt.ToString())
                 {
@@ -92,7 +92,7 @@ namespace WorkManager.Funzioni
                     TrovaSottoCartelle(percorsoCliente);
                     gridConfig.DataSource = dt;
 
-                    foreach(DataGridViewColumn col in gridConfig.Columns)
+                    foreach (DataGridViewColumn col in gridConfig.Columns)
                     {
                         col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     }
@@ -101,6 +101,8 @@ namespace WorkManager.Funzioni
                     {
                         gridConfig.Rows[0].Selected = true;
                     }
+
+                    ImpostaFiltro();
 
                     parteAbilitata = 2;
                     abilitaDisabilita();
@@ -122,7 +124,7 @@ namespace WorkManager.Funzioni
                         riga[0] = Path.GetFileName(dir);                          //Attività
 
                         int cnt = 0;
-                        foreach(ChiaviwsFolder key in Enum.GetValues(typeof(ChiaviwsFolder)))
+                        foreach (ChiaviwsFolder key in Enum.GetValues(typeof(ChiaviwsFolder)))
                         {
                             if (key != ChiaviwsFolder.CntAtt)
                             {
@@ -130,7 +132,7 @@ namespace WorkManager.Funzioni
                                 if (!string.IsNullOrEmpty(jwsF.getValue(ChiaviwsFolder.DataCreazione)) && key == ChiaviwsFolder.DataCreazione)
                                 {
                                     DateTime dataCrezione = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.DataCreazione), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                                    riga[cnt] = dataCrezione.ToString("dd/MM/yyyy");
+                                    riga[cnt] = dataCrezione.ToString("yyyy/MM/dd");
                                 }
                                 else if (!string.IsNullOrEmpty(jwsF.getValue(ChiaviwsFolder.OraCreazione)) && key == ChiaviwsFolder.OraCreazione)
                                 {
@@ -140,7 +142,7 @@ namespace WorkManager.Funzioni
                                 else if (!string.IsNullOrEmpty(jwsF.getValue(ChiaviwsFolder.DataModifica)) && key == ChiaviwsFolder.DataModifica)
                                 {
                                     DateTime dataModifica = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.DataModifica), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                                    riga[cnt] = dataModifica.ToString("dd/MM/yyyy");
+                                    riga[cnt] = dataModifica.ToString("yyyy/MM/dd");
                                 }
                                 else if (!string.IsNullOrEmpty(jwsF.getValue(ChiaviwsFolder.OraModifica)) && key == ChiaviwsFolder.OraModifica)
                                 {
@@ -158,6 +160,13 @@ namespace WorkManager.Funzioni
                     TrovaSottoCartelle(dir);
                 }
             }
+        }
+
+        private void ImpostaFiltro()
+        {
+            dt.DefaultView.Sort = null;
+
+            dt.DefaultView.Sort = $"{ChiaviwsFolder.Stato.ToString()} desc, {ChiaviwsFolder.Priorita.ToString()} desc, {ChiaviwsFolder.DataCreazione.ToString()}, {ChiaviwsFolder.OraCreazione.ToString()}";
         }
 
         private bool controllaDati()

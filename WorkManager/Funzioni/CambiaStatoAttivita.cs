@@ -45,7 +45,7 @@ namespace WorkManager.Funzioni
                 rbStato.Size = new Size(109, 21);
                 rbStato.TabIndex = 0;
                 rbStato.TabStop = true;
-                rbStato.Text = stato;
+                rbStato.Text = ParametriCostanti<StatiAttivita>.getNameWithId((StatiAttivita)Enum.Parse(typeof(StatiAttivita), stato));
                 rbStato.UseVisualStyleBackColor = true;
 
                 if (Y == 30)
@@ -132,7 +132,7 @@ namespace WorkManager.Funzioni
                     
                     jwsF = new JSONwsFolder(percorsoAtt);
                     if(!string.IsNullOrEmpty(jwsF.getValue(ChiaviwsFolder.Stato)) &&
-                        ParametriCostanti<StatiAttivita>.getNames().Contains(jwsF.getValue(ChiaviwsFolder.Stato)))
+                        ParametriCostanti<StatiAttivita>.getNamesWithId().Contains(jwsF.getValue(ChiaviwsFolder.Stato)))
                     {
                         foreach(RadioButton rbStato in gbStati.Controls)
                         {
