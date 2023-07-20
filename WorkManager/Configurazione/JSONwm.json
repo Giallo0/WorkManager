@@ -58,11 +58,17 @@
          "ID" : "17", 
          "Titolo" : "Cambia Stato", 
          "Programma" : "CambiaStatoAttivita", 
-         "Bitmap" : "CambioStato_24x24", 
+         "Bitmap" : "CambioStato_24x24"
+      }, 
+      { 
+         "ID" : "18", 
+         "Titolo" : "Consulta configurazioni", 
+         "Programma" : "ConsultaConfigurazioniCartelle", 
+         "Bitmap" : "consulta_24x24", 
          "Linkage" : ""
       }
    ], 
-   "CntID" : "17", 
+   "CntID" : "18", 
    "Parametri" : [ 
       { 
          "Gruppo" : "BONIFICA", 
@@ -72,5 +78,5 @@
       }
    ], 
    "Chiusura" : "F", 
-   "Workspace" : "C:\\Users\\giallombardom\\Desktop\\Workspace"
+   "Workspace" : ""
 }

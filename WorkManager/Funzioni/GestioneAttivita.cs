@@ -71,10 +71,7 @@ namespace WorkManager.Funzioni
 
             //Riempio la combo con le priorita
             cboPriorita.Items.Clear();
-            foreach(var p in ParametriCostanti<PrioritaAttivita>.getNames())
-            {
-                cboPriorita.Items.Add($"{(int)Enum.Parse<PrioritaAttivita>(p)} - {p}");
-            }
+            cboPriorita.Items.AddRange(ParametriCostanti<PrioritaAttivita>.getNamesWithId());
 
             //Se sono in eliminazione disabilito il field Nome
             if (LKGestioneAttivita.funzione == "E")
@@ -87,7 +84,7 @@ namespace WorkManager.Funzioni
             if (LKGestioneAttivita.funzione == "I")
             {
                 cboStato.Text = ParametriCostanti<StatiAttivita>.getName(StatiAttivita.Aperta);
-                cboPriorita.Text = ParametriCostanti<PrioritaAttivita>.getName(PrioritaAttivita.Bassa);
+                cboPriorita.Text = ParametriCostanti<PrioritaAttivita>.getNameWithId(PrioritaAttivita.Bassa);
             }
         }
 
@@ -290,7 +287,7 @@ namespace WorkManager.Funzioni
                 }
                 else
                 {
-                    priorita = $"{(int)Enum.Parse<PrioritaAttivita>(ParametriCostanti<PrioritaAttivita>.getName(PrioritaAttivita.Bassa))} - {ParametriCostanti<PrioritaAttivita>.getName(PrioritaAttivita.Bassa)}";
+                    priorita = ParametriCostanti<PrioritaAttivita>.getNameWithId(PrioritaAttivita.Bassa);
                 }
             }
             cboPriorita.Text = priorita;

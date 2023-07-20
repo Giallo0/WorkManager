@@ -7,6 +7,9 @@
     <Compile Update="Funzioni\CambiaStatoAttivita.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Funzioni\ConsultaConfigurazioniCartelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Funzioni\GestioneAttivita.cs">
       <SubType>Form</SubType>
     </Compile>

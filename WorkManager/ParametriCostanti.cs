@@ -13,9 +13,28 @@ namespace WorkManager
             return val.ToString();
         }
 
+        public static string getNameWithId(T val)
+        {
+            return $"{(int)Enum.Parse(typeof(T), val.ToString())} - {val.ToString()}";
+        }
+
         public static string[] getNames()
         {
             return Enum.GetNames(typeof(T));
+        }
+
+        public static string[] getNamesWithId()
+        {
+            string[] names = new string[ParametriCostanti<T>.getNames().Length];
+
+            int cnt = -1;
+            foreach (var p in ParametriCostanti<T>.getNames())
+            {
+                cnt++;
+                names[cnt] = $"{(int)Enum.Parse(typeof(T), p)} - {p}";
+            }
+
+            return names;
         }
     }
 

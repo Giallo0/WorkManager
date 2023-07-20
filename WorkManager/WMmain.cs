@@ -28,7 +28,6 @@ namespace WorkManager
 
 
         private DataTable dt = new DataTable();
-        private List<string> elencoClienti = new List<string>();
 
         public WMmain()
         {
@@ -226,18 +225,14 @@ namespace WorkManager
                         DateTime ora = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.OraCreazione), "HHmmss", System.Globalization.CultureInfo.InvariantCulture);
 
                         dt.Rows.Add(new object[] {
-                                Path.GetFileName(dir).Substring(4),             //Nome
-                                Directory.GetParent(dir).Name,                  //Cliente
-                                jwsF.getValue(ChiaviwsFolder.Priorita),         //Priorita
-                                data.ToString("yyyy/MM/dd"),                    //Data creazione
-                                ora.ToString("HH:mm:ss"),                       //Ora creazione
-                                Path.GetFileName(dir).Substring(0, 3),          //Progressivo
-                                Directory.GetParent(dir)                        //Percorso cliente
-                            });
-                        if (!elencoClienti.Contains(Directory.GetParent(dir).Name))
-                        {
-                            elencoClienti.Add(Directory.GetParent(dir).Name);
-                        }
+                            Path.GetFileName(dir).Substring(4),             //Nome
+                            Directory.GetParent(dir).Name,                  //Cliente
+                            jwsF.getValue(ChiaviwsFolder.Priorita),         //Priorita
+                            data.ToString("yyyy/MM/dd"),                    //Data creazione
+                            ora.ToString("HH:mm:ss"),                       //Ora creazione
+                            Path.GetFileName(dir).Substring(0, 3),          //Progressivo
+                            Directory.GetParent(dir)                        //Percorso cliente
+                        });
                     }
                     TrovaSottoCartelle(dir);
                 }
