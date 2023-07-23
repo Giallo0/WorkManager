@@ -80,22 +80,7 @@ namespace WorkManager
                 locationY += 45;
             }
 
-            //Imposto il timer
-            string timerAbilitato = Globale.jwm.getParametro("TIMER_MENU", "millisecondi").Valore ?? "N";
-            if (timerAbilitato == "S")
-            {
-                //Imposto l'intervallo di aggiornamento
-                if (string.IsNullOrEmpty(Globale.jwm.getParametro("TIMER_MENU", "millisecondi").Valore))
-                {
-                    timerGridAttivita.Interval = 45000; //1 minuto in millisecondi
-                }
-                else
-                {
-                    timerGridAttivita.Interval = int.Parse(Globale.jwm.getParametro("TIMER_MENU", "millisecondi").Valore);
-                }
-
-                timerGridAttivita.Enabled = true;
-            }
+            ImpostaTimer();
         }
 
         private void btn_Click(object? sender, EventArgs e)
@@ -264,6 +249,35 @@ namespace WorkManager
                 LKOperaAttivita.ClearLinkage();
                 AggiornaGrigliaAttivita();
             }
+        }
+
+        private void ImpostaTimer()
+        {
+            //Imposto il timer
+            string timerAbilitato = Globale.jwm.getParametro("TIMER_MENU", "TimerAttivo").Valore ?? "N";
+            if (timerAbilitato == "S")
+            {
+                //Imposto l'intervallo di aggiornamento
+                if (string.IsNullOrEmpty(Globale.jwm.getParametro("TIMER_MENU", "TempoAggiorna").Valore))
+                {
+                    timerGridAttivita.Interval = 45000; //1 minuto in millisecondi
+                }
+                else
+                {
+                    timerGridAttivita.Interval = int.Parse(Globale.jwm.getParametro("TIMER_MENU", "TempoAggiorna").Valore);
+                }
+
+                timerGridAttivita.Enabled = true;
+            }
+            else
+            {
+                timerGridAttivita.Enabled = false;
+            }
+        }
+
+        private void timerGridAttivita_Tick(object sender, EventArgs e)
+        {
+            AggiornaGrigliaAttivita();
         }
     }
 }

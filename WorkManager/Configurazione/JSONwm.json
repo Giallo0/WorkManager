@@ -74,8 +74,32 @@
          "Parametro" : "EseguiBonifica", 
          "Valore" : "N", 
          "Descrizione" : "Parametro per abilitare o disabilitare l'esecuzione del programma di bonifica lanciabile da menù"
+      }, 
+      { 
+         "Gruppo" : "TIMER_MENU", 
+         "Parametro" : "TimerAttivo", 
+         "Valore" : "S", 
+         "Descrizione" : "Flag per attivare o disattivare il timer di aggiornamento della griglia sul menù. 'S' o 'N'"
+      }, 
+      { 
+         "Gruppo" : "TIMER_MENU", 
+         "Parametro" : "TempoAggiorna", 
+         "Valore" : "10000", 
+         "Descrizione" : "Tempo di aggiornamento in millisecondi. Di default 1 minuto = 45000"
+      }, 
+      { 
+         "Gruppo" : "TIMER_ATTIVITA", 
+         "Parametro" : "TimerAttivo", 
+         "Valore" : "S", 
+         "Descrizione" : "Flag per attivare o disattivare il timer di aggiornamento della griglia in opera attività. 'S' o 'N'"
+      }, 
+      { 
+         "Gruppo" : "TIMER_ATTIVITA", 
+         "Parametro" : "TempoAggiorna", 
+         "Valore" : "10000", 
+         "Descrizione" : "Tempo di aggiornamento in millisecondi. Di default 1 minuto = 45000"
       }
    ], 
    "Chiusura" : "F", 
-   "Workspace" : "C:\\Users\\giallombardom\\Desktop\\Workspace"
+   "Workspace" : ""
 }

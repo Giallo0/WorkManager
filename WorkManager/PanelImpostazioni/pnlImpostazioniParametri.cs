@@ -50,7 +50,7 @@ namespace WorkManager.PanelImpostazioni
                     ComponentiParametri param = new ComponentiParametri();
                     param.Gruppo = cboGruppo.Text;
                     param.Parametro = gridGestioneCartella[0, e.RowIndex].Value.ToString();
-                    param.Valore = gridGestioneCartella[1, e.RowIndex].Value.ToString();
+                    param.Valore = gridGestioneCartella[1, e.RowIndex].Value != null ? gridGestioneCartella[1, e.RowIndex].Value.ToString() : string.Empty;
                     param.Descrizione = (gridGestioneCartella[2, e.RowIndex].Value ?? string.Empty).ToString();
 
                     if (string.IsNullOrEmpty(parametro))
@@ -77,6 +77,7 @@ namespace WorkManager.PanelImpostazioni
                 goto controllaDatiErr;
             }
             string gridValore = (gridGestioneCartella[1, index].Value ?? string.Empty).ToString();
+            /*
             if (string.IsNullOrEmpty(gridValore))
             {
                 MessageBox.Show("Il valore del parametro deve essere valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -84,6 +85,7 @@ namespace WorkManager.PanelImpostazioni
                 noErrori = false;
                 goto controllaDatiErr;
             }
+            */
 
         controllaDatiErr:
             return noErrori;

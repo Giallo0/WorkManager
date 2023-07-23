@@ -1,6 +1,6 @@
 ﻿namespace WorkManager.CustomDialogBox
 {
-    partial class GestioneCartellaAttivita
+    partial class GestioneFileAttivita
     {
         /// <summary>
         /// Required designer variable.
@@ -28,41 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlMain = new Panel();
-            txtNomeCartella = new TextBox();
-            lblNomeCartella = new Label();
             pnlPulsanti = new Panel();
             btnAnnulla = new Button();
             btnConferma = new Button();
-            pnlMain.SuspendLayout();
+            pnlMain = new Panel();
+            cboEstensione = new ComboBox();
+            lblEstensione = new Label();
+            txtNomeFile = new TextBox();
+            lblNomeFile = new Label();
             pnlPulsanti.SuspendLayout();
+            pnlMain.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnlMain
-            // 
-            pnlMain.Controls.Add(txtNomeCartella);
-            pnlMain.Controls.Add(lblNomeCartella);
-            pnlMain.Dock = DockStyle.Fill;
-            pnlMain.Location = new Point(0, 0);
-            pnlMain.Name = "pnlMain";
-            pnlMain.Size = new Size(325, 181);
-            pnlMain.TabIndex = 2;
-            // 
-            // txtNomeCartella
-            // 
-            txtNomeCartella.Location = new Point(14, 68);
-            txtNomeCartella.Name = "txtNomeCartella";
-            txtNomeCartella.Size = new Size(297, 23);
-            txtNomeCartella.TabIndex = 1;
-            // 
-            // lblNomeCartella
-            // 
-            lblNomeCartella.AutoSize = true;
-            lblNomeCartella.Location = new Point(14, 45);
-            lblNomeCartella.Name = "lblNomeCartella";
-            lblNomeCartella.Size = new Size(105, 17);
-            lblNomeCartella.TabIndex = 0;
-            lblNomeCartella.Text = "Nome cartella:";
             // 
             // pnlPulsanti
             // 
@@ -72,7 +48,7 @@
             pnlPulsanti.Location = new Point(0, 181);
             pnlPulsanti.Name = "pnlPulsanti";
             pnlPulsanti.Size = new Size(325, 58);
-            pnlPulsanti.TabIndex = 3;
+            pnlPulsanti.TabIndex = 4;
             // 
             // btnAnnulla
             // 
@@ -94,7 +70,53 @@
             btnConferma.UseVisualStyleBackColor = true;
             btnConferma.Click += btnConferma_Click;
             // 
-            // GestioneCartellaAttivita
+            // pnlMain
+            // 
+            pnlMain.Controls.Add(cboEstensione);
+            pnlMain.Controls.Add(lblEstensione);
+            pnlMain.Controls.Add(txtNomeFile);
+            pnlMain.Controls.Add(lblNomeFile);
+            pnlMain.Dock = DockStyle.Fill;
+            pnlMain.Location = new Point(0, 0);
+            pnlMain.Name = "pnlMain";
+            pnlMain.Size = new Size(325, 181);
+            pnlMain.TabIndex = 5;
+            // 
+            // cboEstensione
+            // 
+            cboEstensione.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboEstensione.FormattingEnabled = true;
+            cboEstensione.Location = new Point(14, 109);
+            cboEstensione.Name = "cboEstensione";
+            cboEstensione.Size = new Size(78, 25);
+            cboEstensione.TabIndex = 3;
+            // 
+            // lblEstensione
+            // 
+            lblEstensione.AutoSize = true;
+            lblEstensione.Location = new Point(14, 89);
+            lblEstensione.Name = "lblEstensione";
+            lblEstensione.Size = new Size(78, 17);
+            lblEstensione.TabIndex = 2;
+            lblEstensione.Text = "Estensione:";
+            // 
+            // txtNomeFile
+            // 
+            txtNomeFile.Location = new Point(14, 53);
+            txtNomeFile.Name = "txtNomeFile";
+            txtNomeFile.Size = new Size(297, 23);
+            txtNomeFile.TabIndex = 1;
+            // 
+            // lblNomeFile
+            // 
+            lblNomeFile.AutoSize = true;
+            lblNomeFile.Location = new Point(14, 33);
+            lblNomeFile.Name = "lblNomeFile";
+            lblNomeFile.Size = new Size(74, 17);
+            lblNomeFile.TabIndex = 0;
+            lblNomeFile.Text = "Nome file:";
+            // 
+            // GestioneFileAttivita
             // 
             AcceptButton = btnConferma;
             AutoScaleDimensions = new SizeF(8F, 17F);
@@ -106,24 +128,24 @@
             Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
-            Name = "GestioneCartellaAttivita";
+            Name = "GestioneFileAttivita";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Aggiungi_cartella";
+            Text = "Gestione File Attivita";
+            pnlPulsanti.ResumeLayout(false);
             pnlMain.ResumeLayout(false);
             pnlMain.PerformLayout();
-            pnlPulsanti.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnlMain;
-        private TextBox txtNomeCartella;
-        private Label lblNomeCartella;
         private Panel pnlPulsanti;
         private Button btnAnnulla;
         private Button btnConferma;
-        private ComboBox comboBox1;
+        private Panel pnlMain;
+        private TextBox txtNomeFile;
+        private Label lblNomeFile;
+        private ComboBox cboEstensione;
         private Label lblEstensione;
     }
 }

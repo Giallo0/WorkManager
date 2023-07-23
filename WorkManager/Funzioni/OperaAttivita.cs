@@ -20,6 +20,7 @@ namespace WorkManager.Funzioni
         private string percorsoCliente;
 
         private bool linkageValorizzata;
+        private int gridIndex;
 
         public OperaAttivita()
         {
@@ -57,6 +58,10 @@ namespace WorkManager.Funzioni
 
                 linkageValorizzata = true;
             }
+
+            gridIndex = 0;
+
+            ImpostaTimer();
         }
 
         private void abilitaDisabilita()
@@ -133,6 +138,7 @@ namespace WorkManager.Funzioni
                 {
                     //Carico la griglia
                     TrovaElementi($"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}");
+                    gridContenuto.Rows[gridIndex].Selected = true;
 
                     parteAbilitata = 2;
                     abilitaDisabilita();
@@ -173,6 +179,7 @@ namespace WorkManager.Funzioni
                     {
                         Path.GetFileName(file).Substring(0, Path.GetFileName(file).LastIndexOf('.')),
                         Path.GetExtension(file).Substring(1),
+                        "File",
                         file
                     });
                 }
@@ -186,11 +193,23 @@ namespace WorkManager.Funzioni
                     gridContenuto.Rows.Add(new object[]
                     {
                         Path.GetFileName(dir),
+                        " ",
                         "Cartella",
                         dir
                     });
                 }
                 TrovaElementi(dir);
+            }
+        }
+
+        private void AggiornaGriglia()
+        {
+            gridContenuto.Rows.Clear();
+            TrovaElementi($"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}");
+
+            if (gridContenuto.Rows.Count >= gridIndex)
+            {
+                gridContenuto.Rows[gridIndex].Selected = true;
             }
         }
 
@@ -225,23 +244,16 @@ namespace WorkManager.Funzioni
             LKGestioneCartellaAttivita.percorso = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
             Funzione.Apri("GestioneCartellaAttivita", "WorkManager.CustomDialogBox");
 
-            gridContenuto.Rows.Clear();
-            TrovaElementi($"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}");
+            AggiornaGriglia();
         }
 
         private void btnAddFile_Click(object sender, EventArgs e)
         {
+            LKGestioneFileAttivita.funzione = "I";
+            LKGestioneFileAttivita.percorso = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+            Funzione.Apri("GestioneFileAttivita", "WorkManager.CustomDialogBox");
 
-        }
-
-        private void btnRinomina_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRimuovi_Click(object sender, EventArgs e)
-        {
-
+            AggiornaGriglia();
         }
 
         private void btnChiudiAttivita_Click(object sender, EventArgs e)
@@ -263,11 +275,128 @@ namespace WorkManager.Funzioni
                     parteAbilitata = 1;
                     abilitaDisabilita();
 
-                    cboAttivita.Items.Clear();
-                    TrovaAttivita(percorsoCliente);
+                    AggiornaGriglia();
                 }
             }
             LK_CambiaStatoAttivita.ClearLinkage();
+        }
+
+        private void gridContenuto_MouseClick(object sender, MouseEventArgs e)
+        {
+            int col = gridContenuto.HitTest(e.X, e.Y).ColumnIndex;
+            int row = gridContenuto.HitTest(e.X, e.Y).RowIndex;
+            if (col >= 0 && row >= 0)
+            {
+                if (gridContenuto.CurrentRow != null)
+                {
+                    gridIndex = gridContenuto.CurrentRow.Index;
+                }
+
+                if (e.Button == MouseButtons.Right)
+                {
+                    gridContenuto[col, row].Selected = true;
+                    if (!gridContenuto.CurrentRow.IsNewRow)
+                    {
+                        mnuGridContenuto.Show(gridContenuto, e.Location);
+                    }
+                }
+            }
+        }
+
+        private void gridContenuto_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int row = gridContenuto.HitTest(e.X, e.Y).RowIndex;
+            if (row > -1)
+            {
+                btnApri_Click(null, null);
+            }
+        }
+
+        private void btnApri_Click(object sender, EventArgs e)
+        {
+            Process proc = new Process();
+            proc.StartInfo.Arguments = gridContenuto[3, gridContenuto.CurrentRow.Index].Value.ToString();
+
+            if (gridContenuto[2, gridContenuto.CurrentRow.Index].Value.ToString() == "File" &&
+                gridContenuto[1, gridContenuto.CurrentRow.Index].Value.ToString() == ParametriCostanti<EstensioniFile>.getName(EstensioniFile.txt))
+            {
+                proc.StartInfo.FileName = "C:\\Program Files\\Notepad++\\notepad++.exe";
+            }
+            else
+            {
+                proc.StartInfo.FileName = "explorer.exe";
+            }
+
+            proc.Start();
+        }
+
+        private void btnRinomina_Click(object sender, EventArgs e)
+        {
+            if (gridContenuto[2, gridContenuto.CurrentRow.Index].Value.ToString() == "File")
+            {
+                LKGestioneFileAttivita.funzione = "M";
+                LKGestioneFileAttivita.percorso = gridContenuto[3, gridContenuto.CurrentRow.Index].Value.ToString();
+                Funzione.Apri("GestioneFileAttivita", "WorkManager.CustomDialogBox");
+
+                AggiornaGriglia();
+            }
+            else if (gridContenuto[2, gridContenuto.CurrentRow.Index].Value.ToString() == "Cartella")
+            {
+                LKGestioneCartellaAttivita.funzione = "M";
+                LKGestioneCartellaAttivita.percorso = gridContenuto[3, gridContenuto.CurrentRow.Index].Value.ToString();
+                Funzione.Apri("GestioneCartellaAttivita", "WorkManager.CustomDialogBox");
+
+                AggiornaGriglia();
+            }
+        }
+
+        private void btnCancella_Click(object sender, EventArgs e)
+        {
+            if (gridContenuto[2, gridContenuto.CurrentRow.Index].Value.ToString() == "File")
+            {
+                LKGestioneFileAttivita.funzione = "C";
+                LKGestioneFileAttivita.percorso = gridContenuto[3, gridContenuto.CurrentRow.Index].Value.ToString();
+                Funzione.Apri("GestioneFileAttivita", "WorkManager.CustomDialogBox");
+
+                AggiornaGriglia();
+            }
+            else if (gridContenuto[2, gridContenuto.CurrentRow.Index].Value.ToString() == "Cartella")
+            {
+                LKGestioneCartellaAttivita.funzione = "C";
+                LKGestioneCartellaAttivita.percorso = gridContenuto[3, gridContenuto.CurrentRow.Index].Value.ToString();
+                Funzione.Apri("GestioneCartellaAttivita", "WorkManager.CustomDialogBox");
+
+                AggiornaGriglia();
+            }
+        }
+
+        private void ImpostaTimer()
+        {
+            //Imposto il timer
+            string timerAbilitato = Globale.jwm.getParametro("TIMER_ATTIVITA", "TimerAttivo").Valore ?? "N";
+            if (timerAbilitato == "S")
+            {
+                //Imposto l'intervallo di aggiornamento
+                if (string.IsNullOrEmpty(Globale.jwm.getParametro("TIMER_ATTIVITA", "TempoAggiorna").Valore))
+                {
+                    timerAttivita.Interval = 45000; //1 minuto in millisecondi
+                }
+                else
+                {
+                    timerAttivita.Interval = int.Parse(Globale.jwm.getParametro("TIMER_ATTIVITA", "TempoAggiorna").Valore);
+                }
+
+                timerAttivita.Enabled = true;
+            }
+            else
+            {
+                timerAttivita.Enabled = false;
+            }
+        }
+
+        private void timerAttivita_Tick(object sender, EventArgs e)
+        {
+            AggiornaGriglia();
         }
     }
 }

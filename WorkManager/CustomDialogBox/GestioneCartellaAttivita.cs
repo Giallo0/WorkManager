@@ -32,11 +32,11 @@ namespace WorkManager.CustomDialogBox
                 MessageBox.Show("Funzione in linkage non valorizzata", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ChiusuraForzata();
             }
-            else if(LKGestioneCartellaAttivita.funzione != "I" &&
+            else if (LKGestioneCartellaAttivita.funzione != "I" &&
                 LKGestioneCartellaAttivita.funzione != "M" &&
                 LKGestioneCartellaAttivita.funzione != "C")
             {
-                MessageBox.Show($"Funzione in linkage '{LKGestioneCartellaAttivita.funzione}'non valida", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Funzione in linkage '{LKGestioneCartellaAttivita.funzione}' non valida", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ChiusuraForzata();
             }
             else
@@ -57,7 +57,7 @@ namespace WorkManager.CustomDialogBox
                 else
                 {
                     percorso = Directory.GetParent(LKGestioneCartellaAttivita.percorso).FullName;
-                }                
+                }
             }
 
             //Se sono in modifica o cancellazione valorizzo il nome della cartella e me lo salvo in una variabile old
@@ -131,7 +131,7 @@ namespace WorkManager.CustomDialogBox
                     goto ControllaDatiErr;
                 }
             }
-            
+
         ControllaDatiErr:
             return noErrori;
         }

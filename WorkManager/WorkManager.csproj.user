@@ -7,6 +7,9 @@
     <Compile Update="CustomDialogBox\GestioneCartellaAttivita.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="CustomDialogBox\GestioneFileAttivita.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Funzioni\CambiaStatoAttivita.cs">
       <SubType>Form</SubType>
     </Compile>

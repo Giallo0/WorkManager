@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OperaAttivita));
             pnlTop = new Panel();
             pnlPrimaParte = new Panel();
@@ -42,17 +43,20 @@
             pnlSecondaParte = new Panel();
             pnlContenuto = new Panel();
             gridContenuto = new DataGridView();
-            pnlFunzioni = new Panel();
-            btnApriAttivita = new Button();
-            btnRimuovi = new Button();
-            btnRinomina = new Button();
-            btnChiudiAttivita = new Button();
-            btnAddFile = new Button();
-            btnAddCartella = new Button();
             colNome = new DataGridViewTextBoxColumn();
             colEstensione = new DataGridViewTextBoxColumn();
             colTipo = new DataGridViewTextBoxColumn();
             colPercorso = new DataGridViewTextBoxColumn();
+            pnlFunzioni = new Panel();
+            btnApriAttivita = new Button();
+            btnChiudiAttivita = new Button();
+            btnAddFile = new Button();
+            btnAddCartella = new Button();
+            mnuGridContenuto = new ContextMenuStrip(components);
+            btnApri = new ToolStripMenuItem();
+            btnRinomina = new ToolStripMenuItem();
+            btnCancella = new ToolStripMenuItem();
+            timerAttivita = new System.Windows.Forms.Timer(components);
             pnlTop.SuspendLayout();
             pnlPrimaParte.SuspendLayout();
             pnlPulsanti.SuspendLayout();
@@ -60,6 +64,7 @@
             pnlContenuto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridContenuto).BeginInit();
             pnlFunzioni.SuspendLayout();
+            mnuGridContenuto.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTop
@@ -191,6 +196,7 @@
             // 
             gridContenuto.AllowUserToAddRows = false;
             gridContenuto.AllowUserToDeleteRows = false;
+            gridContenuto.AllowUserToResizeColumns = false;
             gridContenuto.AllowUserToResizeRows = false;
             gridContenuto.BackgroundColor = SystemColors.Control;
             gridContenuto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -203,12 +209,44 @@
             gridContenuto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridContenuto.Size = new Size(1030, 630);
             gridContenuto.TabIndex = 0;
+            gridContenuto.MouseClick += gridContenuto_MouseClick;
+            gridContenuto.MouseDoubleClick += gridContenuto_MouseDoubleClick;
+            // 
+            // colNome
+            // 
+            colNome.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colNome.HeaderText = "Nome";
+            colNome.Name = "colNome";
+            colNome.ReadOnly = true;
+            // 
+            // colEstensione
+            // 
+            colEstensione.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colEstensione.HeaderText = "Estensione";
+            colEstensione.Name = "colEstensione";
+            colEstensione.ReadOnly = true;
+            colEstensione.Width = 99;
+            // 
+            // colTipo
+            // 
+            colTipo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colTipo.HeaderText = "Tipo";
+            colTipo.Name = "colTipo";
+            colTipo.ReadOnly = true;
+            colTipo.Width = 59;
+            // 
+            // colPercorso
+            // 
+            colPercorso.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            colPercorso.HeaderText = "Percorso";
+            colPercorso.MinimumWidth = 2;
+            colPercorso.Name = "colPercorso";
+            colPercorso.ReadOnly = true;
+            colPercorso.Width = 2;
             // 
             // pnlFunzioni
             // 
             pnlFunzioni.Controls.Add(btnApriAttivita);
-            pnlFunzioni.Controls.Add(btnRimuovi);
-            pnlFunzioni.Controls.Add(btnRinomina);
             pnlFunzioni.Controls.Add(btnChiudiAttivita);
             pnlFunzioni.Controls.Add(btnAddFile);
             pnlFunzioni.Controls.Add(btnAddCartella);
@@ -228,29 +266,9 @@
             btnApriAttivita.UseVisualStyleBackColor = true;
             btnApriAttivita.Click += btnApriAttivita_Click;
             // 
-            // btnRimuovi
-            // 
-            btnRimuovi.Location = new Point(3, 130);
-            btnRimuovi.Name = "btnRimuovi";
-            btnRimuovi.Size = new Size(191, 25);
-            btnRimuovi.TabIndex = 4;
-            btnRimuovi.Text = "Rimuovi";
-            btnRimuovi.UseVisualStyleBackColor = true;
-            btnRimuovi.Click += btnRimuovi_Click;
-            // 
-            // btnRinomina
-            // 
-            btnRinomina.Location = new Point(3, 99);
-            btnRinomina.Name = "btnRinomina";
-            btnRinomina.Size = new Size(191, 25);
-            btnRinomina.TabIndex = 3;
-            btnRinomina.Text = "Rinomina";
-            btnRinomina.UseVisualStyleBackColor = true;
-            btnRinomina.Click += btnRinomina_Click;
-            // 
             // btnChiudiAttivita
             // 
-            btnChiudiAttivita.Location = new Point(3, 161);
+            btnChiudiAttivita.Location = new Point(3, 99);
             btnChiudiAttivita.Name = "btnChiudiAttivita";
             btnChiudiAttivita.Size = new Size(191, 25);
             btnChiudiAttivita.TabIndex = 2;
@@ -278,36 +296,37 @@
             btnAddCartella.UseVisualStyleBackColor = true;
             btnAddCartella.Click += btnAddCartella_Click;
             // 
-            // colNome
+            // mnuGridContenuto
             // 
-            colNome.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colNome.HeaderText = "Nome";
-            colNome.Name = "colNome";
-            colNome.ReadOnly = true;
-            colNome.Width = 73;
+            mnuGridContenuto.Items.AddRange(new ToolStripItem[] { btnApri, btnRinomina, btnCancella });
+            mnuGridContenuto.Name = "mnuGridContenuto";
+            mnuGridContenuto.Size = new Size(126, 70);
             // 
-            // colEstensione
+            // btnApri
             // 
-            colEstensione.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colEstensione.HeaderText = "Estensione";
-            colEstensione.Name = "colEstensione";
-            colEstensione.ReadOnly = true;
-            colEstensione.Width = 99;
+            btnApri.Name = "btnApri";
+            btnApri.Size = new Size(125, 22);
+            btnApri.Text = "Apri";
+            btnApri.Click += btnApri_Click;
             // 
-            // colTipo
+            // btnRinomina
             // 
-            colTipo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colTipo.HeaderText = "Tipo";
-            colTipo.Name = "colTipo";
-            colTipo.ReadOnly = true;
-            colTipo.Width = 59;
+            btnRinomina.Name = "btnRinomina";
+            btnRinomina.Size = new Size(125, 22);
+            btnRinomina.Text = "Rinomina";
+            btnRinomina.Click += btnRinomina_Click;
             // 
-            // colPercorso
+            // btnCancella
             // 
-            colPercorso.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colPercorso.HeaderText = "Percorso";
-            colPercorso.Name = "colPercorso";
-            colPercorso.ReadOnly = true;
+            btnCancella.Name = "btnCancella";
+            btnCancella.Size = new Size(125, 22);
+            btnCancella.Text = "Cancella";
+            btnCancella.Click += btnCancella_Click;
+            // 
+            // timerAttivita
+            // 
+            timerAttivita.Interval = 45000;
+            timerAttivita.Tick += timerAttivita_Tick;
             // 
             // OperaAttivita
             // 
@@ -331,6 +350,7 @@
             pnlContenuto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridContenuto).EndInit();
             pnlFunzioni.ResumeLayout(false);
+            mnuGridContenuto.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -349,8 +369,6 @@
         private Button btnChiudiAttivita;
         private Button btnAddFile;
         private Button btnAddCartella;
-        private Button btnRinomina;
-        private Button btnRimuovi;
         private Panel pnlPrimaParte;
         private TextBox txtCliente;
         private Button btnCercaCliente;
@@ -360,5 +378,10 @@
         private DataGridViewTextBoxColumn colEstensione;
         private DataGridViewTextBoxColumn colTipo;
         private DataGridViewTextBoxColumn colPercorso;
+        private ContextMenuStrip mnuGridContenuto;
+        private ToolStripMenuItem btnApri;
+        private ToolStripMenuItem btnRinomina;
+        private ToolStripMenuItem btnCancella;
+        private System.Windows.Forms.Timer timerAttivita;
     }
 }

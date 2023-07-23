@@ -52,4 +52,9 @@ namespace WorkManager
     {
         Bassa = 0, Media, Alta
     }
+
+    internal enum EstensioniFile
+    {
+        txt, docx, sql
+    }
 }

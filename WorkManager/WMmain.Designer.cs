@@ -166,6 +166,7 @@
             // timerGridAttivita
             // 
             timerGridAttivita.Interval = 45000;
+            timerGridAttivita.Tick += timerGridAttivita_Tick;
             // 
             // WMmain
             // 
