@@ -21,6 +21,7 @@ namespace WorkManager.Funzioni
 
         private bool linkageValorizzata;
         private int gridIndex;
+        private string percorsoAttivita;
 
         public OperaAttivita()
         {
@@ -136,8 +137,9 @@ namespace WorkManager.Funzioni
             {
                 if (controllaDati())
                 {
+                    percorsoAttivita = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
                     //Carico la griglia
-                    TrovaElementi($"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}");
+                    TrovaElementi(percorsoAttivita);
                     gridContenuto.Rows[gridIndex].Selected = true;
 
                     parteAbilitata = 2;
@@ -205,7 +207,7 @@ namespace WorkManager.Funzioni
         private void AggiornaGriglia()
         {
             gridContenuto.Rows.Clear();
-            TrovaElementi($"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}");
+            TrovaElementi(percorsoAttivita);
 
             if (gridContenuto.Rows.Count >= gridIndex)
             {
@@ -235,13 +237,13 @@ namespace WorkManager.Funzioni
 
         private void btnApriAttivita_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}");
+            Process.Start("explorer.exe", percorsoAttivita);
         }
 
         private void btnAddCartella_Click(object sender, EventArgs e)
         {
             LKGestioneCartellaAttivita.funzione = "I";
-            LKGestioneCartellaAttivita.percorso = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+            LKGestioneCartellaAttivita.percorso = percorsoAttivita;
             Funzione.Apri("GestioneCartellaAttivita", "WorkManager.CustomDialogBox");
 
             AggiornaGriglia();
@@ -250,7 +252,7 @@ namespace WorkManager.Funzioni
         private void btnAddFile_Click(object sender, EventArgs e)
         {
             LKGestioneFileAttivita.funzione = "I";
-            LKGestioneFileAttivita.percorso = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+            LKGestioneFileAttivita.percorso = percorsoAttivita;
             Funzione.Apri("GestioneFileAttivita", "WorkManager.CustomDialogBox");
 
             AggiornaGriglia();

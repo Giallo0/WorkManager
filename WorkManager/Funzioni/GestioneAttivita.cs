@@ -15,6 +15,7 @@ namespace WorkManager.Funzioni
     {
         //Solo in modifica e in eliminazione, path di origine
         private string originPath;
+        private string nome;
 
         public GestioneAttivita()
         {
@@ -64,6 +65,7 @@ namespace WorkManager.Funzioni
             txtPercorso.Text = string.Empty;
             txtProgressivo.Text = 0.ToString();
             txtNome.Text = string.Empty;
+            nome = string.Empty;
 
             //Riempio la combo con gli stati
             cboStato.Items.Clear();
@@ -91,6 +93,8 @@ namespace WorkManager.Funzioni
 
         private void btnConferma_Click(object sender, EventArgs e)
         {
+            nome = string.Empty;
+            nome = txtNome.Text.Replace(' ', '_');
             if (controllaDati())
             {
                 string folderPath = null;
@@ -99,7 +103,7 @@ namespace WorkManager.Funzioni
 
                 //Il percorso della cartella sarà formato dal progressivo + il nome della cartella
                 //Lo stato è valorizzato
-                folderPath = $"{txtPercorso.Text}\\{txtProgressivo.Text.PadLeft(3, '0')}_{txtNome.Text}";
+                folderPath = $"{txtPercorso.Text}\\{txtProgressivo.Text.PadLeft(3, '0')}_{nome}";
                 stato = cboStato.Text;
                 priorita = cboPriorita.Text;
 
@@ -127,8 +131,9 @@ namespace WorkManager.Funzioni
                                 jwsFC.salva();
                             }
 
-                            MessageBox.Show($"L'attivita '{txtNome.Text}' è stata creata", "Nuova attivita", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"L'attivita '{nome}' è stata creata", "Nuova attivita", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             txtNome.Text = string.Empty;
+                            nome = string.Empty;
                             calcolaProgressivo();
                             break;
 
@@ -144,10 +149,11 @@ namespace WorkManager.Funzioni
                             jwsF.salva();
 
                             //Il percorso della cartella sarà formato dal progressivo + il nome della cartella
-                            MessageBox.Show($"L'attivita '{txtNome.Text}' è stata modificata", "Modifica attivita", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"L'attivita '{nome}' è stata modificata", "Modifica attivita", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             txtPercorso.Text = string.Empty;
                             txtNome.Text = string.Empty;
+                            nome = string.Empty;
                             txtProgressivo.Text = 0.ToString();
                             cboStato.Text = string.Empty;
                             cboPriorita.Text = string.Empty;
@@ -160,12 +166,13 @@ namespace WorkManager.Funzioni
                             var filtered = files.Where(f => !f.Attributes.HasFlag(FileAttributes.Hidden));
                             if (filtered.Count() == 0)
                             {
-                                if (MessageBox.Show($"Eliminare l'attivita '{txtNome.Text}'?", "Elimina attivita", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                if (MessageBox.Show($"Eliminare l'attivita '{nome}'?", "Elimina attivita", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                                 {
                                     Directory.Delete(originPath, true);
 
-                                    MessageBox.Show($"L'attivita '{txtNome.Text}' è stata eliminata", "Elimina attivita", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show($"L'attivita '{nome}' è stata eliminata", "Elimina attivita", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     txtNome.Text = string.Empty;
+                                    nome = string.Empty;
                                     txtPercorso.Text = string.Empty;
                                     txtProgressivo.Text = 0.ToString();
                                     cboStato.Text = string.Empty;
@@ -174,7 +181,7 @@ namespace WorkManager.Funzioni
                             }
                             else
                             {
-                                MessageBox.Show($"L'attivita '{txtNome.Text}' non può essere eliminata perché contiene dei file al suo interno", "Elimina attivita", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show($"L'attivita '{nome}' non può essere eliminata perché contiene dei file al suo interno", "Elimina attivita", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
                     }
@@ -202,7 +209,7 @@ namespace WorkManager.Funzioni
             }
             if (LKGestioneAttivita.funzione.CompareTo("I") == 0 || LKGestioneAttivita.funzione.CompareTo("G") == 0)
             {
-                if (Directory.Exists($"{txtPercorso.Text}\\{txtNome.Text}"))
+                if (Directory.Exists($"{txtPercorso.Text}\\{nome}"))
                 {
                     MessageBox.Show("Attivita già esistente", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNome.Focus();

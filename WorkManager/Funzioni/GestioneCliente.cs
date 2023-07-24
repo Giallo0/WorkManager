@@ -16,6 +16,7 @@ namespace WorkManager.Funzioni
     {
         //Solo in modifica e in eliminazione, path di origine
         private string originPath;
+        private string nome;
 
         public GestioneCliente()
         {
@@ -65,6 +66,7 @@ namespace WorkManager.Funzioni
             //Inizializzo i field della screen
             txtPercorso.Text = string.Empty;
             txtNome.Text = string.Empty;
+            nome = string.Empty;
 
             //Se sono in eliminazione disabilito il field Nome
             if (LKGestioneCliente.funzione == "E")
@@ -75,13 +77,16 @@ namespace WorkManager.Funzioni
 
         private void btnConferma_Click(object sender, EventArgs e)
         {
+            nome = string.Empty;
+            nome = txtNome.Text.Replace(' ', '_');
+
             if (controllaDati())
             {
                 string folderPath = null;
                 string stato = string.Empty;
 
                 //Il percorso della cartella sarà formato dal nome della cartella
-                folderPath = $"{txtPercorso.Text}\\{txtNome.Text}";
+                folderPath = $"{txtPercorso.Text}\\{nome}";
 
                 if (!string.IsNullOrEmpty(folderPath))
                 {
@@ -99,8 +104,9 @@ namespace WorkManager.Funzioni
                             wsFolder.Stato = stato;
                             jwsF.newFolder(wsFolder);
 
-                            MessageBox.Show($"Il cliente '{txtNome.Text}' è stato creato", "Nuovo cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Il cliente '{nome}' è stato creato", "Nuovo cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             txtNome.Text = string.Empty;
+                            nome = string.Empty;
                             break;
 
                         case "G":
@@ -114,10 +120,11 @@ namespace WorkManager.Funzioni
                                 jwsF.salva();
 
                                 //Il percorso della cartella sarà formato dal nome della cartella
-                                MessageBox.Show($"Il cliente '{originPath.Remove(0, originPath.LastIndexOf("\\") + 1)}' è stato rinominato in '{txtNome.Text}'", "Modifica cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show($"Il cliente '{originPath.Remove(0, originPath.LastIndexOf("\\") + 1)}' è stato rinominato in '{nome}'", "Modifica cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 txtPercorso.Text = string.Empty;
                                 txtNome.Text = string.Empty;
+                                nome = string.Empty;
                             }
                             break;
 
@@ -127,18 +134,19 @@ namespace WorkManager.Funzioni
                             var filtered = files.Where(f => !f.Attributes.HasFlag(FileAttributes.Hidden));
                             if (filtered.Count() == 0)
                             {
-                                if (MessageBox.Show($"Eliminare il cliente '{txtNome.Text}'?", "Elimina cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                if (MessageBox.Show($"Eliminare il cliente '{nome}'?", "Elimina cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                                 {
                                     Directory.Delete(originPath, true);
 
-                                    MessageBox.Show($"il cliente '{txtNome.Text}' è stato eliminato", "Elimina cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show($"il cliente '{nome}' è stato eliminato", "Elimina cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     txtNome.Text = string.Empty;
+                                    nome = string.Empty;
                                     txtPercorso.Text = string.Empty;
                                 }
                             }
                             else
                             {
-                                MessageBox.Show($"Il cliente '{txtNome.Text}' non può essere eliminato perché contiene dei file al suo interno", "Elimina cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show($"Il cliente '{nome}' non può essere eliminato perché contiene dei file al suo interno", "Elimina cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             break;
                     }
@@ -166,7 +174,7 @@ namespace WorkManager.Funzioni
             }
             if (LKGestioneCliente.funzione.CompareTo("I") == 0 || LKGestioneCliente.funzione.CompareTo("G") == 0)
             {
-                if (Directory.Exists($"{txtPercorso.Text}\\{txtNome.Text}"))
+                if (Directory.Exists($"{txtPercorso.Text}\\{nome}"))
                 {
                     MessageBox.Show("Cliente già esistente", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNome.Focus();
