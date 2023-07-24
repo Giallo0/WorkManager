@@ -13,7 +13,7 @@ namespace WorkManager.PanelImpostazioni
     public partial class pnlImpostazioniParametri : UserControl
     {
         private string parametro = string.Empty;
-        private string valore = string.Empty;
+        private string oldGruppo = string.Empty;
 
         public pnlImpostazioniParametri()
         {
@@ -76,16 +76,11 @@ namespace WorkManager.PanelImpostazioni
                 noErrori = false;
                 goto controllaDatiErr;
             }
-            string gridValore = (gridGestioneCartella[1, index].Value ?? string.Empty).ToString();
-            /*
-            if (string.IsNullOrEmpty(gridValore))
+            if (cboGruppo.Text != oldGruppo)
             {
-                MessageBox.Show("Il valore del parametro deve essere valorizzato", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                gridGestioneCartella[1, index].Value = valore;
                 noErrori = false;
                 goto controllaDatiErr;
             }
-            */
 
         controllaDatiErr:
             return noErrori;
@@ -94,7 +89,6 @@ namespace WorkManager.PanelImpostazioni
         private void gridGestioneCartella_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             parametro = (gridGestioneCartella[0, e.RowIndex].Value ?? string.Empty).ToString();
-            valore = (gridGestioneCartella[1, e.RowIndex].Value ?? string.Empty).ToString();
         }
 
         private void gridGestioneCartella_MouseClick(object sender, MouseEventArgs e)
@@ -124,6 +118,7 @@ namespace WorkManager.PanelImpostazioni
                 {
                     gridGestioneCartella.Rows.Add(param.Parametro, param.Valore, param.Descrizione);
                 }
+                oldGruppo = cboGruppo.Text;
             }
             else
             {
