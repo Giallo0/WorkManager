@@ -34,6 +34,9 @@ namespace WorkManager
         public WMmain()
         {
             InitializeComponent();
+
+            //Aggiungo la versione del programma nel titolo della finestra
+            this.Text = $"{this.Text} - V{Settings.Default.Versione}";
             PersonalizzaInizializzazione();
 
             //Popolo la griglia con le attività aperte
@@ -42,9 +45,6 @@ namespace WorkManager
 
         private void PersonalizzaInizializzazione()
         {
-            //Aggiungo la versione del programma nel titolo della finestra
-            this.Text = $"{this.Text} - V{FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion}";
-
             chiusuraForm = string.IsNullOrEmpty(Globale.jwm.getValue(ChiaviRoot.Chiusura)) ? "F" : Globale.jwm.getValue(ChiaviRoot.Chiusura);
 
             if (chiusuraForm == "F")
