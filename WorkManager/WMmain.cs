@@ -1,6 +1,8 @@
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
+using System.Reflection;
+using System.Reflection.Metadata;
 using WorkManager.Linkage;
 using WorkManager.Properties;
 
@@ -40,6 +42,9 @@ namespace WorkManager
 
         private void PersonalizzaInizializzazione()
         {
+            //Aggiungo la versione del programma nel titolo della finestra
+            this.Text = $"{this.Text} - V{FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion}";
+
             chiusuraForm = string.IsNullOrEmpty(Globale.jwm.getValue(ChiaviRoot.Chiusura)) ? "F" : Globale.jwm.getValue(ChiaviRoot.Chiusura);
 
             if (chiusuraForm == "F")
@@ -87,20 +92,24 @@ namespace WorkManager
         {
             if (sender != null)
             {
+                timerGridAttivita.Enabled = false;
                 Button btn = (Button)sender;
                 Globale.functionCall = (ComponentiMenu)btn.Tag;
                 Funzione.Apri(((ComponentiMenu)btn.Tag).Programma.ToString());
+                timerGridAttivita.Enabled = true;
             }
         }
 
         private void btnGestioneMenu_Click(object sender, EventArgs e)
         {
+            timerGridAttivita.Enabled = false;
             Funzione.Apri(btnGestioneMenu.Tag.ToString(), "WorkManager");
             PersonalizzaInizializzazione();
         }
 
         private void btnImpostazioni_Click(object sender, EventArgs e)
         {
+            timerGridAttivita.Enabled = false;
             Funzione.Apri(btnImpostazioni.Tag.ToString(), "WorkManager");
             PersonalizzaInizializzazione();
         }

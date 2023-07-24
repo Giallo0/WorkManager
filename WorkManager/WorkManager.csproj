@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<PublishSingleFile>true</PublishSingleFile>
 	<ApplicationIcon>Resources\WorkManager_32x32.ico</ApplicationIcon>
+	<FileVersion>1.11.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

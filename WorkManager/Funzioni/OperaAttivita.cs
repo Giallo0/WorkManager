@@ -219,10 +219,12 @@ namespace WorkManager.Funzioni
         {
             if (parteAbilitata == 1)
             {
+                timerAttivita.Stop();
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
+                timerAttivita.Stop();
                 if (linkageValorizzata)
                 {
                     this.DialogResult = DialogResult.OK;
