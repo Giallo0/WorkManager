@@ -18,7 +18,7 @@ namespace WorkManager
             {
                 counter = 0;
                 counter = EseguiBonifica();
-                MessageBox.Show($"Bonifica terminata. Sono stati bonificati {counter} attività.", "Bonifica cartelle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Bonifica terminata. Sono state bonificate {counter} cartelle/file.", "Bonifica cartelle", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -32,7 +32,8 @@ namespace WorkManager
             //BonificaStatoPrioritaAttivita(Globale.jwm.getValue(ChiaviRoot.Workspace));
             //BonificaStatoChiuso(Globale.jwm.getValue(ChiaviRoot.Workspace));
             //return BonificaPriorita(Globale.jwm.getValue(ChiaviRoot.Workspace));
-            return BonificaStati(Globale.jwm.getValue(ChiaviRoot.Workspace));
+            //return BonificaStati(Globale.jwm.getValue(ChiaviRoot.Workspace));
+            return BonificaNomiCartelle(Globale.jwm.getValue(ChiaviRoot.Workspace));
         }
 
         private void BonificaTipoCartella(string padre)
@@ -149,6 +150,40 @@ namespace WorkManager
                         }
                     }
                     BonificaStati(dir);
+                }
+            }
+
+            return counter;
+        }
+
+        private int BonificaNomiCartelle(string padre)
+        {
+            foreach (string dir in Directory.GetDirectories(padre))
+            {
+                DirectoryInfo di = new DirectoryInfo(dir);
+                if (!di.Attributes.HasFlag(FileAttributes.Hidden))
+                {
+                    JSONwsFolder jwsF = new JSONwsFolder(dir, false);
+                    string newDir = string.Empty;
+                    if (!jwsF.isNull())
+                    {
+                        string newName = Path.GetFileName(dir).Replace(' ', '_');
+                        newDir = $"{Path.GetDirectoryName(dir)}\\{newName}";
+
+                        if (dir != newDir)
+                        {
+                            Directory.Move(dir, newDir);
+                            counter++;
+                        }
+                    }
+                    if (string.IsNullOrEmpty(newDir))
+                    {
+                        BonificaNomiCartelle(dir);
+                    }
+                    else
+                    {
+                        BonificaNomiCartelle(newDir);
+                    }
                 }
             }
 

@@ -101,7 +101,6 @@ namespace WorkManager.Funzioni
                             wsFolder.Tipo = ParametriCostanti<TipiCartella>.getName(TipiCartella.Cliente);
                             wsFolder.DataCreazione = DateTime.Now.ToString("yyyyMMdd");
                             wsFolder.OraCreazione = DateTime.Now.ToString("HHmmss");
-                            wsFolder.Stato = stato;
                             jwsF.newFolder(wsFolder);
 
                             MessageBox.Show($"Il cliente '{nome}' è stato creato", "Nuovo cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);

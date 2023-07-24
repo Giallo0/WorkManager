@@ -140,7 +140,10 @@ namespace WorkManager.Funzioni
                     percorsoAttivita = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
                     //Carico la griglia
                     TrovaElementi(percorsoAttivita);
-                    gridContenuto.Rows[gridIndex].Selected = true;
+                    if (gridContenuto.Rows.Count > 0) 
+                    {
+                        gridContenuto.Rows[gridIndex].Selected = true;
+                    }
 
                     parteAbilitata = 2;
                     abilitaDisabilita();

@@ -106,8 +106,11 @@ namespace WorkManager
             setValue(ChiaviwsFolder.Tipo, fold.Tipo);
             setValue(ChiaviwsFolder.DataCreazione, fold.DataCreazione);
             setValue(ChiaviwsFolder.OraCreazione, fold.OraCreazione);
-            setValue(ChiaviwsFolder.Stato, fold.Stato);
-            setValue(ChiaviwsFolder.Priorita, fold.Priorita);
+            if (fold.Tipo == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita))
+            {
+                setValue(ChiaviwsFolder.Stato, fold.Stato);
+                setValue(ChiaviwsFolder.Priorita, fold.Priorita);
+            }
             salva();
         }
     }
