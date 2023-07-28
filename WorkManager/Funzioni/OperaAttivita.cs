@@ -23,6 +23,8 @@ namespace WorkManager.Funzioni
         private int gridIndex;
         private string percorsoAttivita;
 
+        private JSONwsFolder jwsF = null;
+
         public OperaAttivita()
         {
             InitializeComponent();
@@ -82,6 +84,23 @@ namespace WorkManager.Funzioni
                     btnConferma.Enabled = false;
                     pnlSecondaParte.Enabled = true;
                     pnlSecondaParte.Visible = true;
+
+                    if (jwsF.getValue(ChiaviwsFolder.Stato) == ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Da_Rilasciare))
+                    {
+                        btnAddCartella.Enabled = false;
+                        btnAddFile.Enabled = false;
+                        btnDaRilasciare.Enabled = false;
+                        btnRinomina.Enabled = false;
+                        btnCancella.Enabled = false;
+                    }
+                    else
+                    {
+                        btnAddCartella.Enabled = true;
+                        btnAddFile.Enabled = true;
+                        btnDaRilasciare.Enabled = true;
+                        btnRinomina.Enabled = true;
+                        btnCancella.Enabled = true;
+                    }
                     break;
             }
         }
@@ -120,10 +139,10 @@ namespace WorkManager.Funzioni
                 DirectoryInfo di = new DirectoryInfo(dir);
                 if (!di.Attributes.HasFlag(FileAttributes.Hidden))
                 {
-                    JSONwsFolder jwsF = new JSONwsFolder(dir, false);
-                    if (!jwsF.isNull() &&
-                        (jwsF.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita)) &&
-                        (jwsF.getValue(ChiaviwsFolder.Stato) == ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Aperta)))
+                    JSONwsFolder jwsFAtt = new JSONwsFolder(dir, false);
+                    if (!jwsFAtt.isNull() &&
+                        (jwsFAtt.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita)) &&
+                        (jwsFAtt.getValue(ChiaviwsFolder.Stato) != ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Chiusa)))
                     {
                         cboAttivita.Items.Add($"{Path.GetFileName(dir).Substring(0, 3)} - {Path.GetFileName(dir).Substring(4)}");
                     }
@@ -138,6 +157,9 @@ namespace WorkManager.Funzioni
                 if (controllaDati())
                 {
                     percorsoAttivita = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+                    //Carico il json
+                    jwsF = new JSONwsFolder(percorsoAttivita, false);
+
                     //Carico la griglia
                     TrovaElementi(percorsoAttivita);
                     if (gridContenuto.Rows.Count > 0)
@@ -220,6 +242,7 @@ namespace WorkManager.Funzioni
 
         private void btnAnnulla_Click(object sender, EventArgs e)
         {
+            jwsF = null;
             if (parteAbilitata == 1)
             {
                 timerAttivita.Stop();
@@ -409,6 +432,20 @@ namespace WorkManager.Funzioni
         private void btnCopiaPercorso_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(gridContenuto[3, gridContenuto.CurrentRow.Index].Value.ToString());
+        }
+
+        private void btnDaRilasciare_Click(object sender, EventArgs e)
+        {
+            LK_CambiaStatoAttivita.ClearLinkage();
+            LK_CambiaStatoAttivita.percorsoCliente = percorsoCliente;
+            LK_CambiaStatoAttivita.attivita = $"{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+            LK_CambiaStatoAttivita.stato = ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Da_Rilasciare);
+            Funzione.Apri("_CambiaStatoAttivita");
+
+            LK_CambiaStatoAttivita.ClearLinkage();
+
+            jwsF = new JSONwsFolder(percorsoAttivita, false);
+            abilitaDisabilita();
         }
     }
 }

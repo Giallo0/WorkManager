@@ -165,6 +165,7 @@ namespace WorkManager
 
             dt.Columns.Add("Attivita", typeof(string));
             dt.Columns.Add("Cliente", typeof(string));
+            dt.Columns.Add("Stato", typeof(string));
             dt.Columns.Add("Priorita", typeof(string));
             dt.Columns.Add("Data", typeof(string));
             dt.Columns.Add("Ora", typeof(string));
@@ -183,6 +184,7 @@ namespace WorkManager
 
             gridAttivitaAperte.Columns["Attivita"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             gridAttivitaAperte.Columns["Cliente"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            gridAttivitaAperte.Columns["Stato"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             gridAttivitaAperte.Columns["Priorita"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             gridAttivitaAperte.Columns["Data"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             gridAttivitaAperte.Columns["Ora"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -213,7 +215,7 @@ namespace WorkManager
                 {
                     JSONwsFolder jwsF = new JSONwsFolder(dir, false);
                     if (!jwsF.isNull() && jwsF.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita) &&
-                        jwsF.getValue(ChiaviwsFolder.Stato) == ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Aperta))
+                        jwsF.getValue(ChiaviwsFolder.Stato) != ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Chiusa))
                     {
                         DateTime data = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.DataCreazione), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
                         DateTime ora = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.OraCreazione), "HHmmss", System.Globalization.CultureInfo.InvariantCulture);
@@ -221,6 +223,7 @@ namespace WorkManager
                         dt.Rows.Add(new object[] {
                             Path.GetFileName(dir).Substring(4),             //Nome
                             Directory.GetParent(dir).Name,                  //Cliente
+                            jwsF.getValue(ChiaviwsFolder.Stato),            //Stato
                             jwsF.getValue(ChiaviwsFolder.Priorita),         //Priorita
                             data.ToString("yyyy/MM/dd"),                    //Data creazione
                             ora.ToString("HH:mm:ss"),                       //Ora creazione
@@ -237,7 +240,7 @@ namespace WorkManager
         {
             dt.DefaultView.Sort = null;
 
-            dt.DefaultView.Sort = "Priorita desc, Data, Ora, Cliente, Progressivo";
+            dt.DefaultView.Sort = "Stato, Priorita desc, Data, Ora, Cliente, Progressivo";
         }
 
         private void btnAggiornaGriglia_Click(object sender, EventArgs e)

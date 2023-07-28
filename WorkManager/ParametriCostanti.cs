@@ -45,7 +45,7 @@ namespace WorkManager
 
     internal enum StatiAttivita
     {
-        Aperta = 1, Chiusa = 0
+        Aperta = 1, Da_Rilasciare, Chiusa = 0
     }
 
     internal enum PrioritaAttivita

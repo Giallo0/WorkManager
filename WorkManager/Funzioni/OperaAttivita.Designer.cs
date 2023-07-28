@@ -56,8 +56,9 @@
             btnApri = new ToolStripMenuItem();
             btnRinomina = new ToolStripMenuItem();
             btnCancella = new ToolStripMenuItem();
-            timerAttivita = new System.Windows.Forms.Timer(components);
             btnCopiaPercorso = new ToolStripMenuItem();
+            timerAttivita = new System.Windows.Forms.Timer(components);
+            btnDaRilasciare = new Button();
             pnlTop.SuspendLayout();
             pnlPrimaParte.SuspendLayout();
             pnlPulsanti.SuspendLayout();
@@ -247,6 +248,7 @@
             // 
             // pnlFunzioni
             // 
+            pnlFunzioni.Controls.Add(btnDaRilasciare);
             pnlFunzioni.Controls.Add(btnApriAttivita);
             pnlFunzioni.Controls.Add(btnChiudiAttivita);
             pnlFunzioni.Controls.Add(btnAddFile);
@@ -269,7 +271,7 @@
             // 
             // btnChiudiAttivita
             // 
-            btnChiudiAttivita.Location = new Point(3, 99);
+            btnChiudiAttivita.Location = new Point(3, 130);
             btnChiudiAttivita.Name = "btnChiudiAttivita";
             btnChiudiAttivita.Size = new Size(191, 25);
             btnChiudiAttivita.TabIndex = 2;
@@ -301,40 +303,50 @@
             // 
             mnuGridContenuto.Items.AddRange(new ToolStripItem[] { btnApri, btnRinomina, btnCancella, btnCopiaPercorso });
             mnuGridContenuto.Name = "mnuGridContenuto";
-            mnuGridContenuto.Size = new Size(181, 114);
+            mnuGridContenuto.Size = new Size(155, 92);
             // 
             // btnApri
             // 
             btnApri.Name = "btnApri";
-            btnApri.Size = new Size(180, 22);
+            btnApri.Size = new Size(154, 22);
             btnApri.Text = "Apri";
             btnApri.Click += btnApri_Click;
             // 
             // btnRinomina
             // 
             btnRinomina.Name = "btnRinomina";
-            btnRinomina.Size = new Size(180, 22);
+            btnRinomina.Size = new Size(154, 22);
             btnRinomina.Text = "Rinomina";
             btnRinomina.Click += btnRinomina_Click;
             // 
             // btnCancella
             // 
             btnCancella.Name = "btnCancella";
-            btnCancella.Size = new Size(180, 22);
+            btnCancella.Size = new Size(154, 22);
             btnCancella.Text = "Cancella";
             btnCancella.Click += btnCancella_Click;
+            // 
+            // btnCopiaPercorso
+            // 
+            btnCopiaPercorso.Name = "btnCopiaPercorso";
+            btnCopiaPercorso.Size = new Size(154, 22);
+            btnCopiaPercorso.Text = "Copia percorso";
+            btnCopiaPercorso.Click += btnCopiaPercorso_Click;
             // 
             // timerAttivita
             // 
             timerAttivita.Interval = 45000;
             timerAttivita.Tick += timerAttivita_Tick;
             // 
-            // btnCopiaPercorso
+            // btnDaRilasciare
             // 
-            btnCopiaPercorso.Name = "btnCopiaPercorso";
-            btnCopiaPercorso.Size = new Size(180, 22);
-            btnCopiaPercorso.Text = "Copia percorso";
-            btnCopiaPercorso.Click += btnCopiaPercorso_Click;
+            btnDaRilasciare.Location = new Point(5, 99);
+            btnDaRilasciare.Name = "btnDaRilasciare";
+            btnDaRilasciare.Size = new Size(191, 25);
+            btnDaRilasciare.TabIndex = 6;
+            btnDaRilasciare.Text = "Da rilasciare";
+            btnDaRilasciare.UseVisualStyleBackColor = true;
+            btnDaRilasciare.Click += btnDaRilasciare_Click;
             // 
             // OperaAttivita
             // 
@@ -392,5 +404,6 @@
         private ToolStripMenuItem btnCancella;
         private System.Windows.Forms.Timer timerAttivita;
         private ToolStripMenuItem btnCopiaPercorso;
+        private Button btnDaRilasciare;
     }
 }
