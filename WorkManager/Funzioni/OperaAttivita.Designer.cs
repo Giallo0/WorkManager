@@ -57,6 +57,7 @@
             btnRinomina = new ToolStripMenuItem();
             btnCancella = new ToolStripMenuItem();
             timerAttivita = new System.Windows.Forms.Timer(components);
+            btnCopiaPercorso = new ToolStripMenuItem();
             pnlTop.SuspendLayout();
             pnlPrimaParte.SuspendLayout();
             pnlPulsanti.SuspendLayout();
@@ -298,28 +299,28 @@
             // 
             // mnuGridContenuto
             // 
-            mnuGridContenuto.Items.AddRange(new ToolStripItem[] { btnApri, btnRinomina, btnCancella });
+            mnuGridContenuto.Items.AddRange(new ToolStripItem[] { btnApri, btnRinomina, btnCancella, btnCopiaPercorso });
             mnuGridContenuto.Name = "mnuGridContenuto";
-            mnuGridContenuto.Size = new Size(126, 70);
+            mnuGridContenuto.Size = new Size(181, 114);
             // 
             // btnApri
             // 
             btnApri.Name = "btnApri";
-            btnApri.Size = new Size(125, 22);
+            btnApri.Size = new Size(180, 22);
             btnApri.Text = "Apri";
             btnApri.Click += btnApri_Click;
             // 
             // btnRinomina
             // 
             btnRinomina.Name = "btnRinomina";
-            btnRinomina.Size = new Size(125, 22);
+            btnRinomina.Size = new Size(180, 22);
             btnRinomina.Text = "Rinomina";
             btnRinomina.Click += btnRinomina_Click;
             // 
             // btnCancella
             // 
             btnCancella.Name = "btnCancella";
-            btnCancella.Size = new Size(125, 22);
+            btnCancella.Size = new Size(180, 22);
             btnCancella.Text = "Cancella";
             btnCancella.Click += btnCancella_Click;
             // 
@@ -327,6 +328,13 @@
             // 
             timerAttivita.Interval = 45000;
             timerAttivita.Tick += timerAttivita_Tick;
+            // 
+            // btnCopiaPercorso
+            // 
+            btnCopiaPercorso.Name = "btnCopiaPercorso";
+            btnCopiaPercorso.Size = new Size(180, 22);
+            btnCopiaPercorso.Text = "Copia percorso";
+            btnCopiaPercorso.Click += btnCopiaPercorso_Click;
             // 
             // OperaAttivita
             // 
@@ -383,5 +391,6 @@
         private ToolStripMenuItem btnRinomina;
         private ToolStripMenuItem btnCancella;
         private System.Windows.Forms.Timer timerAttivita;
+        private ToolStripMenuItem btnCopiaPercorso;
     }
 }

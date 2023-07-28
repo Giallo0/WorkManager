@@ -140,7 +140,7 @@ namespace WorkManager.Funzioni
                     percorsoAttivita = $"{percorsoCliente}\\{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
                     //Carico la griglia
                     TrovaElementi(percorsoAttivita);
-                    if (gridContenuto.Rows.Count > 0) 
+                    if (gridContenuto.Rows.Count > 0)
                     {
                         gridContenuto.Rows[gridIndex].Selected = true;
                     }
@@ -404,6 +404,11 @@ namespace WorkManager.Funzioni
         private void timerAttivita_Tick(object sender, EventArgs e)
         {
             AggiornaGriglia();
+        }
+
+        private void btnCopiaPercorso_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(gridContenuto[3, gridContenuto.CurrentRow.Index].Value.ToString());
         }
     }
 }
