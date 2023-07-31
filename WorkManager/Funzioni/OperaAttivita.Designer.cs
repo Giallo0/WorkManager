@@ -48,8 +48,12 @@
             colTipo = new DataGridViewTextBoxColumn();
             colPercorso = new DataGridViewTextBoxColumn();
             pnlFunzioni = new Panel();
+            btnStatoAttivita = new Button();
+            mnuStatiAttivita = new ContextMenuStrip(components);
+            btnDaRilasciare = new ToolStripMenuItem();
+            btnAnnullaAttivita = new ToolStripMenuItem();
+            btnChiudiAttivita = new ToolStripMenuItem();
             btnApriAttivita = new Button();
-            btnChiudiAttivita = new Button();
             btnAddFile = new Button();
             btnAddCartella = new Button();
             mnuGridContenuto = new ContextMenuStrip(components);
@@ -58,7 +62,6 @@
             btnCancella = new ToolStripMenuItem();
             btnCopiaPercorso = new ToolStripMenuItem();
             timerAttivita = new System.Windows.Forms.Timer(components);
-            btnDaRilasciare = new Button();
             pnlTop.SuspendLayout();
             pnlPrimaParte.SuspendLayout();
             pnlPulsanti.SuspendLayout();
@@ -66,6 +69,7 @@
             pnlContenuto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridContenuto).BeginInit();
             pnlFunzioni.SuspendLayout();
+            mnuStatiAttivita.SuspendLayout();
             mnuGridContenuto.SuspendLayout();
             SuspendLayout();
             // 
@@ -248,9 +252,8 @@
             // 
             // pnlFunzioni
             // 
-            pnlFunzioni.Controls.Add(btnDaRilasciare);
+            pnlFunzioni.Controls.Add(btnStatoAttivita);
             pnlFunzioni.Controls.Add(btnApriAttivita);
-            pnlFunzioni.Controls.Add(btnChiudiAttivita);
             pnlFunzioni.Controls.Add(btnAddFile);
             pnlFunzioni.Controls.Add(btnAddCartella);
             pnlFunzioni.Dock = DockStyle.Right;
@@ -258,6 +261,43 @@
             pnlFunzioni.Name = "pnlFunzioni";
             pnlFunzioni.Size = new Size(200, 650);
             pnlFunzioni.TabIndex = 1;
+            // 
+            // btnStatoAttivita
+            // 
+            btnStatoAttivita.Location = new Point(3, 99);
+            btnStatoAttivita.Name = "btnStatoAttivita";
+            btnStatoAttivita.Size = new Size(191, 25);
+            btnStatoAttivita.TabIndex = 7;
+            btnStatoAttivita.Text = "Stato attività";
+            btnStatoAttivita.UseVisualStyleBackColor = true;
+            btnStatoAttivita.Click += btnStatoAttivita_Click;
+            // 
+            // mnuStatiAttivita
+            // 
+            mnuStatiAttivita.Items.AddRange(new ToolStripItem[] { btnDaRilasciare, btnAnnullaAttivita, btnChiudiAttivita });
+            mnuStatiAttivita.Name = "mnuStatiAttivita";
+            mnuStatiAttivita.Size = new Size(155, 70);
+            // 
+            // btnDaRilasciare
+            // 
+            btnDaRilasciare.Name = "btnDaRilasciare";
+            btnDaRilasciare.Size = new Size(154, 22);
+            btnDaRilasciare.Text = "Da rilasciare";
+            btnDaRilasciare.Click += btnDaRilasciare_Click;
+            // 
+            // btnAnnullaAttivita
+            // 
+            btnAnnullaAttivita.Name = "btnAnnullaAttivita";
+            btnAnnullaAttivita.Size = new Size(154, 22);
+            btnAnnullaAttivita.Text = "Annulla attività";
+            btnAnnullaAttivita.Click += btnAnnullaAttivita_Click;
+            // 
+            // btnChiudiAttivita
+            // 
+            btnChiudiAttivita.Name = "btnChiudiAttivita";
+            btnChiudiAttivita.Size = new Size(154, 22);
+            btnChiudiAttivita.Text = "Chiudi attività";
+            btnChiudiAttivita.Click += btnChiudiAttivita_Click;
             // 
             // btnApriAttivita
             // 
@@ -268,16 +308,6 @@
             btnApriAttivita.Text = "Apri Attività";
             btnApriAttivita.UseVisualStyleBackColor = true;
             btnApriAttivita.Click += btnApriAttivita_Click;
-            // 
-            // btnChiudiAttivita
-            // 
-            btnChiudiAttivita.Location = new Point(3, 130);
-            btnChiudiAttivita.Name = "btnChiudiAttivita";
-            btnChiudiAttivita.Size = new Size(191, 25);
-            btnChiudiAttivita.TabIndex = 2;
-            btnChiudiAttivita.Text = "Chiudi attività";
-            btnChiudiAttivita.UseVisualStyleBackColor = true;
-            btnChiudiAttivita.Click += btnChiudiAttivita_Click;
             // 
             // btnAddFile
             // 
@@ -338,16 +368,6 @@
             timerAttivita.Interval = 45000;
             timerAttivita.Tick += timerAttivita_Tick;
             // 
-            // btnDaRilasciare
-            // 
-            btnDaRilasciare.Location = new Point(5, 99);
-            btnDaRilasciare.Name = "btnDaRilasciare";
-            btnDaRilasciare.Size = new Size(191, 25);
-            btnDaRilasciare.TabIndex = 6;
-            btnDaRilasciare.Text = "Da rilasciare";
-            btnDaRilasciare.UseVisualStyleBackColor = true;
-            btnDaRilasciare.Click += btnDaRilasciare_Click;
-            // 
             // OperaAttivita
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
@@ -370,6 +390,7 @@
             pnlContenuto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridContenuto).EndInit();
             pnlFunzioni.ResumeLayout(false);
+            mnuStatiAttivita.ResumeLayout(false);
             mnuGridContenuto.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -386,7 +407,6 @@
         private Panel pnlContenuto;
         private DataGridView gridContenuto;
         private Panel pnlFunzioni;
-        private Button btnChiudiAttivita;
         private Button btnAddFile;
         private Button btnAddCartella;
         private Panel pnlPrimaParte;
@@ -404,6 +424,10 @@
         private ToolStripMenuItem btnCancella;
         private System.Windows.Forms.Timer timerAttivita;
         private ToolStripMenuItem btnCopiaPercorso;
-        private Button btnDaRilasciare;
+        private Button btnStatoAttivita;
+        private ContextMenuStrip mnuStatiAttivita;
+        private ToolStripMenuItem btnDaRilasciare;
+        private ToolStripMenuItem btnAnnullaAttivita;
+        private ToolStripMenuItem btnChiudiAttivita;
     }
 }

@@ -215,7 +215,8 @@ namespace WorkManager
                 {
                     JSONwsFolder jwsF = new JSONwsFolder(dir, false);
                     if (!jwsF.isNull() && jwsF.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita) &&
-                        jwsF.getValue(ChiaviwsFolder.Stato) != ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Chiusa))
+                        jwsF.getValue(ChiaviwsFolder.Stato) != ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Chiusa) &&
+                        jwsF.getValue(ChiaviwsFolder.Stato) != ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Annullata))
                     {
                         DateTime data = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.DataCreazione), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
                         DateTime ora = DateTime.ParseExact(jwsF.getValue(ChiaviwsFolder.OraCreazione), "HHmmss", System.Globalization.CultureInfo.InvariantCulture);

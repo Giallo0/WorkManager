@@ -90,6 +90,7 @@ namespace WorkManager.Funzioni
                         btnAddCartella.Enabled = false;
                         btnAddFile.Enabled = false;
                         btnDaRilasciare.Enabled = false;
+                        btnAnnullaAttivita.Enabled = false;
                         btnRinomina.Enabled = false;
                         btnCancella.Enabled = false;
                     }
@@ -98,6 +99,7 @@ namespace WorkManager.Funzioni
                         btnAddCartella.Enabled = true;
                         btnAddFile.Enabled = true;
                         btnDaRilasciare.Enabled = true;
+                        btnAnnullaAttivita.Enabled = true;
                         btnRinomina.Enabled = true;
                         btnCancella.Enabled = true;
                     }
@@ -142,7 +144,8 @@ namespace WorkManager.Funzioni
                     JSONwsFolder jwsFAtt = new JSONwsFolder(dir, false);
                     if (!jwsFAtt.isNull() &&
                         (jwsFAtt.getValue(ChiaviwsFolder.Tipo) == ParametriCostanti<TipiCartella>.getName(TipiCartella.Attivita)) &&
-                        (jwsFAtt.getValue(ChiaviwsFolder.Stato) != ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Chiusa)))
+                        (jwsFAtt.getValue(ChiaviwsFolder.Stato) != ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Chiusa) &&
+                         jwsFAtt.getValue(ChiaviwsFolder.Stato) != ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Annullata)))
                     {
                         cboAttivita.Items.Add($"{Path.GetFileName(dir).Substring(0, 3)} - {Path.GetFileName(dir).Substring(4)}");
                     }
@@ -446,6 +449,36 @@ namespace WorkManager.Funzioni
 
             jwsF = new JSONwsFolder(percorsoAttivita, false);
             abilitaDisabilita();
+        }
+
+        private void btnAnnullaAttivita_Click(object sender, EventArgs e)
+        {
+            LK_CambiaStatoAttivita.ClearLinkage();
+            LK_CambiaStatoAttivita.percorsoCliente = percorsoCliente;
+            LK_CambiaStatoAttivita.attivita = $"{cboAttivita.Text.Substring(0, 3)}_{cboAttivita.Text.Substring(6)}";
+            LK_CambiaStatoAttivita.stato = ParametriCostanti<StatiAttivita>.getNameWithId(StatiAttivita.Annullata);
+            Funzione.Apri("_CambiaStatoAttivita");
+
+            if (!LK_CambiaStatoAttivita.erroriElab)
+            {
+                if (linkageValorizzata)
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    parteAbilitata = 1;
+                    abilitaDisabilita();
+
+                    AggiornaGriglia();
+                }
+            }
+            LK_CambiaStatoAttivita.ClearLinkage();
+        }
+
+        private void btnStatoAttivita_Click(object sender, EventArgs e)
+        {
+            mnuStatiAttivita.Show(btnStatoAttivita, 0, btnStatoAttivita.Height);
         }
     }
 }
